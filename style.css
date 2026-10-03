@@ -1,0 +1,57 @@
+:root {
+  --paper: #F2F0E9;
+  --card: #FAFAF7;
+  --ink: #2B313B;
+  --muted: #5F6875;
+  --line: #DCDBD8;
+  --orange: #F15A24;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #202733;
+    --card: #2A3341;
+    --ink: #E3E9F1;
+    --muted: #A9B6C8;
+    --line: #3A4556;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 17px/1.6 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+}
+main { max-width: 680px; margin: 0 auto; padding: 48px 20px 64px; }
+.wordmark {
+  /* Letter spacing already follows each letter, so only the disc needs its own gap after it. */
+  display: inline-flex; align-items: center;
+  font-weight: 600; font-size: 22px; letter-spacing: 0.42em; color: var(--ink);
+  text-decoration: none;
+}
+.wordmark .o {
+  display: inline-block; width: 0.75em; height: 0.75em; border-radius: 50%;
+  background: #FF7428; margin-right: 0.42em;
+}
+nav { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 40px; }
+nav .links a { color: var(--muted); text-decoration: none; margin-left: 18px; font-size: 15px; }
+nav .links a:first-child { margin-left: 0; }
+nav .links a[aria-current] { color: var(--ink); font-weight: 600; }
+h1 { font-size: 34px; line-height: 1.2; margin: 0 0 8px; }
+h2 { font-size: 21px; margin: 36px 0 8px; }
+p, li { color: var(--ink); }
+.lead { color: var(--muted); font-size: 19px; margin-top: 0; }
+.card {
+  background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+  padding: 20px 22px; margin: 24px 0;
+}
+a { color: var(--orange); }
+.button {
+  display: inline-block; background: var(--orange); color: #fff; text-decoration: none;
+  font-weight: 600; padding: 12px 20px; border-radius: 999px;
+}
+details { border-top: 1px solid var(--line); padding: 14px 0; }
+details:last-of-type { border-bottom: 1px solid var(--line); }
+summary { cursor: pointer; font-weight: 600; }
+details p { margin: 8px 0 0; color: var(--muted); }
+footer { margin-top: 56px; color: var(--muted); font-size: 14px; }
