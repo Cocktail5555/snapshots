@@ -41,6 +41,7 @@ h1 { font-size: 34px; line-height: 1.2; margin: 0 0 8px; }
 h2 { font-size: 21px; margin: 36px 0 8px; }
 p, li { color: var(--ink); }
 .lead { color: var(--muted); font-size: 19px; margin-top: 0; }
+.hero { display: block; width: 100%; height: auto; margin: 28px 0 8px; }
 .card {
   background: var(--card); border: 1px solid var(--line); border-radius: 16px;
   padding: 20px 22px; margin: 24px 0;
