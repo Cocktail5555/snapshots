@@ -108,7 +108,13 @@ nav .links a:hover { color: var(--night-ink); }
 /* ---------- Devices, framed in CSS ---------- */
 .device { container-type: inline-size; width: 100%; }
 .device .shell { position: relative; background: var(--shell); padding: 2.2cqw; border-radius: 9.2cqw; box-shadow: 0 30px 60px -18px rgba(0, 0, 0, 0.45), inset 0 0 0 1px rgba(255, 255, 255, 0.08); }
-.device img { width: 100%; border-radius: 7cqw; }
+.device img { width: 100%; border-radius: 7cqw; background: #111; }
+/* Each screen keeps its shape while its picture loads, so the page doesn't jump. */
+.device.laptop img { aspect-ratio: 2007 / 2853; }
+.device.book img { aspect-ratio: 2853 / 2007; }
+.device.closed img { aspect-ratio: 1398 / 2034; }
+.device.phone img { aspect-ratio: 1320 / 2868; }
+.device.phone.landscape img { aspect-ratio: 2868 / 1320; }
 .device.book .shell { border-radius: 7.1cqw; }
 .device.book img { border-radius: 4.9cqw; }
 .device.phone .shell { padding: 3.4cqw; border-radius: 16.9cqw; }
