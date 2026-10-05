@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Snapshots for iPhone Duo</title>
+  <meta name="description" content="Snapshots is an instant camera built around iPhone Duo's fold. Shoot half open, unfold to print. Arriving October 23.">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#202733">
+  <link rel="stylesheet" href="duo.css">
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="wordmark" href="./" aria-label="Snapshots">SNAPSH<span class="o"></span>TS</a>
+    <div class="links">
+      <a href="#unfold">Unfold to print</a>
+      <a href="#poses">Poses</a>
+      <a href="#films">Film</a>
+      <a href="#maker">Maker</a>
+      <a href="./">Support</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero night">
+  <div class="wrap">
+    <div class="copy">
+      <span class="eyebrow">Made for iPhone Duo</span>
+      <h1>Unfold a bigger camera.</h1>
+      <p class="lead">Snapshots is an instant camera built around the fold. Shoot with your iPhone Duo in the Seated Position, then unfold it flat and watch your photo print.</p>
+      <div class="actions">
+        <span class="pill">Arriving October 23</span>
+        <a class="pill ghost" href="#unfold">See how it works</a>
+      </div>
+    </div>
+    <figure class="stage" aria-label="An iPhone Duo in the Seated Position with Snapshots on screen, unfolding flat as a photo prints.">
+      <div class="fold" id="fold">
+        <div class="half top"><canvas width="1000" height="710"></canvas></div>
+        <div class="half bottom"><canvas width="1000" height="710"></canvas></div>
+      </div>
+      <figcaption id="pose-name">Seated Position</figcaption>
+      <video id="reel" src="duo/unfold.mp4" muted playsinline loop preload="auto" aria-hidden="true" tabindex="-1"></video>
+    </figure>
+  </div>
+</section>
+
+<section class="white" id="unfold">
+  <div class="wrap">
+    <div class="head center reveal">
+      <span class="eyebrow">Unfold to print</span>
+      <h2>The hinge is the printer.</h2>
+      <p class="lead">Instant cameras made you wait for the picture. Snapshots makes that the best part, and puts it in your hands.</p>
+    </div>
+    <div class="steps reveal">
+      <div class="step">
+        <h3>Fold it half open</h3>
+        <p>The upper screen is your viewfinder. The lower one becomes a camera body, with a shutter worth pressing.</p>
+      </div>
+      <div class="step">
+        <h3>Take the shot</h3>
+        <p>The printer whirs and your photo waits in its slot, just peeking out.</p>
+      </div>
+      <div class="step">
+        <h3>Unfold</h3>
+        <p>Open the phone flat and the print feeds out onto a table to display in full view.</p>
+      </div>
+      <div class="step">
+        <h3>Watch it develop</h3>
+        <p>The picture fades up like instant film. Shake to hurry it along, then write a caption across it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="night" id="poses">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">Four poses</span>
+      <h2>Every way you hold it is a different camera.</h2>
+      <p class="lead">Snapshots rearranges itself around the fold, so the controls are always under your thumbs and the viewfinder is always where you're looking.</p>
+    </div>
+    <div class="poses">
+      <article class="pose closed reveal">
+        <div class="art"><div class="device closed"><div class="shell"><img src="duo/closed-light.jpg" alt="Snapshots on the front display of a closed iPhone Duo." loading="lazy"></div></div></div>
+        <div class="tag">Closed</div>
+        <h3>A pocketable instant camera</h3>
+        <p>Everything you need on the front display: shutter, film dial, zoom and your last print.</p>
+      </article>
+      <article class="pose laptop reveal">
+        <div class="art">
+          <div class="stage small" role="img" aria-label="Snapshots on an iPhone Duo in the Seated Position, folded to a right angle: the viewfinder on the upright half, the controls on the half lying flat.">
+            <div class="fold seated">
+              <div class="half top"><div class="screen" style="background-image: url(duo/laptop-dark.jpg)"></div></div>
+              <div class="half bottom"><div class="screen" style="background-image: url(duo/laptop-dark.jpg)"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="tag">Seated Position</div>
+        <h3>A camera that stands by itself</h3>
+        <p>Viewfinder up top, flash, zoom and shutter below. Set it down, start the self-timer and step into the picture.</p>
+      </article>
+      <article class="pose book reveal">
+        <div class="art"><div class="device book"><div class="shell"><img src="duo/book-light.jpg" alt="Snapshots on an iPhone Duo held open like a book: viewfinder on the left screen, controls on the right." loading="lazy"></div></div></div>
+        <div class="tag">Open like a book</div>
+        <h3>Two screens, two jobs</h3>
+        <p>A clear viewfinder on one side and the whole camera on the other. Flip a rocker to swap them for your left or right hand.</p>
+      </article>
+      <article class="pose flat reveal">
+        <div class="art"><div class="device laptop"><div class="shell"><img id="flat-shot" src="duo/flat-light.jpg" alt="Snapshots on an iPhone Duo lying flat: a printer across the top with a finished print below it." loading="lazy"></div></div></div>
+        <div class="tag">Flat</div>
+        <h3>A tabletop printer</h3>
+        <p>Laid flat, the whole display is the printer's table, with your print enlarged to fill it.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="night" id="finishes" data-finish="white">
+  <div class="wrap finishes">
+    <div class="reveal">
+      <span class="eyebrow">Drawn for the hardware</span>
+      <h2 style="margin: 18px 0">Controls you can almost feel.</h2>
+      <p class="lead">No floating glass buttons. Snapshots has a camera body, with parts that move the way real ones do.</p>
+      <ul class="list">
+        <li><span><strong>A film dial that clicks round</strong> through five styles, always clockwise.</span></li>
+        <li><span><strong>Rockers and switches</strong> for the flash, the cameras and which screen holds the controls.</span></li>
+        <li><span><strong>A ring dial for the self-timer</strong> and a stepper for however many lenses your phone has.</span></li>
+        <li><span><strong>Two themes</strong>, named for iPhone Duo's own finishes: Star White and Night Sky.</span></li>
+      </ul>
+      <div class="toggle" role="group" aria-label="Theme">
+        <button type="button" data-set="white" aria-pressed="true">STAR WHITE</button>
+        <button type="button" data-set="night" aria-pressed="false">NIGHT SKY</button>
+      </div>
+    </div>
+    <div class="swap reveal">
+      <div class="device book light"><div class="shell"><img src="duo/book-light.jpg" alt="The Snapshots camera body in Star White." loading="lazy"></div></div>
+      <div class="device book dark"><div class="shell"><img src="duo/book-dark.jpg" alt="The Snapshots camera body in Night Sky." loading="lazy"></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="white" id="films">
+  <div class="wrap">
+    <div class="head center reveal">
+      <span class="eyebrow">Five films</span>
+      <h2>Pick a look before you shoot.</h2>
+      <p class="lead">Turn the dial and the viewfinder changes live, so what you see is what prints.</p>
+    </div>
+    <div class="films reveal">
+      <figure class="classic"><div class="print"><div class="photo"><img src="duo/photo.jpg" alt="A beach at sunset in the Classic film style." loading="lazy"></div></div><figcaption>CLASSIC</figcaption></figure>
+      <figure class="gold"><div class="print"><div class="photo"><img src="duo/photo.jpg" alt="The same photo in the Gold film style, warmer and richer." loading="lazy"><span>golden hour</span></div></div><figcaption>GOLD</figcaption></figure>
+      <figure class="coast"><div class="print"><div class="photo"><img src="duo/photo.jpg" alt="The same photo in the Coast film style, cooler." loading="lazy"></div></div><figcaption>COAST</figcaption></figure>
+      <figure class="sepia"><div class="print"><div class="photo"><img src="duo/photo.jpg" alt="The same photo in the Sepia film style, brown-toned." loading="lazy"></div></div><figcaption>SEPIA</figcaption></figure>
+      <figure class="mono"><div class="print"><div class="photo"><img src="duo/photo.jpg" alt="The same photo in the Mono film style, black and white." loading="lazy"></div></div><figcaption>MONO</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="night">
+  <div class="wrap">
+    <div class="head reveal">
+      <span class="eyebrow">The small things</span>
+      <h2>Simple on purpose.</h2>
+    </div>
+    <div class="grid reveal">
+      <div class="cell">
+        <div class="dot"><svg viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="18" rx="2.5"/><path d="M3 9v6M21 9v6"/></svg></div>
+        <h3>Shake to develop</h3>
+        <p>Too excited to wait? Give the phone a shake and the picture comes up at once.</p>
+      </div>
+      <div class="cell">
+        <div class="dot"><svg viewBox="0 0 24 24"><path d="M4 20l4-1 11-11-3-3L5 16l-1 4z"/><path d="M14 7l3 3"/></svg></div>
+        <h3>Captions in handwriting</h3>
+        <p>Write across the foot of the photo, and a longer note on the back of the print.</p>
+      </div>
+      <div class="cell">
+        <div class="dot"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="15" rx="1.5"/><path d="M8 6V3h13v15h-5"/></svg></div>
+        <h3>A shoebox of prints</h3>
+        <p>Every snapshot you keep goes in the gallery, ready to share or save to Photos with its border and caption.</p>
+      </div>
+      <div class="cell">
+        <div class="dot"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M9 2h6"/></svg></div>
+        <h3>Self-timer</h3>
+        <p>Three or ten seconds, on a dial. Made for a phone that stands up by itself.</p>
+      </div>
+      <div class="cell">
+        <div class="dot"><svg viewBox="0 0 24 24"><path d="M4 9V5h4M20 9V5h-4M4 15v4h4M20 15v4h-4"/><circle cx="12" cy="12" r="2.5"/></svg></div>
+        <h3>Focus and exposure</h3>
+        <p>Tap to focus, press and hold to lock, then slide to brighten or darken.</p>
+      </div>
+      <div class="cell">
+        <div class="dot"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div>
+        <h3>Private by design</h3>
+        <p>No accounts, no ads, no tracking. Your photos stay on your phone.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="white">
+  <div class="wrap phones">
+    <div class="pair reveal">
+      <div class="device phone"><div class="shell"><img src="duo/phone-camera.jpg" alt="Snapshots on an iPhone: the camera." loading="lazy"></div></div>
+      <div class="device phone"><div class="shell"><img src="duo/phone-print.jpg" alt="Snapshots on an iPhone: a finished print." loading="lazy"></div></div>
+    </div>
+    <div class="reveal">
+      <span class="eyebrow">Every iPhone</span>
+      <h2 style="margin: 18px 0">Not unfolding yet?</h2>
+      <p class="lead">Snapshots runs on every iPhone too. The printer sits across the top of the screen and your photo feeds out of it by itself.</p>
+    </div>
+  </div>
+</section>
+
+<section class="night" id="maker">
+  <div class="wrap maker">
+    <figure class="reveal">
+      <div class="print"><div class="photo"><img src="duo/ryan.jpg" alt="Ryan Fredericks, who made Snapshots, sitting on a stool and smiling, a camera lens in his hand." loading="lazy"><span>Hey there! 👋🏻</span></div></div>
+    </figure>
+    <div class="reveal">
+      <span class="eyebrow">Meet the maker</span>
+      <h2 style="margin: 18px 0 24px">Hi, I'm Ryan.</h2>
+      <p>I've always been a huge fan of Apple products. I waited in line for the original iPhone, and I still remember the feeling of holding it for the first time: new, exciting and fun, like nothing I'd held before. It felt like the future!</p>
+      <p>Ever since that day I've wanted to build an app of my own. I just never found a reason big enough to start. <strong>iPhone Duo is that reason.</strong></p>
+      <p>It brings that same feeling back, and inspired me to create something for it straight away. Snapshots is my first app, and the first thing I've ever felt compelled to make and share with the world.</p>
+      <p>I hope Snapshots gives you a little of that feeling too, and a shoebox full of memories worth keeping.</p>
+      <p class="signature">Ryan Fredericks</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <a class="wordmark" href="./" aria-label="Snapshots" style="margin-bottom: 18px">SNAPSH<span class="o"></span>TS</a>
+      <p>Snapshots: Instant Film Camera. The iPhone Duo version arrives October 23, 2026. Screens shown were captured in Apple's iPhone Duo simulator. iPhone is a trademark of Apple Inc.</p>
+    </div>
+    <p>© 2026 Ryan Fredericks · <a href="./">Support</a> · <a href="privacy.html">Privacy</a></p>
+  </div>
+</footer>
+
+<script>
+// The folding phone in the hero. Its screen is painted on two canvases, one for each half: from
+// a still to begin with, then from a recording of the app. The recording carries the hinge's
+// position as a grey square in its top corner (hidden under the display's rounded corner), so
+// the fold on the page follows the app frame by frame.
+(function () {
+  var fold = document.getElementById('fold');
+  var label = document.getElementById('pose-name');
+  var canvases = fold.querySelectorAll('canvas');
+  var top = canvases[0].getContext('2d', { willReadFrequently: true });
+  var bottom = canvases[1].getContext('2d');
+  var W = canvases[0].width, H = canvases[0].height;
+  var halfOpen = 0.42;
+
+  function paint(source, w, h) {
+    top.drawImage(source, 0, 0, w, h / 2, 0, 0, W, H);
+    bottom.drawImage(source, 0, h / 2, w, h / 2, 0, 0, W, H);
+  }
+  // 0 is standing half open, 1 is flat.
+  function pose(t) {
+    t = Math.min(Math.max(t, 0), 1);
+    fold.style.setProperty('--up', (52 * (1 - t)).toFixed(2) + 'deg');
+    fold.style.setProperty('--tilt', (56 - 40 * t).toFixed(2) + 'deg');
+    fold.style.setProperty('--shade', (1 - t).toFixed(3));
+    var name = t < 0.03 ? 'Seated Position' : t < 0.97 ? 'Unfolding' : 'Flat: your print';
+    if (label.textContent !== name) label.textContent = name;
+  }
+
+  var still = new Image();
+  still.onload = function () { if (!playing) paint(still, still.naturalWidth, still.naturalHeight); };
+  still.src = 'duo/laptop-light.jpg';
+
+  var reel = document.getElementById('reel');
+  var playing = false;
+  function frame() {
+    if (reel.readyState >= 2) {
+      paint(reel, reel.videoWidth, reel.videoHeight);
+      var grey = top.getImageData(4, 4, 1, 1).data[0] / 255;
+      pose((grey - halfOpen) / (1 - halfOpen));
+    }
+    if (playing) requestAnimationFrame(frame);
+  }
+  reel.addEventListener('playing', function () { if (!playing) { playing = true; frame(); } });
+  reel.addEventListener('pause', function () { playing = false; });
+  // Play while the hero is in view. Where a browser won't start it unasked, a tap does.
+  function start() { var p = reel.play(); if (p && p.catch) p.catch(function () {}); }
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) {
+      entries[0].isIntersecting ? start() : reel.pause();
+    }, { threshold: 0.2 }).observe(fold);
+  } else { start(); }
+  fold.addEventListener('click', function () { reel.paused ? start() : reel.pause(); });
+})();
+
+// Star White or Night Sky.
+document.querySelectorAll('.toggle button').forEach(function (button) {
+  button.addEventListener('click', function () {
+    document.getElementById('finishes').dataset.finish = button.dataset.set;
+    document.querySelectorAll('.toggle button').forEach(function (other) {
+      other.setAttribute('aria-pressed', String(other === button));
+    });
+  });
+});
+
+// Sections ease in as they are scrolled to.
+if ('IntersectionObserver' in window) {
+  var seen = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('in'); seen.unobserve(entry.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(function (el) { seen.observe(el); });
+} else {
+  document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
+}
+</script>
+</body>
+</html>

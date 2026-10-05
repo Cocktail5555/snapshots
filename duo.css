@@ -1,0 +1,237 @@
+/* The marketing pages: app.html, for every iPhone, and duo.html, the iPhone Duo preview. Colours
+   and lettering follow the app: Night Sky and Star White
+   panels, an orange accent, rounded type. */
+:root {
+  --night: #202733;
+  --night-deep: #171C25;
+  --night-card: #2A3341;
+  --night-line: #3A4556;
+  --night-ink: #E8EDF4;
+  --night-muted: #A9B6C8;
+  --white: #F2F0E9;
+  --white-card: #FAF8F2;
+  --white-line: #DCDBD4;
+  --white-ink: #2B313B;
+  --white-muted: #5F6875;
+  --orange: #FF7428;
+  --orange-deep: #F15A24;
+  --paper: #F7F4EC;
+  --shell: #0B0C0E;
+  --round: ui-rounded, "SF Pro Rounded", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  --text: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--night-deep); color: var(--night-ink); font: 18px/1.6 var(--text); -webkit-font-smoothing: antialiased; }
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+/* Sections alternate between the two finishes. */
+section { padding: 112px 0; position: relative; }
+.night { background: linear-gradient(180deg, var(--night) 0%, var(--night-deep) 100%); color: var(--night-ink); --ink: var(--night-ink); --muted: var(--night-muted); --card: var(--night-card); --line: var(--night-line); }
+.white { background: linear-gradient(180deg, var(--white-card) 0%, var(--white) 100%); color: var(--white-ink); --ink: var(--white-ink); --muted: var(--white-muted); --card: #fff; --line: var(--white-line); }
+
+h1, h2, h3 { font-family: var(--round); margin: 0; letter-spacing: -0.02em; }
+h1 { font-size: clamp(44px, 7.2vw, 88px); line-height: 1.02; font-weight: 700; }
+h2 { font-size: clamp(34px, 4.6vw, 56px); line-height: 1.08; font-weight: 700; }
+h3 { font-size: 22px; line-height: 1.25; font-weight: 600; letter-spacing: -0.01em; }
+p { margin: 0; }
+.lead { font-size: clamp(19px, 2.1vw, 23px); line-height: 1.5; color: var(--muted); max-width: 34em; }
+.eyebrow { display: inline-flex; align-items: center; gap: 10px; font: 600 13px/1 var(--round); letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); }
+.eyebrow::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--orange); box-shadow: 0 0 10px rgba(255, 116, 40, 0.8); }
+.head { max-width: 760px; margin-bottom: 64px; }
+.head h2 { margin: 18px 0 18px; }
+.center { text-align: center; margin-left: auto; margin-right: auto; }
+.center .lead { margin-left: auto; margin-right: auto; }
+
+/* The name, lettered as on the camera body. */
+.wordmark { display: inline-flex; align-items: center; font: 600 19px/1 var(--text); letter-spacing: 0.42em; text-decoration: none; color: inherit; }
+.wordmark .o { width: 0.75em; height: 0.75em; border-radius: 50%; background: var(--orange); margin-right: 0.42em; }
+
+nav { position: absolute; top: 0; left: 0; right: 0; z-index: 5; padding: 26px 0; }
+nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+nav .links { display: flex; gap: 22px; font-size: 15px; color: var(--night-muted); }
+nav .links a { text-decoration: none; }
+nav .links a:hover { color: var(--night-ink); }
+
+.pill { display: inline-flex; align-items: center; gap: 10px; padding: 12px 20px; border-radius: 999px; font: 600 15px/1 var(--round); background: var(--orange-deep); color: #fff; text-decoration: none; }
+.pill.ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+
+/* ---------- Hero ---------- */
+.hero { padding: 130px 0 50px; overflow: hidden; }
+.hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(60% 50% at 70% 42%, rgba(255, 116, 40, 0.16), transparent 70%); pointer-events: none; }
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 40px; align-items: center; }
+.hero h1 { margin: 22px 0 24px; }
+.hero .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 34px; }
+
+/* The Duo, drawn as two halves that fold. The screen is painted on the two canvases; --up is
+   how far the top half is raised from flat, --tilt how far the whole phone leans back. */
+.stage { perspective: 1700px; perspective-origin: 50% 30%; padding: 20px 0 60px; }
+.fold { --up: 52deg; --tilt: 56deg; width: min(100%, 470px, 50vh); margin: 0 auto; transform-style: preserve-3d; transform: rotateX(var(--tilt)); container-type: inline-size; }
+.fold .half { position: relative; background: var(--shell); padding: 2.2cqw; transform-style: preserve-3d; }
+.fold .half canvas { display: block; width: 100%; height: auto; background: #111; }
+/* A still, in place of the canvases: each half shows its own half of one picture. */
+.fold .half .screen { aspect-ratio: 1000 / 710; background-size: 100% 200%; background-repeat: no-repeat; }
+.fold .top .screen { border-radius: 7cqw 7cqw 0 0; background-position: top; }
+.fold .bottom .screen { border-radius: 0 0 7cqw 7cqw; background-position: bottom; }
+/* Seated: folded to a right angle. */
+/* (Folded, it stands shorter than the room its two halves take in the layout.) */
+.fold.seated { --up: 90deg; --tilt: 58deg; width: min(100%, 300px); margin-top: -26px; margin-bottom: max(-84px, -28%); }
+.stage.small { perspective: 1400px; padding: 0 0 10px; width: 100%; }
+/* The same shadow as the other devices in these cards. */
+.stage.small .bottom { box-shadow: 0 30px 60px -18px rgba(0, 0, 0, 0.45); }
+.fold .top { padding-bottom: 0; border-radius: 9.2cqw 9.2cqw 0 0; transform-origin: 50% 100%; transform: rotateX(calc(-1 * var(--up))); }
+.fold .top canvas { border-radius: 7cqw 7cqw 0 0; }
+.fold .bottom { padding-top: 0; border-radius: 0 0 9.2cqw 9.2cqw; box-shadow: 0 60px 80px -10px rgba(0, 0, 0, 0.65); }
+.fold .bottom canvas { border-radius: 0 0 7cqw 7cqw; }
+/* Shade on the raised half, lifting as it comes flat. */
+.fold .top::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: linear-gradient(180deg, transparent 55%, rgba(0, 0, 0, 0.28)); opacity: calc(var(--shade, 1)); pointer-events: none; }
+/* The recording itself stays out of sight, but in the page: some browsers won't play a video that isn't. */
+.stage video { position: absolute; width: 2px; height: 2px; opacity: 0; pointer-events: none; }
+.stage { position: relative; }
+.stage figcaption { text-align: center; margin-top: 44px; font: 600 12px/1 var(--round); letter-spacing: 0.22em; text-transform: uppercase; color: var(--night-muted); min-height: 1em; }
+
+/* On the iPhone page the hero holds a phone, square on, playing a film of the app. */
+.phone-stage { padding: 0 0 30px; display: grid; place-items: center; }
+.phone-stage .device { width: min(100%, 300px, 36vh); }
+.phone-stage video { position: static; display: block; width: 100%; height: auto; opacity: 1; pointer-events: auto; border-radius: 13.5cqw; background: #111; cursor: pointer; }
+.phone-stage .shell { box-shadow: 0 50px 80px -24px rgba(0, 0, 0, 0.7), inset 0 0 0 1px rgba(255, 255, 255, 0.08); }
+
+/* ---------- Steps ---------- */
+.steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; counter-reset: step; }
+.step { background: var(--card); border: 1px solid var(--line); border-radius: 22px; padding: 26px 24px 28px; counter-increment: step; }
+.step::before { content: counter(step); display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--orange-deep); color: #fff; font: 700 16px/1 var(--round); margin-bottom: 18px; }
+.step h3 { margin-bottom: 8px; }
+.step p { color: var(--muted); font-size: 16px; line-height: 1.5; }
+
+/* ---------- Devices, framed in CSS ---------- */
+.device { container-type: inline-size; width: 100%; }
+.device .shell { position: relative; background: var(--shell); padding: 2.2cqw; border-radius: 9.2cqw; box-shadow: 0 30px 60px -18px rgba(0, 0, 0, 0.45), inset 0 0 0 1px rgba(255, 255, 255, 0.08); }
+.device img { width: 100%; border-radius: 7cqw; }
+.device.book .shell { border-radius: 7.1cqw; }
+.device.book img { border-radius: 4.9cqw; }
+.device.phone .shell { padding: 3.4cqw; border-radius: 16.9cqw; }
+.device.phone img { border-radius: 13.5cqw; }
+/* The camera cutout, which screen captures leave out. */
+.device.phone .shell::after { content: ""; position: absolute; left: 40cqw; top: 6.4cqw; width: 20cqw; height: 7.8cqw; border-radius: 4cqw; background: #000; }
+/* Closed, the hinge runs down the left, where the corners are nearly square. */
+.device.closed .shell { border-radius: 4.7cqw 13.7cqw 13.7cqw 4.7cqw; }
+.device.closed img { border-radius: 2.5cqw 11.5cqw 11.5cqw 2.5cqw; }
+.device.closed .shell::after { content: ""; position: absolute; width: 7.4cqw; aspect-ratio: 1; border-radius: 50%; background: #050506; left: 84.2cqw; top: 9cqw; }
+/* The fold, as a soft line. */
+.device.laptop .shell::before, .device.book .shell::before { content: ""; position: absolute; z-index: 1; pointer-events: none; }
+.device.laptop .shell::before { left: 2.2cqw; right: 2.2cqw; top: calc(50% - 1cqw); height: 2cqw; background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.16), transparent); }
+.device.book .shell::before { top: 2.2cqw; bottom: 2.2cqw; left: calc(50% - 0.7cqw); width: 1.4cqw; background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.16), transparent); }
+
+/* ---------- Poses ---------- */
+.poses { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 20px; }
+.pose { background: var(--card); border: 1px solid var(--line); border-radius: 28px; padding: 30px; display: flex; flex-direction: column; overflow: hidden; }
+.pose .art { flex: 1; display: grid; place-items: center; padding: 10px 0 28px; }
+.pose h3 { margin-bottom: 6px; }
+.pose p { color: var(--muted); font-size: 16.5px; line-height: 1.5; }
+.pose .tag { font: 600 12px/1 var(--round); letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange-deep); margin-bottom: 10px; }
+.pose.closed { grid-column: span 5; }
+.pose.laptop { grid-column: span 7; }
+.pose.book { grid-column: span 7; }
+.pose.flat { grid-column: span 5; }
+.pose.quarter { grid-column: span 3; padding: 24px; }
+.pose.quarter .device { max-width: 190px; }
+.pose.quarter .art { place-items: start center; }
+.pose.closed .device { max-width: 230px; }
+.pose.laptop .device { max-width: 300px; }
+.pose.book .device { max-width: 520px; }
+.pose.flat .device { max-width: 250px; }
+
+/* ---------- Controls and finishes ---------- */
+.finishes { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 56px; align-items: center; }
+.swap { position: relative; }
+.swap .device + .device { position: absolute; inset: 0; }
+.swap .device { transition: opacity 0.5s ease; }
+.swap.narrow { width: min(100%, 290px); margin: 0 auto; }
+[data-finish="white"] .swap .dark, [data-finish="night"] .swap .light { opacity: 0; }
+.toggle { display: inline-flex; padding: 5px; border-radius: 999px; background: rgba(0, 0, 0, 0.28); border: 1px solid var(--line); margin-top: 30px; }
+.toggle button { appearance: none; border: 0; background: transparent; color: var(--muted); font: 600 14px/1 var(--round); letter-spacing: 0.08em; padding: 11px 18px; border-radius: 999px; cursor: pointer; }
+.toggle button[aria-pressed="true"] { background: var(--night-ink); color: var(--night); }
+.list { list-style: none; padding: 0; margin: 28px 0 0; display: grid; gap: 14px; }
+.list li { display: grid; grid-template-columns: 22px 1fr; gap: 12px; color: var(--muted); font-size: 17px; line-height: 1.45; }
+.list li::before { content: ""; width: 8px; height: 8px; margin-top: 9px; border-radius: 50%; background: var(--orange); }
+.list strong { color: var(--ink); font-weight: 600; }
+
+/* ---------- Film styles ---------- */
+.films { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 22px; align-items: start; }
+.print { background: var(--paper); padding: 7%; border-radius: 3px; box-shadow: 0 18px 30px -12px rgba(0, 0, 0, 0.35); transition: transform 0.3s ease; }
+.films figure { margin: 0; }
+.films figure:nth-child(odd) .print { transform: rotate(-2.5deg); }
+.films figure:nth-child(even) .print { transform: rotate(2deg) translateY(10px); }
+.films figure:hover .print { transform: rotate(0) scale(1.04); }
+.print .photo { position: relative; overflow: hidden; }
+.print .photo::after { content: ""; position: absolute; inset: 0; background: var(--tint, #fff); mix-blend-mode: multiply; }
+.print .photo span { position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; padding: 22% 4% 5%; text-align: center; color: #fff; font: 700 clamp(13px, 1.5vw, 18px)/1 "Bradley Hand", "Segoe Print", cursive; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6); background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.5)); }
+.films figcaption { text-align: center; margin-top: 22px; font: 600 12px/1 var(--round); letter-spacing: 0.22em; color: var(--muted); }
+/* The same recipe as the app's own film looks. */
+.classic img { filter: saturate(0.9) contrast(0.95); } .classic { --tint: rgb(255, 247, 230); }
+.gold img { filter: saturate(1.25) contrast(1.08); } .gold { --tint: rgb(255, 230, 184); }
+.coast img { filter: saturate(0.8) contrast(1.05); } .coast { --tint: rgb(235, 250, 255); }
+.sepia img { filter: grayscale(1) contrast(1.05); } .sepia { --tint: rgb(255, 219, 168); }
+.mono img { filter: grayscale(1) contrast(1.15); } .mono { --tint: #fff; }
+
+/* ---------- Details ---------- */
+.grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.cell { background: var(--card); border: 1px solid var(--line); border-radius: 22px; padding: 28px 26px; }
+.cell .dot { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: rgba(255, 116, 40, 0.14); margin-bottom: 18px; }
+.cell .dot svg { width: 22px; height: 22px; stroke: var(--orange); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.cell h3 { margin-bottom: 8px; }
+.cell p { color: var(--muted); font-size: 16px; line-height: 1.5; }
+
+/* ---------- Every iPhone ---------- */
+.phones { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: center; }
+.phones .pair { display: flex; justify-content: center; gap: 26px; }
+.phones .pair .device { max-width: 210px; }
+.phones .pair .device:last-child { margin-top: 46px; }
+
+/* ---------- The maker ---------- */
+.maker { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 72px; align-items: center; }
+.maker figure { margin: 0; display: grid; place-items: center; }
+.maker .print { width: min(100%, 340px); transform: rotate(-3deg); }
+.maker .print .photo span { font-size: clamp(20px, 2.2vw, 26px); }
+.maker p { color: var(--muted); font-size: 19px; line-height: 1.65; max-width: 33em; }
+.maker p + p { margin-top: 18px; }
+.maker strong { color: var(--ink); font-weight: 700; }
+.maker .signature { margin-top: 28px; color: var(--ink); font: 700 30px/1 "Bradley Hand", "Segoe Print", cursive; }
+
+footer { background: var(--night-deep); color: var(--night-muted); padding: 56px 0 64px; font-size: 14px; border-top: 1px solid var(--night-line); }
+footer .wrap { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; align-items: flex-end; }
+footer p { max-width: 46em; line-height: 1.6; }
+footer a { color: var(--night-ink); }
+
+/* Sections ease in as they come into view. */
+.reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } html { scroll-behavior: auto; } }
+
+@media (max-width: 900px) {
+  section { padding: 80px 0; }
+  .hero { padding-top: 130px; }
+  .hero .wrap, .finishes, .phones, .maker { grid-template-columns: 1fr; }
+  .maker { gap: 44px; }
+  .hero .copy { text-align: center; }
+  .hero .lead { margin: 0 auto; }
+  .hero .actions { justify-content: center; }
+  .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pose.closed, .pose.laptop, .pose.book, .pose.flat { grid-column: span 12; }
+  .pose.quarter { grid-column: span 6; }
+  .films { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 40px; }
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .head { margin-bottom: 44px; }
+}
+@media (max-width: 560px) {
+  body { font-size: 17px; }
+  .wrap { padding: 0 20px; }
+  nav .links { display: none; }
+  .steps, .grid { grid-template-columns: 1fr; }
+  .films { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pose { padding: 24px; }
+  .pose.quarter { grid-column: span 12; }
+  .phones .pair { gap: 16px; }
+}
