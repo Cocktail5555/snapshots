@@ -129,6 +129,8 @@ nav .links a:hover { color: var(--night-ink); }
 .device.laptop .shell::before, .device.book .shell::before { content: ""; position: absolute; z-index: 1; pointer-events: none; }
 .device.laptop .shell::before { left: 2.2cqw; right: 2.2cqw; top: calc(50% - 1cqw); height: 2cqw; background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.16), transparent); }
 .device.book .shell::before { top: 2.2cqw; bottom: 2.2cqw; left: calc(50% - 0.7cqw); width: 1.4cqw; background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.16), transparent); }
+/* Where one picture runs across both screens, no fold is drawn. */
+.device.seamless .shell::before { display: none; }
 
 /* ---------- Poses ---------- */
 .poses { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 20px; }
