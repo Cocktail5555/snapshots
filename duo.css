@@ -229,6 +229,7 @@ footer a { color: var(--night-ink); }
   body { font-size: 17px; }
   .wrap { padding: 0 20px; }
   nav .links { display: none; }
+  nav .wrap { justify-content: center; }
   .steps, .grid { grid-template-columns: 1fr; }
   .films { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .pose { padding: 24px; }
