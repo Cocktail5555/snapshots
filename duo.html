@@ -29,18 +29,18 @@
     <div class="copy">
       <span class="eyebrow">Designed for iPhone Duo</span>
       <h1>Unfold a bigger camera.</h1>
-      <p class="lead">Snapshots is an instant camera built around the fold. Shoot with your iPhone Duo in the Seated Position, then unfold it flat and watch your photo print.</p>
+      <p class="lead">Snapshots is an instant camera built around the fold. Shoot with your iPhone Duo in the Seated pose, then unfold it flat and watch your photo print.</p>
       <div class="actions">
         <span class="pill">Arriving October 23</span>
         <a class="pill ghost" href="#unfold">See how it works</a>
       </div>
     </div>
-    <figure class="stage" aria-label="An iPhone Duo in the Seated Position with Snapshots on screen, unfolding flat as a photo prints.">
+    <figure class="stage" aria-label="An iPhone Duo in the Seated pose with Snapshots on screen, unfolding flat as a photo prints.">
       <div class="fold" id="fold">
         <div class="half top"><canvas width="1000" height="710"></canvas></div>
         <div class="half bottom"><canvas width="1000" height="710"></canvas></div>
       </div>
-      <figcaption id="pose-name">Seated Position</figcaption>
+      <figcaption id="pose-name">Seated</figcaption>
       <video id="reel" src="duo/unfold.mp4" muted playsinline loop preload="auto" aria-hidden="true" tabindex="-1"></video>
     </figure>
   </div>
@@ -90,26 +90,26 @@
       </article>
       <article class="pose laptop reveal">
         <div class="art">
-          <div class="stage small" role="img" aria-label="Snapshots on an iPhone Duo in the Seated Position, folded to a right angle: the viewfinder on the upright half, the controls on the half lying flat.">
+          <div class="stage small" role="img" aria-label="Snapshots on an iPhone Duo in the Seated pose, folded to a right angle: the viewfinder on the upright half, the controls on the half lying flat.">
             <div class="fold seated">
               <div class="half top"><div class="screen" style="background-image: url(duo/laptop-dark.jpg)"></div></div>
               <div class="half bottom"><div class="screen" style="background-image: url(duo/laptop-dark.jpg)"></div></div>
             </div>
           </div>
         </div>
-        <div class="tag">Seated Position</div>
+        <div class="tag">Seated</div>
         <h3>A camera that stands by itself</h3>
         <p>Viewfinder up top, flash, zoom and shutter below. Set it down, start the self-timer and step into the picture.</p>
       </article>
       <article class="pose book reveal">
-        <div class="art"><div class="device book"><div class="shell"><img src="duo/book-light.jpg" alt="Snapshots on an iPhone Duo held open like a book: viewfinder on the left screen, controls on the right." loading="lazy"></div></div></div>
-        <div class="tag">Open like a book</div>
+        <div class="art"><div class="device book"><div class="shell"><img src="duo/book-light.jpg" alt="Snapshots on an iPhone Duo open in Landscape: viewfinder on the left screen, controls on the right." loading="lazy"></div></div></div>
+        <div class="tag">Landscape</div>
         <h3>Two screens, two jobs</h3>
         <p>A clear viewfinder on one side and the whole camera on the other. Flip a rocker to swap them for your left or right hand.</p>
       </article>
       <article class="pose flat reveal">
-        <div class="art"><div class="device laptop"><div class="shell"><img id="flat-shot" src="duo/flat-light.jpg" alt="Snapshots on an iPhone Duo lying flat: a printer across the top with a finished print below it." loading="lazy"></div></div></div>
-        <div class="tag">Flat</div>
+        <div class="art"><div class="device laptop"><div class="shell"><img id="flat-shot" src="duo/flat-light.jpg" alt="Snapshots on an iPhone Duo open in Portrait and lying flat: a printer across the top with a finished print below it." loading="lazy"></div></div></div>
+        <div class="tag">Portrait</div>
         <h3>A tabletop printer</h3>
         <p>Laid flat, the whole display is the printer's table, with your print enlarged to fill it.</p>
       </article>
@@ -264,7 +264,7 @@
     fold.style.setProperty('--up', (52 * (1 - t)).toFixed(2) + 'deg');
     fold.style.setProperty('--tilt', (56 - 40 * t).toFixed(2) + 'deg');
     fold.style.setProperty('--shade', (1 - t).toFixed(3));
-    var name = t < 0.03 ? 'Seated Position' : t < 0.97 ? 'Unfolding' : 'Flat: your print';
+    var name = t < 0.03 ? 'Seated' : t < 0.97 ? 'Unfolding' : 'Portrait: your print';
     if (label.textContent !== name) label.textContent = name;
   }
 

@@ -139,6 +139,14 @@ nav .links a:hover { color: var(--night-ink); }
 .pose.quarter .device { max-width: 190px; }
 .pose.quarter .art { place-items: start center; }
 .pose.closed .device { max-width: 230px; }
+/* A card the full width of the row: words on one side, a phone on its side on the other. */
+.pose.across { grid-column: span 12; flex-direction: row; align-items: center; gap: 40px; padding: 34px 40px; }
+.pose.across .words { flex: 0 1 300px; }
+.pose.across .art { flex: 1 1 0; padding: 0; }
+.pose.across .device { max-width: 560px; }
+.device.phone.landscape .shell { padding: 1.57cqw; border-radius: 7.8cqw; }
+.device.phone.landscape img { border-radius: 6.2cqw; }
+.device.phone.landscape .shell::after { left: 3cqw; top: 19cqw; width: 3.7cqw; height: 9.6cqw; border-radius: 1.85cqw; }
 .pose.laptop .device { max-width: 300px; }
 .pose.book .device { max-width: 520px; }
 .pose.flat .device { max-width: 250px; }
@@ -221,6 +229,8 @@ footer a { color: var(--night-ink); }
   .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .pose.closed, .pose.laptop, .pose.book, .pose.flat { grid-column: span 12; }
   .pose.quarter { grid-column: span 6; }
+  .pose.across { flex-direction: column-reverse; align-items: stretch; gap: 26px; padding: 30px; }
+  .pose.across .words { flex: none; }
   .films { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 40px; }
   .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .head { margin-bottom: 44px; }
