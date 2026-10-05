@@ -150,6 +150,12 @@ nav .links a:hover { color: var(--night-ink); }
 .pose.across .words { flex: 0 1 300px; }
 .pose.across .art { flex: 1 1 0; padding: 0; }
 .pose.across .device { max-width: 560px; }
+/* A closed Duo on its side: the hinge along the bottom, the camera at the top left. */
+.pose.across.flip { flex-direction: row-reverse; }
+.pose.across .device.closed { max-width: 440px; }
+.device.closed.landscape .shell { padding: 1.5cqw; border-radius: 9.4cqw 9.4cqw 3.2cqw 3.2cqw; }
+.device.closed.landscape img { aspect-ratio: 2034 / 1398; border-radius: 7.9cqw 7.9cqw 1.7cqw 1.7cqw; }
+.device.closed.landscape .shell::after { width: 5.2cqw; left: 5.7cqw; top: 5.8cqw; }
 .device.phone.landscape .shell { padding: 1.57cqw; border-radius: 7.8cqw; }
 .device.phone.landscape img { border-radius: 6.2cqw; }
 .device.phone.landscape .shell::after { left: 3cqw; top: 19cqw; width: 3.7cqw; height: 9.6cqw; border-radius: 1.85cqw; }
