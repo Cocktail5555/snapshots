@@ -132,6 +132,18 @@ nav .links a:hover { color: var(--night-ink); }
 /* Where one picture runs across both screens, no fold is drawn. */
 .device.seamless .shell::before { display: none; }
 
+/* A capture set in Apple's own product bezel, used as Apple provides it: no shadow, no tilt. */
+.device.mock { container-type: normal; }
+.device.mock picture, .device.mock img { display: block; width: 100%; height: auto; }
+.device.mock img { border-radius: 0; background: none; aspect-ratio: auto; }
+/* Roughly in scale with one another: closed, the Duo is a good deal smaller than open. */
+.pose.closed .device.mock { max-width: 200px; }
+.pose.flat .device.mock { max-width: 285px; }
+.pose.across .device.mock.outer { max-width: 400px; }
+.pose.quarter .device.mock { max-width: 200px; }
+.pose.across .device.mock { max-width: 560px; }
+.phones .pair .device.mock { max-width: 220px; }
+
 /* ---------- Poses ---------- */
 .poses { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 20px; }
 .pose { background: var(--card); border: 1px solid var(--line); border-radius: 28px; padding: 30px; display: flex; flex-direction: column; overflow: hidden; }
