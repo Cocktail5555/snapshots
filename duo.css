@@ -315,7 +315,7 @@ footer a { color: var(--night-ink); }
   body { font-size: 17px; }
   .wrap { padding: 0 20px; }
   nav .links { display: none; }
-  nav { padding-top: 44px; }
+  nav { padding-top: 58px; }
   nav .wrap { justify-content: center; }
   /* Small enough to stay on one line, with its dot beside it. */
   .eyebrow { font-size: 11.5px; letter-spacing: 0.16em; gap: 8px; }
