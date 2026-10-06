@@ -137,6 +137,9 @@ nav .links a:hover { color: var(--night-ink); }
 .device.mock picture, .device.mock img { display: block; width: 100%; height: auto; }
 .device.mock img { border-radius: 0; background: none; aspect-ratio: auto; }
 /* Roughly in scale with one another: closed, the Duo is a good deal smaller than open. */
+/* A plain screen with no device round it, where Apple provides no bezel (the Seated pose). */
+.device.mock.bare img { border-radius: 20px; box-shadow: 0 0 0 1px rgba(128, 128, 128, 0.35); }
+.pose.laptop .device.mock.bare { max-width: 230px; }
 .pose.closed .device.mock { max-width: 200px; }
 .pose.flat .device.mock { max-width: 285px; }
 .pose.across .device.mock.outer { max-width: 400px; }
