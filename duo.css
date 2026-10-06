@@ -194,6 +194,10 @@ nav .links a:hover { color: var(--night-ink); }
 .swap .device + .device { position: absolute; inset: 0; }
 .swap .device { transition: opacity 0.5s ease; }
 .swap.narrow { width: min(100%, 290px); margin: 0 auto; }
+/* The graphic with its theme toggle beneath it. */
+.swap-col { display: grid; justify-items: center; }
+.swap-col .swap { width: 100%; }
+.swap-col .swap.narrow { width: min(100%, 290px); }
 [data-finish="white"] .swap .dark, [data-finish="night"] .swap .light { opacity: 0; }
 .toggle { display: inline-flex; padding: 5px; border-radius: 999px; background: rgba(0, 0, 0, 0.28); border: 1px solid var(--line); margin-top: 30px; }
 .toggle button { appearance: none; border: 0; background: transparent; color: var(--muted); font: 600 14px/1 var(--round); letter-spacing: 0.08em; padding: 11px 18px; border-radius: 999px; cursor: pointer; }
