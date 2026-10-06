@@ -59,7 +59,7 @@ nav .links a:hover { color: var(--night-ink); }
 .pill.ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); }
 
 /* ---------- Hero ---------- */
-.hero { padding: 130px 0 50px; overflow: hidden; }
+.hero { padding: 180px 0 110px; overflow: hidden; }
 .hero::before { content: ""; position: absolute; inset: 0; background: radial-gradient(60% 50% at 70% 42%, rgba(255, 116, 40, 0.16), transparent 70%); pointer-events: none; }
 .hero .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 40px; align-items: center; }
 .hero h1 { margin: 22px 0 24px; }
@@ -211,12 +211,18 @@ nav .links a:hover { color: var(--night-ink); }
 .printer { width: min(100%, 440px); margin: 0 auto; }
 .printer .edge { position: relative; z-index: 1; height: 86px; border-radius: 26px 26px 10px 10px; background: linear-gradient(180deg, #fbfaf6, #f2f0e9); box-shadow: 0 14px 22px -14px rgba(60, 50, 30, 0.45), inset 0 0 0 1px rgba(111, 119, 137, 0.16); }
 .printer .status { position: absolute; left: 30px; top: 26px; display: flex; align-items: center; gap: 9px; font: 600 10px/1 var(--round); letter-spacing: 0.2em; color: #505969; }
-.printer .status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #F15A24; box-shadow: 0 0 8px rgba(241, 90, 36, 0.9); }
+/* Orange while the print feeds out, green once it is out, as on the app's printer. */
+.printer .status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #F15A24; box-shadow: 0 0 8px rgba(241, 90, 36, 0.9); transition: background 0.3s ease 3.1s, box-shadow 0.3s ease 3.1s; }
+.printer.in .status::before { background: #34C759; box-shadow: 0 0 8px rgba(52, 199, 89, 0.9); }
+.printer .status b { font-weight: inherit; transition: opacity 0.2s ease 3.1s; }
+.printer .status b + b { position: absolute; left: 17px; opacity: 0; }
+.printer.in .status b { opacity: 0; }
+.printer.in .status b + b { opacity: 1; }
 .printer .slot { position: absolute; left: 24px; right: 24px; bottom: 20px; height: 9px; border-radius: 5px; background: #2a2b2e; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25); }
 /* The print comes out of the slot itself, over the printer's lower lip: its window starts at the
    middle of the slot and lies above the edge. */
 .printer .feed { position: relative; z-index: 2; overflow: hidden; margin: -24.5px 34px 0; padding: 0 16px 46px; }
-.printer .print { transform: translateY(-78%); transition: transform 2.6s cubic-bezier(0.45, 0, 0.3, 1) 0.5s; }
+.printer .print { background: #fff; transform: translateY(-78%); transition: transform 2.6s cubic-bezier(0.45, 0, 0.3, 1) 0.5s; }
 .printer.in .print { transform: none; }
 /* It comes out undeveloped, milky and washed out as in the app, and the picture comes up once it is out. */
 .printer .photo::before { content: ""; position: absolute; inset: 0; z-index: 1; background: #9ea899; transition: opacity 4s ease 3.2s; }
@@ -229,7 +235,7 @@ nav .links a:hover { color: var(--night-ink); }
 /* (The band it is written on has a shade of its own, which waits for the picture too.) */
 .printer .photo span { font-size: clamp(18px, 2vw, 24px); opacity: 0; transition: opacity 0.5s ease 7s; }
 .printer.in .photo span { opacity: 1; }
-@media (prefers-reduced-motion: reduce) { .printer .print { transform: none; transition: none; } .printer .photo::before { opacity: 0; transition: none; } .printer .photo img { filter: none; transition: none; } .printer .photo span, .printer .photo span i { opacity: 1; transition: none; } }
+@media (prefers-reduced-motion: reduce) { .printer .print { transform: none; transition: none; } .printer .photo::before { opacity: 0; transition: none; } .printer .photo img { filter: none; transition: none; } .printer .photo span, .printer .photo span i { opacity: 1; transition: none; } .printer .status::before, .printer .status b { transition: none; } }
 
 .films { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 22px; align-items: start; }
 .print { background: var(--paper); padding: 7%; border-radius: 3px; box-shadow: 0 18px 30px -12px rgba(0, 0, 0, 0.35); transition: transform 0.3s ease; }
