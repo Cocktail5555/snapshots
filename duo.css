@@ -325,5 +325,5 @@ footer a { color: var(--night-ink); }
   .pose.quarter { grid-column: span 12; }
   .phones .pair { gap: 16px; }
 }
-@media (max-width: 900px) { .how-cols { grid-template-columns: 1fr; gap: 44px; } }
+@media (max-width: 900px) { .how-cols, .how-cols.wide-art { grid-template-columns: 1fr; gap: 44px; } .how-cols.wide-art > .device { order: -1; } }
 @media (max-width: 560px) { .how-cols .steps { grid-template-columns: 1fr; } }
