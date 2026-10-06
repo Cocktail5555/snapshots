@@ -7,7 +7,7 @@
   <meta name="description" content="Snapshots turns your iPhone into an instant camera. Press the shutter, watch your photo print and develop, then write on it and keep it. Designed for iPhone Duo, too.">
   <meta name="theme-color" content="#202733">
   <link rel="canonical" href="https://cocktail5555.github.io/snapshots/app/">
-  <link rel="stylesheet" href="../duo.css?v=20261006a">
+  <link rel="stylesheet" href="../duo.css?v=20261006b">
 </head>
 <body>
 
@@ -36,10 +36,9 @@
         <a class="pill ghost" href="#how">See how it works</a>
       </div>
     </div>
-    <figure class="stage phone-stage">
-      <div class="device phone"><div class="shell">
-        <video id="reel" src="reel.mp4" poster="camera-light.jpg" muted playsinline loop preload="auto" aria-label="Snapshots on an iPhone: a photo is taken, feeds out of the printer, develops and is given a caption."></video>
-      </div></div>
+    <figure class="hero-pair">
+      <div class="device mock"><picture><source srcset="m/camera-light.avif?v=2" type="image/avif"><img src="m/camera-light.png?v=2" width="600" height="1224" alt="Snapshots on an iPhone: the camera."></picture></div>
+      <div class="device mock"><picture><source srcset="../duo/m/landscape.avif?v=3" type="image/avif"><img src="../duo/m/landscape.png?v=3" width="1300" height="944" alt="Snapshots on an iPhone Duo open in Landscape: viewfinder on one screen, camera controls on the other."></picture></div>
     </figure>
   </div>
 </section>
@@ -93,7 +92,7 @@
         <p>It sits across the top of the screen and feeds out every photo you take.</p>
       </article>
       <article class="pose quarter reveal">
-        <div class="art"><div class="device mock"><picture><source srcset="m/developing.avif?v=2" type="image/avif"><img src="m/developing.png?v=2" width="560" height="1142" alt="A print part-way through developing, its colours still faint." loading="lazy"></picture></div></div>
+        <div class="art"><div class="device mock"><picture><source srcset="m/developing.avif?v=3" type="image/avif"><img src="m/developing.png?v=3" width="560" height="1142" alt="A print part-way through developing, its colours still faint." loading="lazy"></picture></div></div>
         <div class="tag">The print</div>
         <h3>It develops as you watch</h3>
         <p>Milky at first, then the colours come up. Add a caption in handwriting.</p>
@@ -191,7 +190,7 @@
         <p>Everything you need on the front display: shutter, film dial, zoom and your last print.</p>
       </article>
       <article class="pose laptop reveal">
-        <div class="art"><div class="device mock bare"><img src="../duo/seated-screen.jpg" width="774" height="1100" alt="Snapshots on an iPhone Duo in the Seated pose: the viewfinder on the upper half of the screen, the camera controls on the lower half." loading="lazy"></div></div>
+        <div class="art"><div class="device mock"><picture><source srcset="../duo/m/seated.avif?v=1" type="image/avif"><img src="../duo/m/seated.png?v=1" width="800" height="1102" alt="Snapshots on an iPhone Duo in the Seated pose: the viewfinder on the upper half of the screen, the camera controls on the lower half." loading="lazy"></picture></div></div>
         <div class="tag">Seated</div>
         <h3>A camera that stands by itself</h3>
         <p>Viewfinder up top, flash, zoom and shutter below. Set it down, start the self-timer and step into the picture.</p>
@@ -211,7 +210,7 @@
       <article class="pose across reveal">
         <div class="words">
           <div class="tag">Landscape</div>
-          <h3>Your whole shoebox, wide open</h3>
+          <h3>All your snapshots in one place</h3>
           <p>Open the gallery on the big display and your prints are spread out in front of you, with share, save and delete down the side where your thumb is.</p>
         </div>
         <div class="art"><div class="device mock"><picture><source srcset="../duo/m/gallery.avif?v=2" type="image/avif"><img src="../duo/m/gallery.png?v=2" width="1300" height="944" alt="The Snapshots gallery on an iPhone Duo open in Landscape: three rows of prints across both screens." loading="lazy"></picture></div></div>
@@ -230,7 +229,7 @@
           <h3>A clock that shows your snapshots</h3>
           <p>Stand your iPhone Duo up like a tent and the front display becomes a clock, with your prints shuffling past beside the time. Star White by day, Night Sky by night.</p>
         </div>
-        <div class="art"><div class="device mock outer"><picture><source srcset="../duo/m/tent.avif?v=1" type="image/avif"><img src="../duo/m/tent.png?v=1" width="1100" height="790" alt="Snapshots on the front display of an iPhone Duo: a clock on the left and a small pile of prints on the right." loading="lazy"></picture></div></div>
+        <div class="art"><div class="device mock outer"><picture><source srcset="../duo/m/tent.avif?v=2" type="image/avif"><img src="../duo/m/tent.png?v=2" width="1100" height="790" alt="Snapshots on the front display of an iPhone Duo: a clock on the left and a small pile of prints on the right." loading="lazy"></picture></div></div>
       </article>
     </div>
   </div>
@@ -346,18 +345,6 @@
 </footer>
 
 <script>
-// The film in the hero plays while it is in view. Where a browser won't start it unasked, a tap does.
-(function () {
-  var reel = document.getElementById('reel');
-  function start() { var p = reel.play(); if (p && p.catch) p.catch(function () {}); }
-  if ('IntersectionObserver' in window) {
-    new IntersectionObserver(function (entries) {
-      entries[0].isIntersecting ? start() : reel.pause();
-    }, { threshold: 0.2 }).observe(reel);
-  } else { start(); }
-  reel.addEventListener('click', function () { reel.paused ? start() : reel.pause(); });
-})();
-
 // Light or dark, in each of the two sections that have the choice.
 document.querySelectorAll('.toggle').forEach(function (toggle) {
   var buttons = toggle.querySelectorAll('button');
