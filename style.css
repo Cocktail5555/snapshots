@@ -56,9 +56,9 @@ details:last-of-type { border-bottom: 1px solid var(--line); }
 summary { cursor: pointer; font-weight: 600; }
 details p { margin: 8px 0 0; color: var(--muted); }
 footer { margin-top: 56px; color: var(--muted); font-size: 14px; }
-/* The questions, in groups: every other group on the card colour, so they are easy to tell apart. */
+/* The questions, in groups: every other group, from the second, on the card color, so they are easy to tell apart. */
 .faq { margin: 20px -22px 0; padding: 22px 22px 10px; border-radius: 18px; }
-.faq:nth-of-type(odd) { background: var(--card); border: 1px solid var(--line); }
+.faq:nth-of-type(even) { background: var(--card); border: 1px solid var(--line); }
 .faq h2 { margin-top: 0; }
 .faq details:last-of-type { border-bottom: 0; }
 @media (max-width: 740px) { .faq { margin-left: -10px; margin-right: -10px; padding-left: 14px; padding-right: 14px; } }
