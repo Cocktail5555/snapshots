@@ -390,5 +390,13 @@ if ('IntersectionObserver' in window) {
   document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
 }
 </script>
+<script>
+  // Counts the visit, anonymously and without cookies. A link ending ?r=name is counted under that name.
+  window.goatcounter = { path: function (p) {
+    var r = new URLSearchParams(location.search).get('r');
+    return r ? p + '?r=' + r.replace(/[^a-z0-9-]/gi, '') : p;
+  } };
+</script>
+<script data-goatcounter="https://snapshots.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>

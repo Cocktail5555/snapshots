@@ -28,6 +28,12 @@
   </div>
 
   <section class="faq">
+    <h2>Video</h2>
+    <p>One minute, every iPhone Duo pose: Landscape, Seated, unfolding to print, Closed, the gallery, the clock and the two themes.</p>
+    <p><a class="button" href="video/">Watch the video</a> &nbsp; <a href="snapshots-iphone-duo.mp4" download>Download (MP4, 30 MB)</a></p>
+  </section>
+
+  <section class="faq">
     <h2>Fact sheet</h2>
     <p><strong>Name:</strong> Snapshots: Instant Film Camera</p>
     <p><strong>Maker:</strong> Ryan Fredericks, an independent developer. Snapshots is his first app.</p>
@@ -76,5 +82,13 @@
     © 2026 Ryan Fredericks · <a href="../privacy/">Privacy Policy</a> · iPhone is a trademark of Apple Inc.
   </footer>
 </main>
+<script>
+  // Counts the visit, anonymously and without cookies. A link ending ?r=name is counted under that name.
+  window.goatcounter = { path: function (p) {
+    var r = new URLSearchParams(location.search).get('r');
+    return r ? p + '?r=' + r.replace(/[^a-z0-9-]/gi, '') : p;
+  } };
+</script>
+<script data-goatcounter="https://snapshots.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>
 </html>
