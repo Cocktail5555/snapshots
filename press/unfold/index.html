@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Snapshots on iPhone Duo: the unfolding video</title>
+  <meta name="robots" content="noindex">
+  <meta name="description" content="Snapshots: Instant Film Camera in every iPhone Duo pose and on a regular iPhone, in one minute.">
+  <meta property="og:title" content="Snapshots on iPhone Duo">
+  <meta property="og:description" content="An instant camera built around the fold. One minute, every pose.">
+  <meta property="og:image" content="https://cocktail5555.github.io/snapshots/press/unfold/poster.jpg">
+  <meta property="og:type" content="video.other">
+  <link rel="stylesheet" href="../../style.css?v=2">
+  <style>
+    .film { display: block; width: 100%; max-width: 460px; aspect-ratio: 4 / 5; margin: 28px auto; border-radius: 18px; background: #1A202B; }
+    .after { text-align: center; }
+  </style>
+</head>
+<body>
+<main>
+  <nav>
+    <a class="wordmark" href="../../app/" aria-label="Snapshots">SNAPSH<span class="o"></span>TS</a>
+    <div class="links">
+      <a href="../../app/">The app</a>
+      <a href="../../support/">Support</a>
+      <a href="../">Press</a>
+    </div>
+  </nav>
+
+  <h1>Snapshots on iPhone Duo</h1>
+  <p class="lead">An instant camera built around the fold. Take a photo with iPhone Duo half open, unfold it flat, and the print feeds out across the whole display.</p>
+
+  <video class="film" id="film" controls playsinline preload="metadata" poster="poster.jpg">
+    <source src="../snapshots-iphone-duo-unfold.mp4" type="video/mp4">
+  </video>
+
+  <p class="after">
+    <a class="button" href="../../app/">See the app</a> &nbsp; <a href="../">Press kit</a> &nbsp; <a href="../snapshots-iphone-duo-unfold.mp4" download>Download the video</a>
+  </p>
+  <p class="after" style="color:var(--muted);font-size:15px">Launches with iPhone Duo on October 23, 2026. $1.99, with no subscription, account or ads.<br>iPhone Duo screens were recorded in Apple's iPhone Duo simulator.</p>
+
+  <footer>
+    © 2026 Ryan Fredericks · <a href="../../privacy/">Privacy Policy</a> · iPhone is a trademark of Apple Inc.
+  </footer>
+</main>
+<script>
+  // Counts the visit, anonymously and without cookies. A link ending ?r=name is counted under that name.
+  window.goatcounter = { path: function (p) {
+    var r = new URLSearchParams(location.search).get('r');
+    return r ? p + '?r=' + r.replace(/[^a-z0-9-]/gi, '') : p;
+  } };
+</script>
+<script data-goatcounter="https://snapshots.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<script>
+  // Counts the first time the video is played, under the same name as the visit.
+  document.getElementById('film').addEventListener('play', function () {
+    if (!window.goatcounter || !window.goatcounter.count) return;
+    var r = new URLSearchParams(location.search).get('r');
+    window.goatcounter.count({ path: 'unfold-video-played' + (r ? '?r=' + r.replace(/[^a-z0-9-]/gi, '') : ''), title: 'Unfolding video played', event: true });
+  }, { once: true });
+</script>
+</body>
+</html>
