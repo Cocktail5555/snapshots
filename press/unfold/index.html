@@ -38,7 +38,18 @@
     .tile img { display: block; width: 100%; height: 100%; object-fit: cover; }
     .tile.flip img { transform: rotate(180deg); }
     .arrow { color: var(--orange); font-size: 22px; }
-    @media (max-width: 560px) { .booth { grid-template-columns: 1fr; } .booth video { max-width: 220px; margin: 0 auto; } }
+    .booth.flip { grid-template-columns: 1fr 260px; margin-top: 40px; }
+    .soon .card img.cc { display: block; width: 100%; max-width: 380px; margin: 18px auto 0; }
+    .booth.flip .widgets { order: 2; }
+    .widgets { position: relative; width: 100%; aspect-ratio: 364 / 430; }
+    .widgets .w { position: absolute; inset: 0 0 40px; margin: 0; display: grid; place-items: center; opacity: 0; animation: widget-turn 17.5s infinite; }
+    .widgets .w img { display: block; width: 100%; height: auto; filter: drop-shadow(0 16px 24px rgba(0, 0, 0, 0.35)); }
+    .widgets .p-small img { width: 50%; margin: 0 auto; }
+    .widgets figcaption { position: absolute; left: 0; right: 0; bottom: -32px; text-align: center; font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+    .widgets .w2 { animation-delay: 3.5s; } .widgets .w3 { animation-delay: 7s; } .widgets .w4 { animation-delay: 10.5s; } .widgets .w5 { animation-delay: 14s; }
+    @keyframes widget-turn { 0% { opacity: 0; transform: translateX(20px); } 3% { opacity: 1; transform: none; } 17% { opacity: 1; transform: none; } 20% { opacity: 0; transform: translateX(-20px); } 100% { opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) { .widgets .w { animation: none; } .widgets .w1 { opacity: 1; } }
+    @media (max-width: 560px) { .booth, .booth.flip { grid-template-columns: 1fr; } .booth video { max-width: 220px; margin: 0 auto; } .booth.flip .widgets { order: 0; max-width: 300px; margin: 0 auto 32px; } }
   </style>
 </head>
 <body>
@@ -65,9 +76,9 @@
   <p class="after" style="color:var(--muted);font-size:15px">Launches with iPhone Duo on October 23, 2026. $1.99, with no subscription, account or ads.<br>iPhone Duo screens were recorded in Apple's iPhone Duo simulator.</p>
 
   <section class="soon" id="soon">
-    <p class="tag">Coming soon in 1.1</p>
+    <p class="tag">Coming soon in 1.1 and 1.2</p>
     <h2>The first update is already in the works.</h2>
-    <p class="lead">Snapshots launches with everything above. These follow in a free update, version 1.1.</p>
+    <p class="lead">Snapshots launches with everything above. These follow in free updates: Booth Mode, fonts, memories and rotating in 1.1, then widgets and Camera Control in 1.2.</p>
 
     <div class="booth">
       <video autoplay muted loop playsinline preload="metadata" poster="booth-poster.jpg" aria-label="Booth Mode in use: a countdown before each of three selfies of two friends, then the three printing and developing together as one tall snapshot.">
@@ -98,6 +109,30 @@
       <h3>Rotate a photo</h3>
       <p>Took it upside down? Turn the photo inside its frame, right in the gallery.</p>
       <div class="mini" aria-hidden="true"><div class="tile flip"><img src="../../app/photo.jpg" alt="" loading="lazy"></div><span class="arrow">&rarr;</span><div class="tile"><img src="../../app/photo.jpg" alt="" loading="lazy"></div></div>
+    </div>
+
+    <div class="booth flip">
+      <div class="widgets" role="img" aria-label="The Snapshots widgets in turn: Clock and Prints in medium and large, and Prints in small, medium and large, each showing prints from the gallery.">
+        <figure class="w w1 c-medium"><picture><source srcset="../../app/widgets/c-medium-dark.avif" media="(prefers-color-scheme: dark)"><img src="../../app/widgets/c-medium-light.avif" alt="" loading="lazy"></picture><figcaption>Clock &amp; Prints, medium</figcaption></figure>
+        <figure class="w w2 c-large"><picture><source srcset="../../app/widgets/c-large-dark.avif" media="(prefers-color-scheme: dark)"><img src="../../app/widgets/c-large-light.avif" alt="" loading="lazy"></picture><figcaption>Clock &amp; Prints, large</figcaption></figure>
+        <figure class="w w3 p-small"><picture><source srcset="../../app/widgets/p-small-dark.avif" media="(prefers-color-scheme: dark)"><img src="../../app/widgets/p-small-light.avif" alt="" loading="lazy"></picture><figcaption>Prints, small</figcaption></figure>
+        <figure class="w w4 p-medium"><picture><source srcset="../../app/widgets/p-medium-dark.avif" media="(prefers-color-scheme: dark)"><img src="../../app/widgets/p-medium-light.avif" alt="" loading="lazy"></picture><figcaption>Prints, medium</figcaption></figure>
+        <figure class="w w5 p-large"><picture><source srcset="../../app/widgets/p-large-dark.avif" media="(prefers-color-scheme: dark)"><img src="../../app/widgets/p-large-light.avif" alt="" loading="lazy"></picture><figcaption>Prints, large</figcaption></figure>
+      </div>
+      <div>
+        <p class="tag">New in 1.2</p>
+        <h3>Widgets</h3>
+        <p>Your snapshots on your Home Screen, with a different print on top every hour. Choose prints on their own, or beside the same clock as the nightstand mode.</p>
+        <ul>
+          <li><strong>Clock &amp; Prints.</strong> The time, the date and your prints, in medium or large.</li>
+          <li><strong>Prints.</strong> One, two or three of your snapshots, in small, medium or large.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Camera Control</h3>
+      <p>On iPhone models with Camera Control, press to take a snapshot. Press lightly and slide to change the film style, zoom, timer or brightness without touching the screen.</p>
+      <img class="cc" src="../../app/widgets/camera-control.avif" alt="Snapshots on iPhone with the Camera Control's Film setting showing at the edge of the viewfinder, magnified." loading="lazy">
     </div>
   </section>
 
