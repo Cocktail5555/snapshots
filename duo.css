@@ -93,14 +93,15 @@ nav .links a:hover { color: var(--night-ink); }
 .stage figcaption { text-align: center; margin-top: 44px; font: 600 12px/1 var(--round); letter-spacing: 0.22em; text-transform: uppercase; color: var(--night-muted); min-height: 1em; }
 
 /* On the iPhone page the hero holds a phone, square on, playing a film of the app. */
-/* The hero's still: an iPhone Duo, with an iPhone standing in front of its left-hand screen. The
+/* The hero's still: an iPhone Duo, with an iPhone standing in front of its right-hand screen (the
+   viewfinder), so the Duo's controls on the left stay in view. The
    two are to scale with each other: both bezels are drawn at three pixels to the point, so the
    iPhone (1470 wide) is 0.475 of the width of the Duo (3093 wide). */
 .hero-pair { display: grid; align-items: end; margin: 0; padding: 0 0 30px; }
 /* Above the hero's glow, which otherwise lies over them and tints the one behind. */
 .hero-pair .device.mock { grid-area: 1 / 1; position: relative; z-index: 1; }
-.hero-pair .device.mock:first-child { width: 38%; justify-self: start; z-index: 2; }
-.hero-pair .device.mock:last-child { width: 80%; justify-self: end; }
+.hero-pair .device.mock:first-child { width: 38%; justify-self: end; z-index: 2; }
+.hero-pair .device.mock:last-child { width: 80%; justify-self: start; }
 /* On a wide screen the pair runs a little past the page's right-hand margin. */
 @media (min-width: 901px) {
   .hero-pair { width: calc(100% + min(64px, 16px + max(0px, (100vw - 1120px) / 2))); }
@@ -272,6 +273,25 @@ nav .links a:hover { color: var(--night-ink); }
 .cell h3 { margin-bottom: 8px; }
 .cell p { color: var(--muted); font-size: 16px; line-height: 1.5; }
 
+/* ---------- Booth Mode and more ---------- */
+.soon { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr); gap: 56px; align-items: center; margin: 56px 0 64px; }
+.soon .booth { margin: 0; display: grid; place-items: center; }
+.soon .booth video { display: block; width: min(100%, 270px); aspect-ratio: 600 / 1304; border-radius: 34px; background: #000; box-shadow: 0 30px 60px -22px rgba(0, 0, 0, 0.7); }
+.soon-text .tag { font: 600 12px/1 var(--round); letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange); margin-bottom: 12px; }
+.soon-text h3 { font-size: clamp(30px, 3.4vw, 40px); margin-bottom: 14px; }
+.soon-text p { color: var(--muted); font-size: 18px; line-height: 1.55; margin: 0 0 22px; max-width: 30em; }
+.cell img.fonts { display: block; width: 100%; max-width: 300px; margin: 18px 0 0; }
+.cell .mini { margin-top: 18px; height: 102px; display: flex; align-items: center; gap: 16px; }
+.mini-back { flex: 1; max-width: 300px; height: 100%; box-sizing: border-box; background: #EDE8DC; border-radius: 3px; padding: 11px 14px; color: #33312C; overflow: hidden; box-shadow: 0 10px 18px -10px rgba(0, 0, 0, 0.5); }
+.mini-back small { display: block; font: 500 9px/1 var(--round); letter-spacing: 0.04em; opacity: 0.5; }
+.mini-back b { display: block; margin: 7px 0 5px; font: 700 16px/1 "Bradley Hand", "Segoe Print", cursive; }
+.mini-back span { display: block; font: 12px/1.35 Georgia, "Times New Roman", serif; opacity: 0.8; }
+.mini-print { height: 100%; aspect-ratio: 0.82; box-sizing: border-box; background: var(--paper); padding: 6px; border-radius: 2px; box-shadow: 0 10px 18px -10px rgba(0, 0, 0, 0.5); }
+.mini-print div { width: 100%; height: 100%; overflow: hidden; }
+.mini-print img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.mini-print.side img { transform: rotate(180deg); }
+.mini .turn { width: 22px; height: 22px; flex: none; stroke: var(--orange); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
 /* ---------- Every iPhone ---------- */
 .phones { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: center; }
 .phones .pair { display: flex; justify-content: center; gap: 26px; }
@@ -301,7 +321,7 @@ footer a { color: var(--night-ink); }
 @media (max-width: 900px) {
   section { padding: 80px 0; }
   .hero { padding-top: 130px; }
-  .hero .wrap, .finishes, .phones, .maker { grid-template-columns: 1fr; }
+  .hero .wrap, .finishes, .phones, .maker, .soon { grid-template-columns: 1fr; }
   .maker { gap: 44px; }
   .hero .copy { text-align: center; }
   .hero .lead { margin: 0 auto; }
