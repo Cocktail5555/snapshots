@@ -288,6 +288,7 @@ nav .links a:hover { color: var(--night-ink); }
 .strip.gold img { filter: saturate(1.25) contrast(1.06) sepia(0.12); }
 .strip.classic img { filter: saturate(0.92) contrast(0.96); }
 #booth { overflow: hidden; }
+.booth-text .note { margin: 18px 0 0; font-size: 14px; font-style: italic; color: var(--muted); }
 #booth .grid { position: relative; z-index: 1; grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .cell img.fonts { display: block; width: 100%; max-width: 300px; margin: 18px 0 0; box-sizing: border-box; padding: 12px 14px; border-radius: 12px; background: #202733; }
 .cell .mini { margin-top: 18px; height: 102px; display: flex; align-items: center; gap: 16px; }
