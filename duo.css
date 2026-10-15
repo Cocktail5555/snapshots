@@ -274,7 +274,7 @@ nav .links a:hover { color: var(--night-ink); }
 .cell p { color: var(--muted); font-size: 16px; line-height: 1.5; }
 
 /* ---------- Booth Mode ---------- */
-.booth-row { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr); gap: 56px; align-items: center; margin: 0 0 72px; }
+.booth-row { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr); gap: 56px; align-items: center; margin: 0; }
 .booth-art { position: relative; margin: 0; display: grid; place-items: center; padding: 24px 0; }
 .booth-art video { position: relative; z-index: 1; display: block; width: min(100%, 270px); aspect-ratio: 600 / 1304; border-radius: 34px; background: #000; box-shadow: 0 30px 60px -22px rgba(0, 0, 0, 0.7); }
 /* Three finished strips lying on the table under the phone, each at its own angle. */
