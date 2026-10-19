@@ -57,6 +57,9 @@ nav .links a:hover { color: var(--night-ink); }
 
 .pill { display: inline-flex; align-items: center; gap: 10px; padding: 12px 20px; border-radius: 999px; font: 600 15px/1 var(--round); background: var(--orange-deep); color: #fff; text-decoration: none; }
 .pill.ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+/* Apple's own App Store badge, used as provided: only scaled, with clear space round it. */
+.store-badge { display: inline-flex; align-items: center; padding: 0 4px; }
+.store-badge img { display: block; height: 46px; width: auto; }
 
 /* ---------- Hero ---------- */
 .hero { padding: 180px 0 110px; overflow: hidden; }
