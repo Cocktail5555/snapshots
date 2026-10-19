@@ -41,6 +41,12 @@ h1 { font-size: 34px; line-height: 1.2; margin: 0 0 8px; }
 h2 { font-size: 21px; margin: 36px 0 8px; }
 p, li { color: var(--ink); }
 .lead { color: var(--muted); font-size: 19px; margin-top: 0; }
+/* A small line above a page's title. */
+.available { margin: 0 0 6px; font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; }
+.available a { color: var(--orange); text-decoration: none; }
+/* Apple's own App Store badge, used as provided: only scaled. */
+.store-badge { margin: 4px 0 28px; }
+.store-badge img { display: block; height: 46px; width: auto; }
 .hero { display: block; width: 100%; max-width: 460px; height: auto; margin: 28px auto 8px; }
 .card {
   background: var(--card); border: 1px solid var(--line); border-radius: 16px;
