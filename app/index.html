@@ -19,6 +19,17 @@
   <meta name="twitter:image" content="https://cocktail5555.github.io/snapshots/share.png?v=3">
   <link rel="canonical" href="https://cocktail5555.github.io/snapshots/app/">
   <link rel="stylesheet" href="../duo.css?v=20261019b">
+  <style>
+    /* New in 1.1: the widgets, in turn, beside the copy. */
+    .widgets { position: relative; width: min(100%, 340px); aspect-ratio: 364 / 430; margin: 0 auto; }
+    .widgets .w { position: absolute; inset: 0 0 40px; margin: 0; display: grid; place-items: center; opacity: 0; animation: widget-turn 17.5s infinite; }
+    .widgets .w img { display: block; width: 100%; height: auto; filter: drop-shadow(0 16px 24px rgba(0, 0, 0, 0.25)); }
+    .widgets .p-small img { width: 50%; margin: 0 auto; }
+    .widgets figcaption { position: absolute; left: 0; right: 0; bottom: -32px; text-align: center; font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+    .widgets .w2 { animation-delay: 3.5s; } .widgets .w3 { animation-delay: 7s; } .widgets .w4 { animation-delay: 10.5s; } .widgets .w5 { animation-delay: 14s; }
+    @keyframes widget-turn { 0% { opacity: 0; transform: translateX(20px); } 3% { opacity: 1; transform: none; } 17% { opacity: 1; transform: none; } 20% { opacity: 0; transform: translateX(-20px); } 100% { opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) { .widgets .w { animation: none; } .widgets .w1 { opacity: 1; } }
+  </style>
 <!-- X conversion tracking base code -->
 <script>
 !function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);
@@ -187,6 +198,32 @@ document.addEventListener('click', function (e) {
         </ul>
         <a class="store-badge booth-badge" href="https://apps.apple.com/app/id6818673560" aria-label="Download Snapshots on the App Store"><img src="badges/download-on-the-app-store.svg" width="160" height="53" alt="Download on the App Store" loading="lazy"></a>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="white" id="widgets">
+  <div class="wrap">
+    <div class="booth-row reveal">
+      <div class="booth-text">
+        <span class="eyebrow">New in 1.1</span>
+        <h2 style="margin: 18px 0">Your prints on your Home Screen.</h2>
+        <p class="lead">Add a Snapshots widget and your favorite prints are there every time you unlock your phone, with a different one on top every hour.</p>
+        <ul class="list">
+          <li><span><strong>Prints.</strong> One, two or three of your snapshots, in small, medium or large.</span></li>
+          <li><span><strong>Clock &amp; Prints.</strong> The time and the date beside your prints, like the nightstand clock.</span></li>
+          <li><span><strong>Camera Control.</strong> On iPhone models that have it, press to take a snapshot, and press lightly to change the film, zoom, timer or brightness.</span></li>
+        </ul>
+      </div>
+      <figure class="booth-art">
+        <div class="widgets" role="img" aria-label="The Snapshots widgets in turn: Clock and Prints in medium and large, and Prints in small, medium and large, each showing prints from the gallery.">
+        <figure class="w w1 c-medium"><picture><source srcset="widgets/c-medium-dark.avif?v=2" media="(prefers-color-scheme: dark)"><img src="widgets/c-medium-light.avif?v=2" alt="" loading="lazy"></picture><figcaption>Clock &amp; Prints, medium</figcaption></figure>
+        <figure class="w w2 c-large"><picture><source srcset="widgets/c-large-dark.avif?v=2" media="(prefers-color-scheme: dark)"><img src="widgets/c-large-light.avif?v=2" alt="" loading="lazy"></picture><figcaption>Clock &amp; Prints, large</figcaption></figure>
+        <figure class="w w3 p-small"><picture><source srcset="widgets/p-small-dark.avif?v=2" media="(prefers-color-scheme: dark)"><img src="widgets/p-small-light.avif?v=2" alt="" loading="lazy"></picture><figcaption>Prints, small</figcaption></figure>
+        <figure class="w w4 p-medium"><picture><source srcset="widgets/p-medium-dark.avif?v=2" media="(prefers-color-scheme: dark)"><img src="widgets/p-medium-light.avif?v=2" alt="" loading="lazy"></picture><figcaption>Prints, medium</figcaption></figure>
+        <figure class="w w5 p-large"><picture><source srcset="widgets/p-large-dark.avif?v=2" media="(prefers-color-scheme: dark)"><img src="widgets/p-large-light.avif?v=2" alt="" loading="lazy"></picture><figcaption>Prints, large</figcaption></figure>
+      </div>
+      </figure>
     </div>
   </div>
 </section>
@@ -382,6 +419,11 @@ document.addEventListener('click', function (e) {
         <div class="dot"><svg viewBox="0 0 24 24"><path d="M4 9V5h4M20 9V5h-4M4 15v4h4M20 15v4h-4"/><circle cx="12" cy="12" r="2.5"/></svg></div>
         <h3>Focus and exposure</h3>
         <p>Tap to focus, press and hold to lock, then slide to brighten or darken.</p>
+      </div>
+      <div class="cell">
+        <div class="dot"><svg viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="18" rx="2.5"/><path d="M19 10v4"/></svg></div>
+        <h3>Camera Control</h3>
+        <p>Press it to take a snapshot. Press lightly to change the film, zoom, timer or brightness.</p>
       </div>
       <div class="cell">
         <div class="dot"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div>
