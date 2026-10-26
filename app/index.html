@@ -29,6 +29,47 @@
     .widgets .w2 { animation-delay: 3.5s; } .widgets .w3 { animation-delay: 7s; } .widgets .w4 { animation-delay: 10.5s; } .widgets .w5 { animation-delay: 14s; }
     @keyframes widget-turn { 0% { opacity: 0; transform: translateX(20px); } 3% { opacity: 1; transform: none; } 17% { opacity: 1; transform: none; } 20% { opacity: 0; transform: translateX(-20px); } 100% { opacity: 0; } }
     @media (prefers-reduced-motion: reduce) { .widgets .w { animation: none; } .widgets .w1 { opacity: 1; } }
+    /* The chart position, under the hero's buttons. */
+    .chart-rank { display: inline-flex; align-items: center; gap: 18px; margin-top: 30px; padding-top: 26px; border-top: 1px solid var(--line); }
+    .chart-rank .rank { font: 800 clamp(40px, 4.4vw, 52px)/0.9 var(--round); letter-spacing: -0.04em; background: linear-gradient(180deg, #FF8A45, var(--orange-deep)); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 6px 18px rgba(255, 116, 40, 0.35)); }
+    .chart-rank .rank sup { font-size: 0.45em; vertical-align: 0.95em; margin-right: 0.04em; }
+    .chart-rank .rank-text { display: grid; gap: 6px; }
+    .chart-rank strong { font: 700 clamp(15px, 1.4vw, 17px)/1.2 var(--round); color: var(--ink); letter-spacing: -0.01em; }
+    .chart-rank small { font: 600 11px/1 var(--round); letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+    .chart-rank .rank-text { text-align: left; }
+    @media (max-width: 420px) { .chart-rank { gap: 14px; } .chart-rank small { font-size: 10.5px; letter-spacing: 0.14em; } }
+    /* On a wide screen it sits centred under the phones; on a narrow one, under the buttons. */
+    .hero-art { display: grid; justify-items: center; }
+    .chart-rank-art { margin-top: 6px; border-top: 0; padding-top: 0; }
+    @media (min-width: 901px) { .chart-rank-copy { display: none; } }
+    @media (max-width: 900px) { .chart-rank-art { display: none; } }
+    /* In the spotlight: the chart position, with the chart itself beside it. */
+    .spotlight .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 64px; align-items: center; }
+    .spotlight h2 { margin: 18px 0 22px; }
+    .spotlight h2 em { font-style: normal; color: var(--orange-deep); }
+    .spotlight .store-badge img { height: 54px; }
+    .spotlight .actions { margin-top: 30px; }
+    .spotlight .rank-note { margin: 18px 0 0; font: 600 12px/1.4 var(--round); letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+    .spotlight .rank-note b { color: var(--orange-deep); font-weight: 700; }
+    .chart-card { position: relative; margin: 0; padding: 22px 22px 16px; border-radius: 30px; background: linear-gradient(180deg, #232A35, #161B23); box-shadow: 0 40px 80px -30px rgba(23, 27, 35, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.04) inset; }
+    .chart-card .bar { display: flex; align-items: center; gap: 12px; margin: 0 4px 16px; font: 600 11px/1 var(--round); letter-spacing: 0.2em; text-transform: uppercase; color: #A9B6C8; }
+    .chart-card .bar::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--orange); box-shadow: 0 0 10px rgba(255, 116, 40, 0.8); }
+    .chart-card .bar span { flex: 1; height: 1px; background: rgba(255, 255, 255, 0.1); }
+    .chart-card img { display: block; width: 100%; height: auto; border-radius: 16px; }
+    .chart-card figcaption { margin: 14px 4px 0; font-size: 12px; color: #8C97A8; }
+    .chart-card .closer { position: absolute; right: 36px; bottom: 54px; display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border: 0; border-radius: 12px; background: #F7F5EE; color: #2B313B; font: 600 13px/1 var(--round); box-shadow: 0 10px 24px -8px rgba(0, 0, 0, 0.5); cursor: zoom-in; }
+    .chart-card .closer svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+    .chart-zoom { padding: 0; border: 0; border-radius: 18px; background: #161B23; max-width: min(92vw, 900px); max-height: 92vh; }
+    .chart-zoom::backdrop { background: rgba(10, 12, 16, 0.75); }
+    .chart-zoom img { display: block; max-width: 100%; max-height: 92vh; width: auto; height: auto; }
+    .chart-zoom form { position: absolute; top: 10px; right: 10px; margin: 0; }
+    .chart-zoom button { border: 0; border-radius: 999px; width: 34px; height: 34px; background: rgba(0, 0, 0, 0.55); color: #fff; font-size: 18px; cursor: pointer; }
+    @media (max-width: 900px) { .spotlight .wrap { grid-template-columns: 1fr; gap: 40px; } .chart-card .closer { right: 30px; bottom: 50px; } }
+    @media (max-width: 560px) { .spotlight .rank-note { font-size: 10.5px; letter-spacing: 0.12em; } .chart-card { padding: 16px 14px 12px; border-radius: 24px; } .chart-card .bar { font-size: 9.5px; letter-spacing: 0.14em; white-space: nowrap; gap: 8px; } .chart-card .closer { right: 22px; bottom: 42px; padding: 8px 12px; font-size: 12px; } }
+    /* The other apps a little softened, so Snapshots' tile (row 2, column 4 of the chart) stands out. */
+    .chart-card .shot, .chart-zoom .shot { position: relative; }
+    .chart-card .soft, .chart-zoom .soft { filter: blur(1px) saturate(0.75) brightness(0.8); }
+    .chart-card .sharp, .chart-zoom .sharp { position: absolute; inset: 0; clip-path: inset(26.5% 20.8% 56.3% 60.5% round 2.2%); }
   </style>
 <!-- X conversion tracking base code -->
 <script>
@@ -80,11 +121,42 @@ document.addEventListener('click', function (e) {
         <a class="store-badge" href="https://apps.apple.com/app/id6818673560" aria-label="Download Snapshots on the App Store"><img src="badges/download-on-the-app-store.svg" width="160" height="53" alt="Download on the App Store"></a>
         <a class="pill ghost" href="#how">See how it works</a>
       </div>
+      <div class="chart-rank chart-rank-copy" role="note" aria-label="Number 9 Top Paid in Photo and Video, App Store chart, October 2026">
+        <span class="rank" aria-hidden="true"><sup>#</sup>9</span>
+        <span class="rank-text" aria-hidden="true"><strong>Top Paid in Photo &amp; Video</strong><small>App Store chart · October 2026</small></span>
+      </div>
     </div>
-    <figure class="hero-pair">
-      <div class="device mock"><picture><source srcset="m/camera-hero.avif?v=4" type="image/avif"><img src="m/camera-hero.png?v=4" width="600" height="1224" alt="Snapshots on an iPhone: the camera."></picture></div>
-      <div class="device mock"><picture><source srcset="../duo/m/landscape.avif?v=5" type="image/avif"><img src="../duo/m/landscape.png?v=5" width="1300" height="944" alt="Snapshots on an iPhone Duo open in Landscape: viewfinder on one screen, camera controls on the other."></picture></div>
-    </figure>
+    <div class="hero-art">
+      <figure class="hero-pair">
+        <div class="device mock"><picture><source srcset="m/camera-hero.avif?v=4" type="image/avif"><img src="m/camera-hero.png?v=4" width="600" height="1224" alt="Snapshots on an iPhone: the camera."></picture></div>
+        <div class="device mock"><picture><source srcset="../duo/m/landscape.avif?v=5" type="image/avif"><img src="../duo/m/landscape.png?v=5" width="1300" height="944" alt="Snapshots on an iPhone Duo open in Landscape: viewfinder on one screen, camera controls on the other."></picture></div>
+      </figure>
+        <div class="chart-rank chart-rank-art" role="note" aria-label="Number 9 Top Paid in Photo and Video, App Store chart, October 2026">
+        <span class="rank" aria-hidden="true"><sup>#</sup>9</span>
+        <span class="rank-text" aria-hidden="true"><strong>Top Paid in Photo &amp; Video</strong><small>App Store chart · October 2026</small></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="white" id="how">
+  <div class="wrap">
+    <div class="head center reveal">
+      <span class="eyebrow">Shoot. Print. Caption. Share.</span>
+      <h2>The waiting is the best part.</h2>
+      <p class="lead">Instant cameras made you wait for the picture. Snapshots brings that back, right down to the sound of the printer.</p>
+    </div>
+    <div class="how-cols">
+      <figure class="printer reveal" aria-label="The Snapshots printer, with a print feeding out of its slot.">
+        <div class="edge"><span class="status"><b>PRINTING</b><b>COMPLETED</b></span><span class="slot"></span></div>
+        <div class="feed"><div class="print"><div class="photo"><img src="photo.jpg" alt="" loading="lazy"><span aria-hidden="true"><i style="--n:0">G</i><i style="--n:1">o</i><i style="--n:2">l</i><i style="--n:3">d</i><i style="--n:4">e</i><i style="--n:5">n</i> <i style="--n:7">h</i><i style="--n:8">o</i><i style="--n:9">u</i><i style="--n:10">r</i> <i style="--n:12">☀️</i></span></div></div></div>
+      </figure>
+      <div class="steps reveal">
+        <div class="step">
+          <h3>Frame it</h3>
+          <p>The viewfinder is the shape of the print, so what you see is what you get.</p>
+        </div>
+    </div>
   </div>
 </section>
 
@@ -432,6 +504,33 @@ document.addEventListener('click', function (e) {
       </div>
     </div>
   </div>
+</section>
+
+<section class="white spotlight" id="spotlight">
+  <div class="wrap">
+    <div class="copy reveal">
+      <span class="eyebrow">In the spotlight</span>
+      <h2>A little camera.<br>A little <em>main character energy.</em></h2>
+      <p class="lead">For the moments that deserve more than a camera roll. Shoot, print, caption, and keep a little piece of your day.</p>
+      <div class="actions">
+        <a class="store-badge" href="https://apps.apple.com/app/id6818673560" aria-label="Download Snapshots on the App Store"><img src="badges/download-on-the-app-store.svg" width="160" height="53" alt="Download on the App Store" loading="lazy"></a>
+      </div>
+      <p class="rank-note"><b>#9 Top Paid</b> · Photo &amp; Video · October 2026</p>
+    </div>
+    <figure class="chart-card reveal">
+      <div class="bar" aria-hidden="true">App Store chart<span></span>Photo &amp; Video · Top Paid</div>
+      <div class="shot">
+      <img class="soft" src="chart-top-paid-2026-10.jpg" width="1662" height="1790" alt="The App Store's Top Paid chart for Photo and Video in October 2026, with Snapshots: Instant Film Camera at number 9." loading="lazy">
+      <img class="sharp" src="chart-top-paid-2026-10.jpg" width="1662" height="1790" alt="" aria-hidden="true" loading="lazy">
+      </div>
+      <button class="closer" type="button" onclick="document.getElementById('chart-zoom').showModal()"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 2h4v4M14 2l-5 5M6 14H2v-4M2 14l5-5"/></svg>Take a closer look</button>
+      <figcaption>Screenshot of the App Store's Top Paid chart, Photo &amp; Video, October 2026.</figcaption>
+    </figure>
+  </div>
+  <dialog class="chart-zoom" id="chart-zoom" aria-label="The App Store chart, full size" onclick="if (event.target === this) this.close()">
+    <div class="shot"><img class="soft" src="chart-top-paid-2026-10.jpg" width="1662" height="1790" alt="The App Store's Top Paid chart for Photo and Video in October 2026, with Snapshots at number 9."><img class="sharp" src="chart-top-paid-2026-10.jpg" width="1662" height="1790" alt="" aria-hidden="true"></div>
+    <form method="dialog"><button aria-label="Close">×</button></form>
+  </dialog>
 </section>
 
 <section class="white" id="maker">
