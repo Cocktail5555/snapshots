@@ -193,7 +193,7 @@ nav .links a:hover { color: var(--night-ink); }
 .device.phone.landscape .shell { padding: 1.57cqw; border-radius: 7.8cqw; }
 .device.phone.landscape img { border-radius: 6.2cqw; }
 .device.phone.landscape .shell::after { left: 3cqw; top: 19cqw; width: 3.7cqw; height: 9.6cqw; border-radius: 1.85cqw; }
-.pose.laptop .device { max-width: 300px; }
+.pose.laptop .device { max-width: 240px; }
 .pose.book .device { max-width: 520px; }
 .pose.flat .device { max-width: 250px; }
 
