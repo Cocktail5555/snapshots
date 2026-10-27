@@ -29,6 +29,28 @@
     .widgets .w2 { animation-delay: 3.5s; } .widgets .w3 { animation-delay: 7s; } .widgets .w4 { animation-delay: 10.5s; } .widgets .w5 { animation-delay: 14s; }
     @keyframes widget-turn { 0% { opacity: 0; transform: translateX(20px); } 3% { opacity: 1; transform: none; } 17% { opacity: 1; transform: none; } 20% { opacity: 0; transform: translateX(-20px); } 100% { opacity: 0; } }
     @media (prefers-reduced-motion: reduce) { .widgets .w { animation: none; } .widgets .w1 { opacity: 1; } }
+    /* Captions and memories: a print that turns over, as it does in the gallery. */
+    .turn-art { flex-direction: column; gap: 26px; }
+    .turn-print { appearance: none; border: 0; padding: 0; background: none; width: min(100%, 300px); perspective: 1400px; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+    .turn-print .card { display: grid; transform: rotate(-2.5deg); transform-style: preserve-3d; transition: transform 0.8s cubic-bezier(0.45, 0, 0.25, 1); }
+    .turn-print[aria-pressed="true"] .card { transform: rotate(2deg) rotateY(180deg); }
+    .turn-print .face { grid-area: 1 / 1; -webkit-backface-visibility: hidden; backface-visibility: hidden; box-sizing: border-box; }
+    .turn-print .photo, .turn-print .photo img { display: block; width: 100%; height: auto; }
+    .turn-print .print .photo span { font-size: calc(clamp(20px, 2.2vw, 26px) * var(--s, 1)); transition: opacity 0.3s ease; }
+    .turn-print .back { transform: rotateY(180deg); display: flex; flex-direction: column; gap: 14px; padding: 24px 22px; text-align: left; background: #EDE8DB; color: rgba(0, 0, 0, 0.8); border-radius: 3px; box-shadow: 0 18px 30px -12px rgba(0, 0, 0, 0.35); }
+    .turn-print .back time { font-size: 12px; color: rgba(0, 0, 0, 0.45); }
+    .turn-print .back .cap { font-size: calc(24px * var(--s, 1)); line-height: 1.2; }
+    .turn-print .back p { margin: 10px 0 0; font: 400 17px/1.5 "New York", "Iowan Old Style", Georgia, serif; }
+    .turn-print .cap.hand { font-family: "Bradley Hand", "Segoe Print", cursive; font-weight: 700; --s: 1; }
+    .turn-print .cap.marker { font-family: "Marker Felt", "Comic Sans MS", fantasy; font-weight: 700; --s: 0.92; }
+    .turn-print .cap.typewriter { font-family: "American Typewriter", "Courier New", monospace; font-weight: 400; --s: 0.82; }
+    .turn-print .cap.script { font-family: "Snell Roundhand", "Brush Script MT", cursive; font-weight: 700; --s: 1.05; }
+    .turn-print .cap.note { font-family: "Noteworthy", "Segoe Print", cursive; font-weight: 700; --s: 0.88; }
+    .turn-print .cap.modern { font-family: "Avenir Next", "Segoe UI", sans-serif; font-weight: 500; --s: 0.82; }
+    .turn-label { display: flex; align-items: center; gap: 10px; font: 600 11px/1 var(--round); letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+    .turn-label b { color: var(--orange-deep); font-weight: 600; }
+    @media (max-width: 560px) { .turn-print { width: min(100%, 260px); } }
+    @media (prefers-reduced-motion: reduce) { .turn-print .card { transition: none; } }
     /* The chart position, under the hero's buttons. */
     .chart-rank { display: inline-flex; align-items: center; gap: 18px; margin-top: 30px; padding-top: 26px; border-top: 1px solid var(--line); }
     .chart-rank .rank { font: 800 clamp(40px, 4.4vw, 52px)/0.9 var(--round); letter-spacing: -0.04em; background: linear-gradient(180deg, #FF8A45, var(--orange-deep)); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 6px 18px rgba(255, 116, 40, 0.35)); }
@@ -439,6 +461,36 @@ document.addEventListener('click', function (e) {
   </div>
 </section>
 
+<section class="white" id="captions">
+  <div class="wrap">
+    <div class="booth-row reveal">
+      <figure class="booth-art turn-art">
+        <button class="turn-print gold" type="button" aria-pressed="false" aria-label="A print captioned golden hour. Turn it over to read the memory on the back.">
+          <span class="card">
+            <span class="face front print"><span class="photo"><img src="photo.jpg" alt="" loading="lazy"><span class="cap hand">golden hour</span></span></span>
+            <span class="face back" aria-hidden="true">
+              <time datetime="2026-08-29T19:42">August 29, 2026 at 7:42 PM</time>
+              <span class="cap hand">golden hour</span>
+              <p>Last swim of the summer. We stayed in until the sun went down, then walked back barefoot with sand everywhere.</p>
+            </span>
+          </span>
+        </button>
+        <figcaption class="turn-label"><b class="font-name">Handwriting</b><span>Tap to turn it over</span></figcaption>
+      </figure>
+      <div class="booth-text">
+        <span class="eyebrow">Captions and memories</span>
+        <h2 style="margin: 18px 0">A caption on the front. The story on the back.</h2>
+        <p class="lead">Write a caption across the bottom of your print, then turn it over in your gallery and write down everything you want to remember about it.</p>
+        <ul class="list">
+          <li><span><strong>Six fonts.</strong> Handwriting, Marker, Typewriter, Script, Note or Modern, picked for each print.</span></li>
+          <li><span><strong>A memory on the back.</strong> Tap a print to turn it over, and write as much as you like.</span></li>
+          <li><span><strong>Just for you.</strong> Share a print and its caption goes with it. The memory on the back stays with you.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="night">
   <div class="wrap">
     <div class="head reveal">
@@ -450,11 +502,6 @@ document.addEventListener('click', function (e) {
         <div class="dot"><svg viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="18" rx="2.5"/><path d="M3 9v6M21 9v6"/></svg></div>
         <h3>Shake to develop</h3>
         <p>Too excited to wait? Give the phone a shake and your snapshot develops immediately.</p>
-      </div>
-      <div class="cell">
-        <div class="dot"><svg viewBox="0 0 24 24"><path d="M4 20l4-1 11-11-3-3L5 16l-1 4z"/><path d="M14 7l3 3"/></svg></div>
-        <h3>Handwritten captions</h3>
-        <p>Add a caption along the bottom of your photo, in one of six fonts, to remember the story behind it.</p>
       </div>
       <div class="cell">
         <div class="dot"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="3.5"/><path d="M5 20c1-4 4-6 7-6s6 2 7 6"/></svg></div>
@@ -560,6 +607,40 @@ if ('IntersectionObserver' in window) {
 } else {
   document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
 }
+
+// The captioned print: its caption takes each lettering in turn, and now and then it turns over
+// to show the memory on the back. A tap turns it over by hand, and from then on it is left alone.
+(function () {
+  var button = document.querySelector('.turn-print');
+  if (!button) return;
+  var caps = button.querySelectorAll('.cap'), label = document.querySelector('.turn-label .font-name');
+  var fonts = [['hand', 'Handwriting'], ['marker', 'Marker'], ['typewriter', 'Typewriter'], ['script', 'Script'], ['note', 'Note'], ['modern', 'Modern']];
+  var index = 0, ticks = 0, timer = null, stopped = false;
+  function letter(i) {
+    caps.forEach(function (cap) { cap.className = 'cap ' + fonts[i][0]; });
+    label.textContent = fonts[i][1];
+  }
+  function turn(over) { button.setAttribute('aria-pressed', String(over)); }
+  function tick() {
+    ticks += 1;
+    // Through all six letterings on the front, then a few seconds on the back.
+    if (ticks % 10 === 6) { turn(true); return; }
+    if (ticks % 10 === 0) { turn(false); return; }
+    if (button.getAttribute('aria-pressed') === 'true') return;
+    index = (index + 1) % fonts.length;
+    letter(index);
+  }
+  button.addEventListener('click', function () {
+    stopped = true;
+    clearInterval(timer);
+    turn(button.getAttribute('aria-pressed') !== 'true');
+  });
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
+  new IntersectionObserver(function (entries) {
+    clearInterval(timer);
+    if (!stopped && entries[0].isIntersecting) timer = setInterval(tick, 1600);
+  }, { threshold: 0.4 }).observe(button);
+})();
 </script>
 <script>
   // Counts the visit, anonymously and without cookies. A link ending ?r=name is counted under that name.
