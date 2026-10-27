@@ -35,6 +35,13 @@
     .turn-print .card { display: grid; transform: rotate(-2.5deg); transform-style: preserve-3d; transition: transform 0.8s cubic-bezier(0.45, 0, 0.25, 1); }
     .turn-print[aria-pressed="true"] .card { transform: rotate(2deg) rotateY(180deg); }
     .turn-print .face { grid-area: 1 / 1; -webkit-backface-visibility: hidden; backface-visibility: hidden; box-sizing: border-box; }
+    /* The caption and tint on the front sit in layers of their own, which Safari draws through the
+       back; so they are hidden from behind too, and each side is shown only for its half of the turn. */
+    .turn-print .front, .turn-print .front * { -webkit-backface-visibility: hidden; backface-visibility: hidden; }
+    .turn-print .front { transform: rotateY(0deg); transition: visibility 0s linear 0.4s; }
+    .turn-print .back { visibility: hidden; transition: visibility 0s linear 0.4s; }
+    .turn-print[aria-pressed="true"] .front { visibility: hidden; }
+    .turn-print[aria-pressed="true"] .back { visibility: visible; }
     .turn-print .photo, .turn-print .photo img { display: block; width: 100%; height: auto; }
     .turn-print .print .photo span { font-size: calc(clamp(20px, 2.2vw, 26px) * var(--s, 1)); transition: opacity 0.3s ease; }
     .turn-print .back { transform: rotateY(180deg); display: flex; flex-direction: column; gap: 14px; padding: 24px 22px; text-align: left; background: #EDE8DB; color: rgba(0, 0, 0, 0.8); border-radius: 3px; box-shadow: 0 18px 30px -12px rgba(0, 0, 0, 0.35); }
@@ -50,7 +57,7 @@
     .turn-label { display: flex; align-items: center; gap: 10px; font: 600 11px/1 var(--round); letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
     .turn-label b { color: var(--orange-deep); font-weight: 600; }
     @media (max-width: 560px) { .turn-print { width: min(100%, 260px); } }
-    @media (prefers-reduced-motion: reduce) { .turn-print .card { transition: none; } }
+    @media (prefers-reduced-motion: reduce) { .turn-print .card, .turn-print .front, .turn-print .back { transition: none; } }
     /* The chart position, under the hero's buttons. */
     .chart-rank { display: inline-flex; align-items: center; gap: 18px; margin-top: 30px; padding-top: 26px; border-top: 1px solid var(--line); }
     .chart-rank .rank { font: 800 clamp(40px, 4.4vw, 52px)/0.9 var(--round); letter-spacing: -0.04em; background: linear-gradient(180deg, #FF8A45, var(--orange-deep)); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 6px 18px rgba(255, 116, 40, 0.35)); }
