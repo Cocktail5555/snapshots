@@ -315,7 +315,7 @@ nav .links a:hover { color: var(--night-ink); }
 /* ---------- The maker ---------- */
 .maker { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 72px; align-items: center; }
 .maker figure { margin: 0; display: grid; place-items: center; }
-.maker .print { width: min(100%, 340px); transform: rotate(-3deg); }
+.maker .print { width: min(100%, 340px); padding: 24px; transform: rotate(-3deg); }
 .maker .print .photo span { font-size: clamp(20px, 2.2vw, 26px); }
 .maker p { color: var(--muted); font-size: 19px; line-height: 1.65; max-width: 33em; }
 .maker p + p { margin-top: 18px; }

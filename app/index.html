@@ -22,7 +22,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://cocktail5555.github.io/snapshots/share.png?v=3">
   <link rel="canonical" href="https://cocktail5555.github.io/snapshots/app/">
-  <link rel="stylesheet" href="../duo.css?v=20261026a">
+  <link rel="stylesheet" href="../duo.css?v=20261101a">
   <style>
     /* New in 1.1: the widgets, in turn, beside the copy. */
     .widgets { position: relative; width: min(100%, 340px); aspect-ratio: 364 / 430; margin: 0 auto; }
@@ -115,6 +115,26 @@
     .hp.c { --w: 16%; --l: 91%;  --t: 48%;  --r: 19deg; --in: 2.5s; }
     @media (max-width: 560px) { .hp.c { display: none; } .hp.a { --w: 15%; --l: 8%; --t: 2%; } .hp.b { --w: 20%; --l: 29%; --t: -2%; } }
     @media (prefers-reduced-motion: reduce) { .hp { animation: none; } }
+    /* Reviews: quoted from the App Store as written, shortened only where a sentence is left out. */
+    .rating { display: inline-flex; align-items: center; gap: 16px; margin-top: 8px; }
+    .rating .score { font: 800 clamp(40px, 4.4vw, 52px)/0.9 var(--round); letter-spacing: -0.04em; color: var(--ink); }
+    .rating .rating-text { display: grid; gap: 6px; text-align: left; }
+    .rating small { font: 600 11px/1 var(--round); letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+    .stars { color: var(--orange-deep); font-size: 17px; letter-spacing: 0.12em; line-height: 1; }
+    .reviews { columns: 3; column-gap: 18px; }
+    .review { break-inside: avoid; margin: 0 0 18px; background: var(--card); border: 1px solid var(--line); border-radius: 22px; padding: 26px 26px 24px; }
+    .review h3 { font-size: 19px; margin: 14px 0 8px; }
+    .review blockquote { margin: 0; color: var(--muted); font-size: 16px; line-height: 1.55; }
+    .review figcaption { margin-top: 16px; font: 600 13px/1 var(--round); color: var(--ink); }
+    .reviews-more { margin-top: 26px; text-align: center; }
+    @media (max-width: 980px) { .reviews { columns: 2; } }
+    /* On a phone, one row to swipe through. */
+    @media (max-width: 560px) {
+      .reviews { columns: auto; display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; align-items: flex-start; margin: 0 -16px; padding: 0 16px 8px; scrollbar-width: none; }
+      .reviews::-webkit-scrollbar { display: none; }
+      .review { flex: 0 0 84%; margin: 0; scroll-snap-align: center; }
+      .rating small { font-size: 10.5px; letter-spacing: 0.14em; }
+    }
   </style>
 <!-- X conversion tracking base code -->
 <script>
@@ -589,7 +609,65 @@ document.addEventListener('click', function (e) {
   </dialog>
 </section>
 
-<section class="white" id="maker">
+<section class="white" id="reviews">
+  <div class="wrap">
+    <div class="head center reveal">
+      <span class="eyebrow">Reviews</span>
+      <h2>Five stars, one print at a time.</h2>
+      <div class="rating">
+        <span class="score">5.0</span>
+        <span class="rating-text"><span class="stars" aria-label="5 out of 5 stars">★★★★★</span><small>App Store Reviews</small></span>
+      </div>
+    </div>
+    <div class="reviews reveal">
+      <figure class="review">
+        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <h3>Replaced My Camera App!</h3>
+        <blockquote>I absolutely LOVE this app. … It lets me stay in the moment and not take multiple pics of the same thing to find the “best” one. … I also found a cool feature that if you turn the phone on its side, it shows you a gallery of all your pics. Love, love, love. I put the app in place of my native camera app!</blockquote>
+        <figcaption>NamasteOuttaBed</figcaption>
+      </figure>
+      <figure class="review">
+        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <h3>a MUST download! 💯</h3>
+        <blockquote>this camera app is so fun! love how user friendly it is! it’s been so fun taking pictures &amp; i love the nostalgic feel to it!</blockquote>
+        <figcaption>tessa wade</figcaption>
+      </figure>
+      <figure class="review">
+        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <h3>Fun!!</h3>
+        <blockquote>Okay this is a FUN little app!! Straightforward and easy to use. … My toddler loves the way the phone vibrates when you snap a pic. We’re having a lot of fun with photobooth mode!!</blockquote>
+        <figcaption>Eileen Hollis</figcaption>
+      </figure>
+      <figure class="review">
+        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <h3>Love it!</h3>
+        <blockquote>Fricking love this app! The photos are great but the interface itself is next level. My photos are gonna finally find their way off my camera roll!</blockquote>
+        <figcaption>L U X Y</figcaption>
+      </figure>
+      <figure class="review">
+        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <h3>Great photo app</h3>
+        <blockquote>What an amazing photo app to use with my new folding iPhone. … Totally worth the low price for this app. Go for it!</blockquote>
+        <figcaption>No Hassles</figcaption>
+      </figure>
+      <figure class="review">
+        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <h3>Get this app!</h3>
+        <blockquote>This app is so amazing for taking old school-style photos right from your phone. No need to carry another device around! The interface is simple and easy to use. The photo booth setting is so fun!!</blockquote>
+        <figcaption>ceals3</figcaption>
+      </figure>
+      <figure class="review">
+        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <h3>Love it 😍</h3>
+        <blockquote>Great app, simple minimal user interface. Love the nightstand mode …</blockquote>
+        <figcaption>quinnandrew</figcaption>
+      </figure>
+    </div>
+    <p class="reviews-more reveal"><a class="pill ghost" href="https://apps.apple.com/app/id6818673560?see-all=reviews">Read every review on the App Store</a></p>
+  </div>
+</section>
+
+<section class="night" id="maker">
   <div class="wrap maker">
     <figure class="reveal">
       <div class="print"><div class="photo"><img src="../duo/ryan.jpg" alt="Ryan Fredericks, who made Snapshots, sitting on a stool and smiling, a camera lens in his hand." loading="lazy"><span>Hey there! 👋🏻</span></div></div>
