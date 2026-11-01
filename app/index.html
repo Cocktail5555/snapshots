@@ -95,6 +95,28 @@
     .chart-card .shot, .chart-zoom .shot { position: relative; }
     .chart-card .soft, .chart-zoom .soft { filter: blur(1px) saturate(0.75) brightness(0.8); }
     .chart-card .sharp, .chart-zoom .sharp { position: absolute; inset: 0; clip-path: inset(26.5% 20.8% 56.3% 60.5% round 2.2%); }
+
+    /* The hero: Booth strips and prints, only ever behind the two phones. They fade in, one after another, and stay put. */
+    .hero-pair { position: relative; }
+    .hero-pair .device.mock.hero-iphone { width: 38%; justify-self: end; z-index: 2; }
+    .hero-pair .device.mock.hero-duo { width: 80%; justify-self: start; z-index: 1; }
+    .hero-prints { position: absolute; inset: 0 0 30px; z-index: 0; pointer-events: none; }
+    .hp { position: absolute; width: var(--w); left: var(--l); top: var(--t); animation: hp-fade 1.4s ease var(--in) both; }
+    .hp .print, .hp .hstrip { transform: rotate(var(--r)); }
+    .hp .print { padding: 6% 6% 22%; }
+    .hp .print .photo { overflow: visible; }
+    .hp .print .photo img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; }
+    .hp .print .photo span { padding: 0; background: none; position: absolute; top: 100%; margin-top: 0.7em; color: #333; text-shadow: none; font-size: clamp(9px, 0.85vw, 13px); white-space: nowrap; }
+    .hstrip { display: flex; flex-direction: column; gap: 4px; padding: 6px 6px 20px; background: var(--paper); border-radius: 2px; box-shadow: 0 18px 30px -14px rgba(0, 0, 0, 0.5); }
+    .hstrip img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+    .hstrip.mono img { filter: grayscale(1) contrast(1.12); }
+    @keyframes hp-fade { from { opacity: 0; } to { opacity: 1; } }
+    /* Where each one sits, as a share of the phones' frame. */
+    .hp.a { --w: 13%; --l: 10%;  --t: -4%;  --r: -8deg; --in: 0.4s; }
+    .hp.b { --w: 17%; --l: 30%;  --t: -9%;  --r: 6deg;  --in: 0.8s; }
+    .hp.c { --w: 16%; --l: 91%;  --t: 48%;  --r: 19deg; --in: 1.2s; }
+    @media (max-width: 560px) { .hp.c { display: none; } .hp.a { --w: 15%; --l: 8%; --t: 2%; } .hp.b { --w: 20%; --l: 29%; --t: -2%; } }
+    @media (prefers-reduced-motion: reduce) { .hp { animation: none; } }
   </style>
 <!-- X conversion tracking base code -->
 <script>
@@ -153,8 +175,13 @@ document.addEventListener('click', function (e) {
     </div>
     <div class="hero-art">
       <figure class="hero-pair">
-        <div class="device mock"><picture><source srcset="m/camera-hero.avif?v=4" type="image/avif"><img src="m/camera-hero.png?v=4" width="600" height="1224" alt="Snapshots on an iPhone: the camera."></picture></div>
-        <div class="device mock"><picture><source srcset="../duo/m/landscape.avif?v=5" type="image/avif"><img src="../duo/m/landscape.png?v=5" width="1300" height="944" alt="Snapshots on an iPhone Duo open in Landscape: viewfinder on one screen, camera controls on the other."></picture></div>
+        <div class="hero-prints back" aria-hidden="true">
+          <div class="hp a"><div class="hstrip mono"><img src="booth-1.jpg" alt=""><img src="booth-2.jpg" alt=""><img src="booth-3.jpg" alt=""></div></div>
+          <div class="hp b"><div class="print gold"><div class="photo"><img src="photo.jpg" alt=""><span>golden hour</span></div></div></div>
+          <div class="hp c"><div class="print classic"><div class="photo"><img src="fonts/best-boy.jpg" alt=""><span>best boy</span></div></div></div>
+        </div>
+        <div class="device mock hero-iphone"><picture><source srcset="m/camera-hero.avif?v=4" type="image/avif"><img src="m/camera-hero.png?v=4" width="600" height="1224" alt="Snapshots on an iPhone: the camera."></picture></div>
+        <div class="device mock hero-duo"><picture><source srcset="../duo/m/landscape.avif?v=5" type="image/avif"><img src="../duo/m/landscape.png?v=5" width="1300" height="944" alt="Snapshots on an iPhone Duo open in Landscape: viewfinder on one screen, camera controls on the other."></picture></div>
       </figure>
         <div class="chart-rank chart-rank-art" role="note" aria-label="Number 9 Top Paid in Photo and Video, App Store chart, October 2026">
         <span class="rank" aria-hidden="true"><sup>#</sup>9</span>
