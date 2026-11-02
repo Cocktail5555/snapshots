@@ -9,7 +9,139 @@
   <link rel="icon" href="../icons/favicon-192.png" type="image/png" sizes="192x192">
   <link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
   <meta name="description" content="Press information, screenshots and contact for Snapshots: Instant Film Camera, for iPhone and iPhone Duo.">
-  <link rel="stylesheet" href="../style.css?v=3">
+  <style>
+    :root {
+      --night: #202733; --night-deep: #171C25; --night-ink: #E8EDF4; --night-muted: #A9B6C8; --night-line: #3A4556;
+      --paper: #F2F0E9; --card: #FAF8F2; --ink: #2B313B; --muted: #5F6875; --line: #DCDBD4;
+      --orange: #FF7428; --orange-deep: #F15A24; --print: #F7F4EC;
+      --round: ui-rounded, "SF Pro Rounded", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+      --text: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+      --mono: ui-monospace, "SF Mono", Menlo, monospace;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font: 17px/1.6 var(--text); -webkit-font-smoothing: antialiased; }
+    a { color: var(--orange-deep); }
+    .wrap { width: min(1160px, 100% - 40px); margin: 0 auto; }
+    h1, h2, h3 { font-family: var(--round); letter-spacing: -0.02em; margin: 0; }
+    .label { font: 600 12px/1 var(--mono); letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange-deep); }
+    .muted { color: var(--muted); }
+
+    nav { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; padding: 26px 0; }
+    .wordmark { display: inline-flex; align-items: center; font: 600 20px/1 var(--round); letter-spacing: 0.42em; color: var(--ink); text-decoration: none; }
+    .wordmark .o { width: 0.75em; height: 0.75em; border-radius: 50%; background: var(--orange); margin-right: 0.42em; }
+    nav .links { display: flex; gap: 22px; font-size: 15px; }
+    nav .links a { color: var(--muted); text-decoration: none; }
+    nav .links a[aria-current] { color: var(--ink); font-weight: 600; }
+
+    /* The top: the title on the left, and the facts printed like the label on the side of a film box. */
+    .intro { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 64px; align-items: center; padding: 40px 0 90px; }
+    .intro h1 { font-size: clamp(56px, 8vw, 104px); line-height: 0.92; letter-spacing: -0.045em; margin: 18px 0 26px; }
+    .intro h1 span { color: var(--orange-deep); }
+    .intro .lead { font-size: 20px; color: var(--muted); max-width: 30em; margin: 0 0 30px; }
+    .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; }
+    .btn { display: inline-flex; align-items: center; gap: 10px; padding: 15px 22px; border-radius: 999px; background: var(--ink); color: #fff; font: 600 15px/1 var(--round); text-decoration: none; }
+    .btn.line { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--ink); }
+    .btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .box { position: relative; background: var(--night); color: var(--night-ink); border-radius: 6px; padding: 30px 30px 26px 54px; box-shadow: 0 40px 70px -30px rgba(23, 27, 35, 0.6); }
+    .box::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 24px; border-radius: 6px 0 0 6px; background: repeating-linear-gradient(180deg, var(--orange) 0 18px, var(--orange-deep) 18px 36px); }
+    .box .top { display: flex; justify-content: space-between; align-items: center; padding-bottom: 18px; margin-bottom: 8px; border-bottom: 1px solid var(--night-line); }
+    .box .top img { width: 52px; height: 52px; border-radius: 12px; }
+    .box .top span { font: 700 13px/1.2 var(--mono); letter-spacing: 0.16em; text-align: right; color: var(--night-muted); }
+    .box dl { margin: 0; display: grid; grid-template-columns: 110px minmax(0, 1fr); }
+    .box dt, .box dd { margin: 0; padding: 11px 0; border-bottom: 1px dashed var(--night-line); }
+    .box dt { font: 600 11px/1.9 var(--mono); letter-spacing: 0.16em; text-transform: uppercase; color: var(--night-muted); }
+    .box dd { font-size: 15.5px; line-height: 1.5; }
+    .box dd:last-of-type, .box dt:last-of-type { border-bottom: 0; }
+    .box dd a { color: var(--orange); }
+
+    /* The screenshots as a contact sheet: a length of film, frame numbers along the edge, each frame a download. */
+    .sheet { background: #0F1218; color: var(--night-ink); padding: 80px 0 70px; }
+    .sheet header { display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; margin-bottom: 36px; }
+    .sheet h2 { font-size: clamp(32px, 4vw, 46px); margin-top: 14px; }
+    .sheet header p { margin: 0; color: var(--night-muted); max-width: 30em; font-size: 16px; }
+    .film { position: relative; margin-bottom: 34px; background: #1B1F27; padding: 30px 0; }
+    .film::before, .film::after { content: ""; position: absolute; left: 0; right: 0; height: 12px; background: repeating-linear-gradient(90deg, transparent 0 9px, #0F1218 9px 21px, transparent 21px 30px); border-radius: 2px; }
+    .film::before { top: 9px; }
+    .film::after { bottom: 9px; }
+    .film .edge { position: absolute; top: 24px; left: 24px; font: 600 10px/1 var(--mono); letter-spacing: 0.3em; color: var(--orange); opacity: 0.85; }
+    .frames { display: flex; gap: 14px; overflow-x: auto; padding: 22px 24px 14px; scroll-snap-type: x proximity; scrollbar-width: thin; scrollbar-color: var(--night-line) transparent; }
+    .frame { flex: 0 0 auto; scroll-snap-align: start; text-decoration: none; color: var(--night-muted); }
+    .frame img { display: block; height: 300px; width: auto; border-radius: 4px; background: #262B35; transition: transform 0.25s ease, box-shadow 0.25s ease; }
+    .frame.duo img { height: 300px; }
+    .frame:hover img { transform: translateY(-4px); box-shadow: 0 0 0 2px var(--orange); }
+    .frame span { display: flex; justify-content: space-between; gap: 12px; margin-top: 10px; font: 500 11px/1 var(--mono); letter-spacing: 0.1em; text-transform: uppercase; }
+    .frame span b { color: var(--orange); font-weight: 600; }
+    .sheet .note { color: var(--night-muted); font-size: 14px; margin: 0; }
+
+    /* Coverage, pinned up like a clipping; the video beside it. */
+    .wall { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: center; padding: 100px 0; }
+    .clip { position: relative; background: #fff; padding: 40px 38px 32px; transform: rotate(-1.2deg); box-shadow: 0 30px 50px -28px rgba(0, 0, 0, 0.45); }
+    .clip::before { content: ""; position: absolute; top: -14px; left: 50%; width: 120px; height: 30px; margin-left: -60px; background: rgba(255, 210, 160, 0.7); transform: rotate(2deg); }
+    .clip .src { font: 600 12px/1.4 var(--mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+    .clip blockquote { margin: 18px 0 16px; font: 500 26px/1.3 "New York", "Iowan Old Style", Georgia, serif; letter-spacing: -0.01em; }
+    .clip .orig { font-size: 15px; color: var(--muted); margin: 0 0 18px; }
+    .clip .links { display: flex; gap: 18px; font-size: 15px; font-weight: 600; }
+    .reel { display: block; position: relative; border-radius: 20px; overflow: hidden; color: #fff; text-decoration: none; box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.5); }
+    .reel img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; object-position: center 82%; }
+    .reel .play { position: absolute; left: 24px; bottom: 24px; display: flex; align-items: center; gap: 14px; padding: 12px 20px 12px 12px; border-radius: 999px; background: rgba(23, 28, 37, 0.88); backdrop-filter: blur(10px); font: 600 15px/1.2 var(--round); }
+    .reel .play i { width: 40px; height: 40px; border-radius: 50%; background: var(--orange-deep); display: grid; place-items: center; }
+    .reel .play i::after { content: ""; border-left: 13px solid #fff; border-top: 8px solid transparent; border-bottom: 8px solid transparent; margin-left: 4px; }
+    .reel .play small { display: block; font: 500 12px/1.3 var(--text); color: var(--night-muted); }
+    .reel-dl { margin: 14px 0 0; font-size: 14px; }
+
+    /* What it does, in four frames across. */
+    .story { border-top: 2px solid var(--ink); padding: 26px 0 100px; }
+    .story > .label { display: block; margin-bottom: 34px; }
+    .four { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 34px; }
+    .four b { display: block; font: 700 54px/1 var(--round); letter-spacing: -0.04em; color: var(--orange-deep); margin-bottom: 14px; }
+    .four h3 { font-size: 20px; margin-bottom: 8px; }
+    .four p { margin: 0; font-size: 15.5px; color: var(--muted); }
+
+    /* iPhone Duo: each pose as a row. */
+    .poses { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 64px; padding-bottom: 100px; }
+    .poses h2 { font-size: clamp(30px, 3.4vw, 40px); margin: 14px 0 14px; }
+    .poses aside p { color: var(--muted); font-size: 15px; }
+    .rows { margin: 0; }
+    .rows div { display: grid; grid-template-columns: 140px minmax(0, 1fr); gap: 24px; padding: 18px 0; border-top: 1px solid var(--line); }
+    .rows dt { font: 700 17px/1.5 var(--round); }
+    .rows dd { margin: 0; color: var(--muted); font-size: 16px; }
+
+    /* The maker, with his photo as a print. */
+    .maker { background: var(--night); color: var(--night-ink); padding: 90px 0; }
+    .maker .wrap { display: grid; grid-template-columns: 260px minmax(0, 1fr) auto; gap: 56px; align-items: center; }
+    .maker .print { background: var(--print); padding: 16px; border-radius: 3px; transform: rotate(-3deg); box-shadow: 0 30px 50px -24px rgba(0, 0, 0, 0.6); }
+    .maker .print img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+    .maker h2 { font-size: clamp(30px, 3.4vw, 40px); margin: 14px 0 16px; }
+    .maker p { color: var(--night-muted); max-width: 34em; margin: 0 0 14px; }
+    .maker .contact { display: grid; gap: 12px; justify-items: start; }
+    .maker .btn { background: var(--orange-deep); }
+    .maker .contact small { font: 500 13px/1.4 var(--mono); color: var(--night-muted); }
+    footer { padding: 28px 0 44px; font-size: 14px; color: var(--muted); }
+
+    @media (max-width: 1000px) {
+      .intro, .wall { grid-template-columns: 1fr; gap: 48px; }
+      .four { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 44px; }
+      .poses { grid-template-columns: 1fr; gap: 24px; }
+      .maker .wrap { grid-template-columns: 200px minmax(0, 1fr); }
+      .maker .contact { grid-column: 2; }
+    }
+    @media (max-width: 600px) {
+      .intro { padding-bottom: 60px; }
+      .box { padding: 24px 20px 20px 42px; }
+      .box::before { width: 18px; }
+      .box dl { grid-template-columns: 1fr; }
+      .box dt { padding-bottom: 0; border-bottom: 0; }
+      .frame img, .frame.duo img { height: 230px; }
+      .four { grid-template-columns: 1fr; }
+      .rows div { grid-template-columns: 1fr; gap: 4px; }
+      .clip { padding: 34px 24px 26px; }
+      .clip blockquote { font-size: 22px; }
+      .maker .wrap { grid-template-columns: 1fr; gap: 40px; }
+      .maker .print { width: 220px; }
+      .maker .contact { grid-column: auto; }
+    }
+    @media (prefers-reduced-motion: reduce) { .frame img { transition: none; } }
+  </style>
 <!-- X conversion tracking base code -->
 <script>
 !function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);
@@ -35,7 +167,8 @@ document.addEventListener('click', function (e) {
 <!-- End X conversion tracking event code -->
 </head>
 <body>
-<main>
+
+<div class="wrap">
   <nav>
     <a class="wordmark" href="../app/" aria-label="Snapshots">SNAPSH<span class="o"></span>TS</a>
     <div class="links">
@@ -45,78 +178,143 @@ document.addEventListener('click', function (e) {
     </div>
   </nav>
 
-  <p class="available"><a href="https://apps.apple.com/app/id6818673560">Available now on the App Store</a></p>
-  <h1>Press kit</h1>
-  <p class="lead">Snapshots: Instant Film Camera turns an iPhone into an instant camera. Press the shutter, watch your photo print and develop, then write a caption on it and keep it. On iPhone Duo, it is built around the fold.</p>
-  <p class="store-badge"><a href="https://apps.apple.com/app/id6818673560" aria-label="Download Snapshots on the App Store"><img src="../app/badges/download-on-the-app-store.svg" width="140" height="47" alt="Download on the App Store"></a></p>
+  <section class="intro">
+    <div>
+      <span class="label">Press kit</span>
+      <h1>Every photo,<br>a <span>print.</span></h1>
+      <p class="lead">Snapshots turns iPhone into an instant camera. Press the shutter, watch the photo print and develop, write on it and keep it. On iPhone Duo, it's built around the fold.</p>
+      <div class="actions">
+        <a class="btn" href="snapshots-press-kit.zip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Download the kit</a>
+        <a class="btn line" href="mailto:trysnapshots@gmail.com?subject=Snapshots%20press">Email Ryan</a>
+      </div>
+    </div>
 
-  <div class="card">
-    <p><strong>Writing about Snapshots?</strong> I'm happy to answer questions, send a free download code or arrange a demo.</p>
-    <p><a class="button" href="mailto:trysnapshots@gmail.com?subject=Snapshots%20press">Email Ryan</a></p>
-    <p style="margin-bottom:0;color:var(--muted);font-size:15px">Ryan Fredericks · trysnapshots@gmail.com</p>
+    <aside class="box" aria-label="Fact sheet">
+      <div class="top">
+        <img src="kit/snapshots-icon.png" width="52" height="52" alt="The Snapshots app icon">
+        <span>FACT SHEET<br>VERSION 1.1</span>
+      </div>
+      <dl>
+        <dt>Name</dt><dd>Snapshots: Instant Film Camera</dd>
+        <dt>Maker</dt><dd>Ryan Fredericks, independent developer. His first app.</dd>
+        <dt>Devices</dt><dd>iPhone and iPhone Duo, iOS 27 or later</dd>
+        <dt>Price</dt><dd>$1.99, once. No subscription, no in-app purchases, no ads.</dd>
+        <dt>Privacy</dt><dd>No account. Photos stay on the phone.</dd>
+        <dt>Get it</dt><dd><a href="https://apps.apple.com/app/id6818673560">https://apps.apple.com/app/id6818673560</a></dd>
+      </dl>
+    </aside>
+  </section>
+</div>
+
+<section class="sheet" aria-labelledby="sheet-title">
+  <div class="wrap">
+    <header>
+      <div>
+        <span class="label">Contact sheet</span>
+        <h2 id="sheet-title">Screenshots, free to use.</h2>
+      </div>
+      <p>Tap a frame to download it at full size, or take the whole kit, icon included, as one zip. Device frames are Apple's own bezels.</p>
+    </header>
   </div>
 
-  <section class="faq">
-    <h2>Coverage</h2>
-    <p><strong>ifanr (爱范儿), October 28, 2026.</strong> “烤面包、播黑胶、玩 NDS…谁教你们这么玩 iPhone Duo 的？” (“Toasting bread, playing vinyl, running NDS… who taught you to use the iPhone Duo this way?”), a roundup of apps built for iPhone Duo: “The camera app Snapshots turns the iPhone Duo into an instant camera with a distinctly retro flavor.”<br><a href="https://mp.weixin.qq.com/s?__biz=MjgzMTAwODI0MA==&amp;mid=2652472834&amp;idx=1&amp;sn=96b652eff23a03b74f58a1cbee2ba7aa">Read on ifanr</a> &nbsp; <a href="https://www.36kr.com/p/4045375582983301">Read on 36Kr</a> <span style="color:var(--muted);font-size:15px">(in Chinese)</span></p>
+  <div class="film">
+    <span class="edge">SNAPSHOTS · IPHONE</span>
+    <div class="frames">
+      <a class="frame" href="kit/iphone-1-camera.jpg" download><img src="kit/thumbs/iphone-1-camera.jpg" alt="Camera" loading="lazy" width="138" height="300"><span><b>01</b>Camera</span></a>
+      <a class="frame" href="kit/iphone-2-booth.jpg" download><img src="kit/thumbs/iphone-2-booth.jpg" alt="Booth" loading="lazy" width="138" height="300"><span><b>02</b>Booth</span></a>
+      <a class="frame" href="kit/iphone-3-printing.jpg" download><img src="kit/thumbs/iphone-3-printing.jpg" alt="Printing" loading="lazy" width="138" height="300"><span><b>03</b>Printing</span></a>
+      <a class="frame" href="kit/iphone-4-developing.jpg" download><img src="kit/thumbs/iphone-4-developing.jpg" alt="Developing" loading="lazy" width="138" height="300"><span><b>04</b>Developing</span></a>
+      <a class="frame" href="kit/iphone-5-caption.jpg" download><img src="kit/thumbs/iphone-5-caption.jpg" alt="Caption" loading="lazy" width="138" height="300"><span><b>05</b>Caption</span></a>
+      <a class="frame" href="kit/iphone-6-styles.jpg" download><img src="kit/thumbs/iphone-6-styles.jpg" alt="Film styles" loading="lazy" width="138" height="300"><span><b>06</b>Film</span></a>
+      <a class="frame" href="kit/iphone-7-gallery.jpg" download><img src="kit/thumbs/iphone-7-gallery.jpg" alt="Gallery" loading="lazy" width="138" height="300"><span><b>07</b>Gallery</span></a>
+      <a class="frame" href="kit/iphone-8-sideways.jpg" download><img src="kit/thumbs/iphone-8-sideways.jpg" alt="Sideways" loading="lazy" width="138" height="300"><span><b>08</b>Sideways</span></a>
+      <a class="frame" href="kit/iphone-9-nightstand.jpg" download><img src="kit/thumbs/iphone-9-nightstand.jpg" alt="Nightstand clock" loading="lazy" width="138" height="300"><span><b>09</b>Clock</span></a>
+      <a class="frame" href="kit/iphone-10-themes.jpg" download><img src="kit/thumbs/iphone-10-themes.jpg" alt="Themes" loading="lazy" width="138" height="300"><span><b>10</b>Themes</span></a>
+    </div>
+  </div>
+
+  <div class="film">
+    <span class="edge">SNAPSHOTS · IPHONE DUO</span>
+    <div class="frames">
+      <a class="frame duo" href="kit/iphone-duo-1-landscape.jpg" download><img src="kit/thumbs/iphone-duo-1-landscape.jpg" alt="Landscape" loading="lazy" width="211" height="300"><span><b>11</b>Landscape</span></a>
+      <a class="frame duo" href="kit/iphone-duo-2-seated.jpg" download><img src="kit/thumbs/iphone-duo-2-seated.jpg" alt="Seated" loading="lazy" width="211" height="300"><span><b>12</b>Seated</span></a>
+      <a class="frame duo" href="kit/iphone-duo-3-portrait.jpg" download><img src="kit/thumbs/iphone-duo-3-portrait.jpg" alt="Portrait print" loading="lazy" width="211" height="300"><span><b>13</b>Portrait</span></a>
+      <a class="frame duo" href="kit/iphone-duo-4-booth.jpg" download><img src="kit/thumbs/iphone-duo-4-booth.jpg" alt="Booth" loading="lazy" width="211" height="300"><span><b>14</b>Booth</span></a>
+      <a class="frame duo" href="kit/iphone-duo-5-closed.jpg" download><img src="kit/thumbs/iphone-duo-5-closed.jpg" alt="Closed" loading="lazy" width="211" height="300"><span><b>15</b>Closed</span></a>
+      <a class="frame duo" href="kit/iphone-duo-6-gallery.jpg" download><img src="kit/thumbs/iphone-duo-6-gallery.jpg" alt="Gallery" loading="lazy" width="211" height="300"><span><b>16</b>Gallery</span></a>
+      <a class="frame duo" href="kit/iphone-duo-7-sideways.jpg" download><img src="kit/thumbs/iphone-duo-7-sideways.jpg" alt="Sideways" loading="lazy" width="211" height="300"><span><b>17</b>Sideways</span></a>
+      <a class="frame duo" href="kit/iphone-duo-8-tent.jpg" download><img src="kit/thumbs/iphone-duo-8-tent.jpg" alt="Standing clock" loading="lazy" width="211" height="300"><span><b>18</b>Standing</span></a>
+      <a class="frame duo" href="kit/iphone-duo-9-themes.jpg" download><img src="kit/thumbs/iphone-duo-9-themes.jpg" alt="Themes" loading="lazy" width="211" height="300"><span><b>19</b>Themes</span></a>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <p class="note">iPhone Duo screens were captured in Apple's iPhone Duo simulator.</p>
+  </div>
+</section>
+
+<div class="wrap">
+  <section class="wall">
+    <figure class="clip" style="margin: 0">
+      <div class="src">ifanr (爱范儿) · October 28, 2026</div>
+      <blockquote>“The camera app Snapshots turns the iPhone Duo into an instant camera with a distinctly retro flavor.”</blockquote>
+      <p class="orig">From “Toasting bread, playing vinyl, running NDS… who taught you to use the iPhone Duo this way?”, a roundup of apps built for iPhone Duo. In Chinese; translated.</p>
+      <div class="links"><a href="https://mp.weixin.qq.com/s?__biz=MjgzMTAwODI0MA==&amp;mid=2652472834&amp;idx=1&amp;sn=96b652eff23a03b74f58a1cbee2ba7aa">Read on ifanr</a><a href="https://www.36kr.com/p/4045375582983301">Read on 36Kr</a></div>
+    </figure>
+
+    <div>
+      <a class="reel" href="video/">
+        <img src="video/poster.jpg" alt="Snapshots on iPhone Duo, with the viewfinder on one screen and the controls on the other." loading="lazy">
+        <span class="play"><i aria-hidden="true"></i><span>Watch the video<small>80 seconds, with sound. Every iPhone Duo pose, then iPhone.</small></span></span>
+      </a>
+      <p class="reel-dl muted">Or <a href="snapshots-iphone-duo.mp4" download>download the MP4</a> (36 MB). The Seated part is shown in Apple's open Portrait frame, as Apple has no image of that pose.</p>
+    </div>
   </section>
 
-  <section class="faq">
-    <h2>Video</h2>
-    <p>About 80 seconds, with sound. Every iPhone Duo pose: Closed, Landscape, Booth Mode, Seated, unfolding to print, the gallery, the clock and the two themes. Then the same camera, printer, Booth Mode and gallery on a regular iPhone.<br><span style="color:var(--muted);font-size:15px;font-style:italic">Apple provides no product image of iPhone Duo in the Seated pose, and its guidelines ask that its images be used unaltered, so the Seated part of the video is shown in the open Portrait frame. On the device it sits half open.</span></p>
-    <p><a class="button" href="video/">Watch the video</a> &nbsp; <a href="snapshots-iphone-duo.mp4" download>Download (MP4, 36 MB)</a></p>
+  <section class="story">
+    <span class="label">What it does</span>
+    <div class="four">
+      <div><b>01</b><h3>Shoot</h3><p>Controls drawn like hardware: a big shutter, a film dial with five styles, a zoom step for every lens, flash and self-timer.</p></div>
+      <div><b>02</b><h3>Print</h3><p>Every photo feeds out of a printer with the sound of the motor, and develops as you watch. Shake to hurry it.</p></div>
+      <div><b>03</b><h3>Booth</h3><p>Press once for three poses on a countdown, printed together as one tall strip.</p></div>
+      <div><b>04</b><h3>Keep</h3><p>A caption on the front in six fonts, a private memory on the back, a gallery, widgets and a nightstand clock.</p></div>
+    </div>
   </section>
 
-  <section class="faq">
-    <h2>Fact sheet</h2>
-    <p><strong>Name:</strong> Snapshots: Instant Film Camera</p>
-    <p><strong>Maker:</strong> Ryan Fredericks, an independent developer. Snapshots is his first app.</p>
-    <p><strong>For:</strong> iPhone and iPhone Duo, with iOS 27 or later</p>
-    <p><strong>Price:</strong> $1.99, once. No subscription, no in-app purchases, no ads.</p>
-    <p><strong>Availability:</strong> Available now on the App Store: <a href="https://apps.apple.com/app/id6818673560">https://apps.apple.com/app/id6818673560</a>. iPhone Duo goes on sale October 23, 2026.</p>
-    <p><strong>Privacy:</strong> No account and no ads. Photos stay on the phone, and the app sends nothing anywhere.</p>
-    <p><strong>Website:</strong> <a href="https://cocktail5555.github.io/snapshots/app/">cocktail5555.github.io/snapshots/app</a></p>
+  <section class="poses">
+    <aside>
+      <span class="label">iPhone Duo</span>
+      <h2>Built around the fold.</h2>
+      <p>The layout changes with every pose, using both displays and the hinge.</p>
+    </aside>
+    <dl class="rows">
+      <div><dt>Seated</dt><dd>Half open: viewfinder on the upright half, controls on the flat half. Take the shot, unfold it flat, and the print feeds out across the whole display.</dd></div>
+      <div><dt>Landscape</dt><dd>The viewfinder on one screen, a full camera body on the other, with a switch to swap sides.</dd></div>
+      <div><dt>Portrait</dt><dd>A large viewfinder above the controls, and a print that fills the screen.</dd></div>
+      <div><dt>Closed</dt><dd>A pocket camera on the front display, with the self-timer and Booth a tap away.</dd></div>
+      <div><dt>Standing</dt><dd>Stood up like a tent: a clock with your snapshots beside it.</dd></div>
+    </dl>
   </section>
+</div>
 
-  <section class="faq">
-    <h2>What it does</h2>
-    <p><strong>A camera with a printer built in.</strong> Every photo feeds out of a printer at the top of the screen as a framed instant print, with the sound of the motor, and develops as you watch. Shake the phone and it develops immediately.</p>
-    <p><strong>Controls designed like hardware.</strong> A large shutter, a film dial that clicks through five styles (Classic, Gold, Coast, Sepia, Mono), a zoom step for each lens, flash, self-timer and front camera. Light and dark themes.</p>
-    <p><strong>Booth Mode.</strong> Set the timer to Booth and press the shutter once: a 3-2-1 countdown before each of three photos, printed together as one tall strip. It switches to the front camera for you.</p>
-    <p><strong>Captions and a gallery.</strong> Write a caption along the bottom of a print in one of six fonts, from handwriting to typewriter, then keep it in the gallery, share it, or save it to Photos with its border and caption. Turn a print over to write a private memory on the back, and turn a photo taken the wrong way up inside its frame.</p>
-    <p><strong>A nightstand clock.</strong> Turned on its side while charging, the app becomes a clock with your prints shuffling past beside it.</p>
-  </section>
+<section class="maker">
+  <div class="wrap">
+    <div class="print"><img src="../duo/ryan.jpg" alt="Ryan Fredericks, who made Snapshots." loading="lazy"></div>
+    <div>
+      <span class="label">The maker</span>
+      <h2>Ryan Fredericks</h2>
+      <p>Ryan waited in line for the original iPhone and has wanted to build an app of his own ever since. iPhone Duo was the reason to finally start. Snapshots is his first app, made to feel the way that first iPhone did: simple, surprising and fun.</p>
+    </div>
+    <div class="contact">
+      <a class="btn" href="mailto:trysnapshots@gmail.com?subject=Snapshots%20press">Email Ryan</a>
+      <small>trysnapshots@gmail.com<br>Download codes and demos on request.</small>
+    </div>
+  </div>
+</section>
 
-  <section class="faq">
-    <h2>Designed for iPhone Duo</h2>
-    <p><strong>Seated:</strong> stand the Duo half open, with the viewfinder on the upright half and the controls on the flat half. Take the shot and the print waits in the printer. Unfold the Duo flat and the print feeds out across the whole display.</p>
-    <p><strong>Landscape:</strong> the viewfinder on one screen and a full camera body on the other, with a switch to swap sides.</p>
-    <p><strong>Portrait:</strong> a large viewfinder above the controls, and a print that fills the screen.</p>
-    <p><strong>Closed:</strong> a pocket camera on the front display, with the self-timer and Booth Mode a tap away.</p>
-    <p><strong>Standing:</strong> stood up like a tent, a clock with your snapshots beside it.</p>
-    <p style="color:var(--muted);font-size:15px">iPhone Duo screens were captured in Apple's iPhone Duo simulator.</p>
-  </section>
-
-  <section class="faq">
-    <h2>About the maker</h2>
-    <p>Ryan Fredericks waited in line for the original iPhone and has wanted to build an app of his own ever since. iPhone Duo was the reason to finally start. Snapshots is his first app, made to feel the way that first iPhone did: simple, surprising and fun.</p>
-  </section>
-
-  <section class="faq">
-    <h2>Screenshots and icon</h2>
-    <p>Free to use in coverage of Snapshots. Device frames are Apple's own product bezels.</p>
-    <p><a class="button" href="snapshots-press-kit.zip">Download everything (zip)</a></p>
-    <p>
-      <a href="kit/snapshots-icon.png">App icon</a><br>
-      iPhone: <a href="kit/iphone-1-camera.jpg">camera</a>, <a href="kit/iphone-2-booth.jpg">Booth</a>, <a href="kit/iphone-3-printing.jpg">printing</a>, <a href="kit/iphone-4-developing.jpg">developing</a>, <a href="kit/iphone-5-caption.jpg">caption</a>, <a href="kit/iphone-6-styles.jpg">film styles</a>, <a href="kit/iphone-7-gallery.jpg">gallery</a>, <a href="kit/iphone-8-sideways.jpg">sideways</a>, <a href="kit/iphone-9-nightstand.jpg">nightstand clock</a>, <a href="kit/iphone-10-themes.jpg">themes</a><br>
-      iPhone Duo: <a href="kit/iphone-duo-1-landscape.jpg">Landscape</a>, <a href="kit/iphone-duo-2-seated.jpg">Seated</a>, <a href="kit/iphone-duo-3-portrait.jpg">Portrait print</a>, <a href="kit/iphone-duo-4-booth.jpg">Booth</a>, <a href="kit/iphone-duo-5-closed.jpg">Closed</a>, <a href="kit/iphone-duo-6-gallery.jpg">gallery</a>, <a href="kit/iphone-duo-7-sideways.jpg">sideways</a>, <a href="kit/iphone-duo-8-tent.jpg">Standing clock</a>, <a href="kit/iphone-duo-9-themes.jpg">themes</a>
-    </p>
-  </section>
-
-  <footer>
-    © 2026 Ryan Fredericks · <a href="../privacy/">Privacy Policy</a> · iPhone is a trademark of Apple Inc.
-  </footer>
-</main>
+<div class="wrap">
+  <footer>© 2026 Ryan Fredericks · <a href="../privacy/">Privacy Policy</a> · iPhone is a trademark of Apple Inc.</footer>
+</div>
 <script>
   // Counts the visit, anonymously and without cookies. A link ending ?r=name is counted under that name.
   window.goatcounter = { path: function (p) {

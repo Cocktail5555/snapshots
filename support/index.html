@@ -9,7 +9,101 @@
   <link rel="icon" href="../icons/favicon-192.png" type="image/png" sizes="192x192">
   <link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
   <meta name="description" content="Help and contact for Snapshots: Instant Film Camera for iPhone.">
-  <link rel="stylesheet" href="../style.css?v=3">
+  <style>
+    :root {
+      --night: #202733; --night-deep: #171C25; --night-ink: #E8EDF4; --night-muted: #A9B6C8; --night-line: #3A4556;
+      --paper: #F2F0E9; --card: #FAF8F2; --ink: #2B313B; --muted: #5F6875; --line: #DCDBD4;
+      --orange: #FF7428; --orange-deep: #F15A24; --back: #EDE8DB;
+      --round: ui-rounded, "SF Pro Rounded", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+      --text: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+      --mono: ui-monospace, "SF Mono", Menlo, monospace;
+      --hand: "Bradley Hand", "Segoe Print", cursive;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font: 17px/1.6 var(--text); -webkit-font-smoothing: antialiased; }
+    a { color: var(--orange-deep); }
+    .wrap { width: min(1120px, 100% - 40px); margin: 0 auto; }
+    h1, h2, h3 { font-family: var(--round); letter-spacing: -0.02em; margin: 0; }
+
+    /* The top: a dark band, like the app's Night Sky camera, with the camera itself and its parts numbered. */
+    .top { background: linear-gradient(180deg, var(--night), var(--night-deep)); color: var(--night-ink); padding: 26px 0 0; overflow: hidden; }
+    nav { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+    .wordmark { display: inline-flex; align-items: center; font: 600 20px/1 var(--round); letter-spacing: 0.42em; color: var(--night-ink); text-decoration: none; }
+    .wordmark .o { width: 0.75em; height: 0.75em; border-radius: 50%; background: var(--orange); margin-right: 0.42em; }
+    nav .links { display: flex; gap: 22px; font-size: 15px; }
+    nav .links a { color: var(--night-muted); text-decoration: none; }
+    nav .links a[aria-current] { color: var(--night-ink); font-weight: 600; }
+    .manual { display: grid; grid-template-columns: minmax(0, 1fr) 300px minmax(0, 0.9fr); gap: 48px; align-items: center; padding: 56px 0 0; }
+    .kicker { font: 600 12px/1 var(--mono); letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange); }
+    .manual h1 { font-size: clamp(40px, 5vw, 60px); line-height: 1.02; margin: 16px 0 18px; }
+    .manual .lead { color: var(--night-muted); font-size: 18px; margin: 0 0 26px; max-width: 26em; }
+    .search { position: relative; display: block; }
+    .search input { width: 100%; font: 500 17px/1 var(--text); padding: 17px 18px 17px 48px; border-radius: 14px; border: 1px solid var(--night-line); background: rgba(255, 255, 255, 0.06); color: var(--night-ink); outline: none; }
+    .search input::placeholder { color: var(--night-muted); }
+    .search input:focus { border-color: var(--orange); background: rgba(255, 255, 255, 0.09); }
+    .search svg { position: absolute; left: 17px; top: 18px; width: 18px; height: 18px; stroke: var(--night-muted); fill: none; stroke-width: 2; stroke-linecap: round; }
+    .search small { display: block; margin-top: 10px; color: var(--night-muted); font-size: 13px; }
+
+    /* The camera screen itself, with a number on each part. */
+    .camera { margin: 0 0 56px; }
+    .camera .shot { position: relative; }
+    .camera img { display: block; width: 100%; height: auto; border-radius: 30px; box-shadow: 0 30px 70px -20px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.06); }
+    .pin { position: absolute; left: var(--x); top: var(--y); width: 26px; height: 26px; margin: -13px 0 0 -13px; display: grid; place-items: center; border-radius: 50%; background: var(--orange-deep); color: #fff; font: 700 13px/1 var(--round); text-decoration: none; box-shadow: 0 0 0 4px rgba(241, 90, 36, 0.25), 0 6px 14px rgba(0, 0, 0, 0.35); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .pin:hover, .pin.lit { transform: scale(1.25); box-shadow: 0 0 0 7px rgba(241, 90, 36, 0.35), 0 6px 14px rgba(0, 0, 0, 0.35); }
+    .parts { list-style: none; margin: 0; padding: 0 0 56px; display: grid; gap: 2px; counter-reset: part; }
+    .parts li a { display: grid; grid-template-columns: 30px 1fr; gap: 12px; align-items: baseline; padding: 9px 12px; border-radius: 10px; color: var(--night-ink); text-decoration: none; font-size: 15.5px; }
+    .parts li a:hover, .parts li a.lit { background: rgba(255, 255, 255, 0.07); }
+    .parts b { font: 600 12px/1 var(--mono); color: var(--orange); }
+    .parts span small { display: block; color: var(--night-muted); font-size: 13px; }
+    .parts-title { font: 600 12px/1 var(--mono); letter-spacing: 0.2em; text-transform: uppercase; color: var(--night-muted); margin: 0 0 12px 12px; }
+
+    /* The questions: chapters down the left, every answer open on the right, like pages of a manual. */
+    .book { display: grid; grid-template-columns: 230px minmax(0, 1fr); gap: 64px; padding: 80px 0 40px; }
+    .contents { position: sticky; top: 24px; align-self: start; }
+    .contents ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+    .contents a { display: grid; grid-template-columns: 34px 1fr; padding: 10px 0; color: var(--muted); text-decoration: none; font: 600 15px/1.3 var(--round); border-bottom: 1px solid var(--line); }
+    .contents a b { font: 600 12px/1.6 var(--mono); color: var(--orange-deep); }
+    .contents a:hover, .contents a.here { color: var(--ink); }
+    .chapter { padding-bottom: 56px; }
+    .chapter + .chapter { padding-top: 56px; border-top: 2px solid var(--ink); }
+    .chapter > header { display: flex; align-items: baseline; gap: 18px; margin-bottom: 26px; }
+    .chapter > header b { font: 600 14px/1 var(--mono); color: var(--orange-deep); }
+    .chapter h2 { font-size: clamp(28px, 3vw, 36px); }
+    .qa { display: grid; grid-template-columns: 52px minmax(0, 1fr); padding: 20px 0; border-top: 1px solid var(--line); scroll-margin-top: 24px; }
+    .qa .n { font: 500 13px/1.9 var(--mono); color: var(--muted); }
+    .qa h3 { font-size: 19px; line-height: 1.35; margin-bottom: 6px; }
+    .qa p { margin: 0; color: var(--muted); font-size: 16.5px; max-width: 40em; }
+    .qa:target, .qa.lit { background: linear-gradient(90deg, rgba(255, 116, 40, 0.1), transparent 70%); border-radius: 10px; }
+    [hidden] { display: none !important; }
+    .none { padding: 30px 0; color: var(--muted); }
+
+    /* Still stuck: a note to Ryan, written on the back of a print. */
+    .write { padding: 30px 0 100px; display: grid; place-items: center; }
+    .note { position: relative; width: min(100%, 560px); padding: 40px 44px 36px; background: var(--back); border-radius: 3px; box-shadow: 0 30px 50px -24px rgba(0, 0, 0, 0.4); transform: rotate(-1.5deg); }
+    .note time { font: 500 12px/1 var(--mono); color: rgba(0, 0, 0, 0.45); }
+    .note h2 { font: 700 34px/1.15 var(--hand); letter-spacing: 0; margin: 14px 0 10px; color: rgba(0, 0, 0, 0.82); }
+    .note p { margin: 0 0 22px; font: 400 18px/1.55 "New York", "Iowan Old Style", Georgia, serif; color: rgba(0, 0, 0, 0.72); }
+    .note .send { display: inline-flex; align-items: center; gap: 10px; padding: 14px 22px; border-radius: 999px; background: var(--ink); color: #fff; font: 600 15px/1 var(--round); text-decoration: none; }
+    .note .addr { display: block; margin-top: 14px; font: 500 13px/1.4 var(--mono); color: rgba(0, 0, 0, 0.5); }
+    .note .sig { position: absolute; right: 40px; bottom: 30px; font: 700 26px/1 var(--hand); color: rgba(0, 0, 0, 0.7); }
+    footer { border-top: 1px solid var(--line); padding: 28px 0 44px; font-size: 14px; color: var(--muted); }
+
+    @media (max-width: 1020px) {
+      .manual { grid-template-columns: minmax(0, 1fr) 260px; }
+      .parts-wrap { display: none; }
+    }
+    @media (max-width: 760px) {
+      .manual { grid-template-columns: 1fr; gap: 40px; padding-top: 40px; }
+      .camera { width: min(100%, 280px); margin: 0 auto 48px; }
+      .book { grid-template-columns: 1fr; gap: 20px; padding-top: 48px; }
+      .contents { position: static; }
+      .contents ol { grid-template-columns: 1fr 1fr; gap: 0 18px; }
+      .qa { grid-template-columns: 42px minmax(0, 1fr); }
+      .note { padding: 32px 26px 70px; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .pin { transition: none; } }
+  </style>
 <!-- X conversion tracking base code -->
 <script>
 !function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);
@@ -35,178 +129,161 @@ document.addEventListener('click', function (e) {
 <!-- End X conversion tracking event code -->
 </head>
 <body>
-<main>
-  <nav>
-    <a class="wordmark" href="../app/" aria-label="Snapshots">SNAPSH<span class="o"></span>TS</a>
-    <div class="links">
-      <a href="../app/">The app</a>
-      <a href="./" aria-current="page">Support</a>
-      <a href="../privacy/">Privacy</a>
+
+<header class="top">
+  <div class="wrap">
+    <nav>
+      <a class="wordmark" href="../app/" aria-label="Snapshots">SNAPSH<span class="o"></span>TS</a>
+      <div class="links">
+        <a href="../app/">The app</a>
+        <a href="./" aria-current="page">Support</a>
+        <a href="../press/">Press</a>
+        <a href="../privacy/">Privacy</a>
+      </div>
+    </nav>
+
+    <div class="manual">
+      <div>
+        <span class="kicker">Owner's manual</span>
+        <h1>How can we help?</h1>
+        <p class="lead">Every part of the camera, numbered. Tap a number for what it does, or search the answers below.</p>
+        <label class="search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+          <input type="search" id="find" placeholder="Try caption, Booth or black screen" autocomplete="off" aria-label="Search the answers">
+          <small id="count">33 answers</small>
+        </label>
+      </div>
+
+      <figure class="camera">
+        <div class="shot">
+          <img src="../app/camera-light.jpg" width="700" height="1521" alt="The Snapshots camera screen, with its parts numbered.">
+          <a class="pin" href="#q1-1" data-part="1" style="--x:50%;--y:10.4%" aria-label="1. Printer">1</a><a class="pin" href="#q1-10" data-part="2" style="--x:50%;--y:30%" aria-label="2. Viewfinder">2</a><a class="pin" href="#q1-7" data-part="3" style="--x:9.4%;--y:66.4%" aria-label="3. Flash">3</a><a class="pin" href="#q1-6" data-part="4" style="--x:50%;--y:66.4%" aria-label="4. Zoom steps">4</a><a class="pin" href="#q1-7" data-part="5" style="--x:90.6%;--y:66.4%" aria-label="5. Front camera">5</a><a class="pin" href="#q1-12" data-part="6" style="--x:16.9%;--y:80.6%" aria-label="6. Last print and film counter">6</a><a class="pin" href="#q1-1" data-part="7" style="--x:50%;--y:80.5%" aria-label="7. Shutter">7</a><a class="pin" href="#q1-5" data-part="8" style="--x:82.4%;--y:80.6%" aria-label="8. Film dial">8</a><a class="pin" href="#q1-8" data-part="9" style="--x:9.9%;--y:95.7%" aria-label="9. Self-timer and Booth">9</a><a class="pin" href="#q4-1" data-part="10" style="--x:90%;--y:95.7%" aria-label="10. Settings">10</a>
+        </div>
+      </figure>
+
+      <div class="parts-wrap">
+        <p class="parts-title">Know your camera</p>
+        <ol class="parts">
+          <li><a href="#q1-1" data-part="1"><b>01</b><span>Printer<small>Where every print comes out</small></span></a></li>
+<li><a href="#q1-10" data-part="2"><b>02</b><span>Viewfinder<small>Tap to focus, hold to lock</small></span></a></li>
+<li><a href="#q1-7" data-part="3"><b>03</b><span>Flash<small>Off, auto or on</small></span></a></li>
+<li><a href="#q1-6" data-part="4"><b>04</b><span>Zoom steps<small>One for every lens</small></span></a></li>
+<li><a href="#q1-7" data-part="5"><b>05</b><span>Front camera<small>For selfies</small></span></a></li>
+<li><a href="#q1-12" data-part="6"><b>06</b><span>Last print and film counter<small>Opens your gallery</small></span></a></li>
+<li><a href="#q1-1" data-part="7"><b>07</b><span>Shutter<small>Press to take a snapshot</small></span></a></li>
+<li><a href="#q1-5" data-part="8"><b>08</b><span>Film dial<small>Five film styles</small></span></a></li>
+<li><a href="#q1-8" data-part="9"><b>09</b><span>Self-timer and Booth<small>3 s, 10 s or three poses</small></span></a></li>
+<li><a href="#q4-1" data-part="10"><b>10</b><span>Settings<small>Themes and more</small></span></a></li>
+        </ol>
+      </div>
     </div>
-  </nav>
+  </div>
+</header>
 
-  <h1>Snapshots Support</h1>
-  <p class="lead">Snapshots: Instant Film Camera turns your iPhone into an instant camera. Here's how it works, and how to reach us.</p>
-
-  <div class="card">
-    <p><strong>Need a hand?</strong> Email us and we'll get back to you, usually within two working days.</p>
-    <p><a class="button" href="mailto:trysnapshots@gmail.com?subject=Snapshots%20support">Email support</a></p>
-    <p style="margin-bottom:0;color:var(--muted);font-size:15px">trysnapshots@gmail.com. It helps to include your iPhone model and iOS version.</p>
+<main class="wrap">
+  <div class="book">
+    <nav class="contents" aria-label="Chapters">
+      <ol>
+        <li><a href="#shooting"><b>01</b>Taking snapshots</a></li>
+<li><a href="#prints"><b>02</b>Your prints</a></li>
+<li><a href="#duo"><b>03</b>iPhone Duo</a></li>
+<li><a href="#help"><b>04</b>Settings and help</a></li>
+      </ol>
+    </nav>
+    <div id="answers">
+      <section class="chapter" id="shooting"><header><b>01</b><h2>Taking snapshots</h2></header>
+<article class="qa" id="q1-1"><span class="n">1.1</span><div><h3>How do I take a snapshot?</h3><p>Press the big round shutter. A printer appears and feeds your photo out. Once it's all the way out it develops over a few seconds. Tap <em>Save Snapshot</em> to keep it, or <em>Discard</em> to throw it away.</p></div></article>
+<article class="qa" id="q1-2"><span class="n">1.2</span><div><h3>Can I make it develop faster?</h3><p>Yes, give your phone a shake while the photo is developing and it finishes immediately.</p></div></article>
+<article class="qa" id="q1-3"><span class="n">1.3</span><div><h3>How do I add a caption?</h3><p>While the print is on screen, tap "Write a caption" along the bottom of the photo and type. The caption is saved with the print.</p></div></article>
+<article class="qa" id="q1-4"><span class="n">1.4</span><div><h3>Can I change the caption's handwriting?</h3><p>Yes. Six font buttons sit just above the caption: Handwriting, Marker, Typewriter, Script, Note and Modern. Tap one to change it. Each print keeps its own font, and your next print starts on the one you used last.</p></div></article>
+<article class="qa" id="q1-5"><span class="n">1.5</span><div><h3>How do I change the film style?</h3><p>Tap the dial beside the shutter. It clicks through Classic, Gold, Coast, Sepia and Mono, and you see each style live in the viewfinder.</p></div></article>
+<article class="qa" id="q1-6"><span class="n">1.6</span><div><h3>How do I zoom?</h3><p>Tap one of the zoom steps along the bottom of the viewfinder. There is a step for each lens your iPhone has. You can also press on the steps and slide sideways for anything in between.</p></div></article>
+<article class="qa" id="q1-7"><span class="n">1.7</span><div><h3>How do I use the flash, or take a selfie?</h3><p>Both buttons are in the bottom corners of the viewfinder. The lightning bolt switches the flash between off, auto and on. The arrows switch to the front camera, which also has a wider view for fitting everyone in.</p></div></article>
+<article class="qa" id="q1-8"><span class="n">1.8</span><div><h3>How does the self-timer work?</h3><p>Tap the timer button (bottom left) to choose 3 or 10 seconds, then press the shutter. The countdown shows in the viewfinder. Press the shutter again to cancel it.</p></div></article>
+<article class="qa" id="q1-9"><span class="n">1.9</span><div><h3>What is Booth Mode?</h3><p>A photo booth on your phone. Tap the timer button until it shows the film-strip icon, then press the shutter once. Snapshots counts 3-2-1 before each of three photos and prints all three together as one tall strip. It switches to the front camera for you, and the timer stays on Booth until you change it.</p></div></article>
+<article class="qa" id="q1-10"><span class="n">1.10</span><div><h3>How do I focus, or make the picture brighter or darker?</h3><p>Tap the viewfinder to focus there. Press and hold to lock focus and exposure, then slide your finger up or down to brighten or darken.</p></div></article>
+<article class="qa" id="q1-11"><span class="n">1.11</span><div><h3>Can I use Camera Control?</h3><p>Yes, on iPhone models that have it. Press Camera Control to take a snapshot. Press it lightly to bring up Film, Zoom, Timer and Exposure, then slide along it to change them, without touching the screen.</p></div></article>
+<article class="qa" id="q1-12"><span class="n">1.12</span><div><h3>What does the film counter mean? Will I run out?</h3><p>It counts down the shots left in a pack of ten, like a real instant camera. When a pack is finished a new one loads by itself. There is no limit, and nothing to buy.</p></div></article>
+</section>
+<section class="chapter" id="prints"><header><b>02</b><h2>Your prints</h2></header>
+<article class="qa" id="q2-1"><span class="n">2.1</span><div><h3>Where are my prints, and how do I save them to Photos?</h3><p>Tap the little photo window beside the shutter to open your gallery. Choose Select, pick prints, then use Save to add them to your Photos library or Share to send them. Saved and shared prints keep their white border and caption.</p></div></article>
+<article class="qa" id="q2-2"><span class="n">2.2</span><div><h3>How do I look closely at a print?</h3><p>Tap a print in the gallery to open it. Pinch or double-tap to zoom in, and swipe sideways to move to the next print.</p></div></article>
+<article class="qa" id="q2-3"><span class="n">2.3</span><div><h3>My photo came out upside down. Can I turn it?</h3><p>Yes. Open the print and tap Rotate in the bar at the bottom. Each tap turns the photo a quarter turn inside its frame, and it stays that way when you save or share it. (Booth strips can't be rotated.)</p></div></article>
+<article class="qa" id="q2-4"><span class="n">2.4</span><div><h3>Can I change a caption later?</h3><p>Yes. Open the print and tap it to turn it over. The back shows the date it was taken, and you can write or change its caption and its font there. Tap again to turn it back.</p></div></article>
+<article class="qa" id="q2-5"><span class="n">2.5</span><div><h3>What is the memory on the back of a print?</h3><p>Turn a print over and tap "Write a memory" to write as much as you like about the moment. It's just for you: it's kept with the print on your iPhone and never goes out with a shared picture. When you save a print to Photos, the memory is tucked into the picture's details so it stays with your copy.</p></div></article>
+<article class="qa" id="q2-6"><span class="n">2.6</span><div><h3>How do I delete a print?</h3><p>In the gallery, press and hold a print and choose Delete, or choose Select, pick prints and tap Delete. Deleted prints can't be recovered.</p></div></article>
+<article class="qa" id="q2-7"><span class="n">2.7</span><div><h3>What happens when I turn my phone on its side?</h3><p>The camera steps aside and your prints are laid out in a row, like photographs on a table. Swipe through them and tap one to open it. Turn your phone upright again to take a snapshot.</p></div></article>
+<article class="qa" id="q2-8"><span class="n">2.8</span><div><h3>What is the clock that appears when my phone is on its side?</h3><p>That's the nightstand clock. When your iPhone is charging and turned on its side, Snapshots shows a clock with your prints shuffling past beside it. Tap a print to open it, or tap the gear to change the theme. The screen stays on while the clock is showing. Unplugged, turning your phone on its side shows your prints in a row instead.</p></div></article>
+<article class="qa" id="q2-9"><span class="n">2.9</span><div><h3>How do I put my prints on my Home Screen?</h3><p>Add a Snapshots widget. Touch and hold an empty part of your Home Screen, tap Edit, then Add Widget, and search for Snapshots. Choose Prints (small, medium or large) or Clock &amp; Prints (medium or large). The widget shows prints from your gallery, with a different one on top every hour.</p></div></article>
+<article class="qa" id="q2-10"><span class="n">2.10</span><div><h3>Are my prints backed up? What if I delete the app?</h3><p>Your prints are kept inside Snapshots on your iPhone and are never sent anywhere. Deleting the app deletes them. To keep a print for good, save it to your Photos library.</p></div></article>
+</section>
+<section class="chapter" id="duo"><header><b>03</b><h2>iPhone Duo</h2></header>
+<article class="qa" id="q3-1"><span class="n">3.1</span><div><h3>How does it work on iPhone Duo?</h3><p>Snapshots rearranges itself for each pose. Closed, it works as on any iPhone, on the front display, with the timer and Booth above the gear. Open in Landscape, the viewfinder is on one screen and the camera controls on the other. Open in Portrait, the viewfinder is above the controls, and pressing the shutter turns the whole display into the printer.</p></div></article>
+<article class="qa" id="q3-2"><span class="n">3.2</span><div><h3>What is "Unfold to print"?</h3><p>In the Seated pose (half open), take your photo and the print waits part-way out of the printer. Unfold your Duo flat and the print feeds out across the whole display. If you close your Duo instead, the print finishes on the front display.</p></div></article>
+<article class="qa" id="q3-3"><span class="n">3.3</span><div><h3>Which way up should my Duo sit in the Seated pose?</h3><p>With the half that has the cameras standing upright and the other half lying flat. The viewfinder stays on the camera half and the controls on the flat half. If the picture looks the wrong way round, turn your Duo round.</p></div></article>
+<article class="qa" id="q3-4"><span class="n">3.4</span><div><h3>Can I put the controls on the other screen?</h3><p>Yes, in Landscape. The controls start on the left screen; use the LEFT / RIGHT switch at the top of the controls to move them to whichever side suits your hands.</p></div></article>
+<article class="qa" id="q3-5"><span class="n">3.5</span><div><h3>How do I get the clock on iPhone Duo?</h3><p>Stand your Duo up like a tent, with the hinge at the top, and the front display shows the clock with your prints beside it. It does not need to be charging.</p></div></article>
+<article class="qa" id="q3-6"><span class="n">3.6</span><div><h3>What are Star White and Night Sky?</h3><p>They are the light and dark themes, named after the finishes iPhone Duo comes in. On other iPhone models they are called Light Theme and Dark Theme.</p></div></article>
+</section>
+<section class="chapter" id="help"><header><b>04</b><h2>Settings and help</h2></header>
+<article class="qa" id="q4-1"><span class="n">4.1</span><div><h3>How do I switch between the light and dark look?</h3><p>Tap the gear button and choose a theme, or Match Phone to follow the setting on your iPhone.</p></div></article>
+<article class="qa" id="q4-2"><span class="n">4.2</span><div><h3>Why is the viewfinder black?</h3><p>Snapshots needs permission to use the camera. Open the Settings app, scroll to Snapshots and turn on Camera. If another app is using the camera, close it and reopen Snapshots.</p></div></article>
+<article class="qa" id="q4-3"><span class="n">4.3</span><div><h3>Saving to Photos doesn't work.</h3><p>Open the Settings app, go to Snapshots &gt; Photos and choose "Add Photos Only" or "Full Access".</p></div></article>
+<article class="qa" id="q4-4"><span class="n">4.4</span><div><h3>Does Snapshots collect my data?</h3><p>No. There is no account and no advertising, and your photos stay on your phone. See the <a href="../privacy/">privacy policy</a>.</p></div></article>
+<article class="qa" id="q4-5"><span class="n">4.5</span><div><h3>Does Snapshots work on iPad?</h3><p>Snapshots is made for iPhone and iPhone Duo.</p></div></article>
+</section>
+      <p class="none" id="none" hidden>Nothing matches that. Try another word, or write to Ryan below.</p>
+    </div>
   </div>
 
-  <section class="faq">
-  <h2>Taking snapshots</h2>
-
-  <details>
-    <summary>How do I take a snapshot?</summary>
-    <p>Press the big round shutter. A printer appears and feeds your photo out. Once it's all the way out it develops over a few seconds. Tap <em>Save Snapshot</em> to keep it, or <em>Discard</em> to throw it away.</p>
-  </details>
-  <details>
-    <summary>Can I make it develop faster?</summary>
-    <p>Yes, give your phone a shake while the photo is developing and it finishes immediately.</p>
-  </details>
-  <details>
-    <summary>How do I add a caption?</summary>
-    <p>While the print is on screen, tap "Write a caption" along the bottom of the photo and type. The caption is saved with the print.</p>
-  </details>
-  <details>
-    <summary>Can I change the caption's handwriting?</summary>
-    <p>Yes. Six font buttons sit just above the caption: Handwriting, Marker, Typewriter, Script, Note and Modern. Tap one to change it. Each print keeps its own font, and your next print starts on the one you used last.</p>
-  </details>
-  <details>
-    <summary>How do I change the film style?</summary>
-    <p>Tap the dial beside the shutter. It clicks through Classic, Gold, Coast, Sepia and Mono, and you see each style live in the viewfinder.</p>
-  </details>
-  <details>
-    <summary>How do I zoom?</summary>
-    <p>Tap one of the zoom steps along the bottom of the viewfinder. There is a step for each lens your iPhone has. You can also press on the steps and slide sideways for anything in between.</p>
-  </details>
-  <details>
-    <summary>How do I use the flash, or take a selfie?</summary>
-    <p>Both buttons are in the bottom corners of the viewfinder. The lightning bolt switches the flash between off, auto and on. The arrows switch to the front camera, which also has a wider view for fitting everyone in.</p>
-  </details>
-  <details>
-    <summary>How does the self-timer work?</summary>
-    <p>Tap the timer button (bottom left) to choose 3 or 10 seconds, then press the shutter. The countdown shows in the viewfinder. Press the shutter again to cancel it.</p>
-  </details>
-  <details>
-    <summary>What is Booth Mode?</summary>
-    <p>A photo booth on your phone. Tap the timer button until it shows the film-strip icon, then press the shutter once. Snapshots counts 3-2-1 before each of three photos and prints all three together as one tall strip. It switches to the front camera for you, and the timer stays on Booth until you change it.</p>
-  </details>
-  <details>
-    <summary>How do I focus, or make the picture brighter or darker?</summary>
-    <p>Tap the viewfinder to focus there. Press and hold to lock focus and exposure, then slide your finger up or down to brighten or darken.</p>
-  </details>
-  <details>
-    <summary>Can I use Camera Control?</summary>
-    <p>Yes, on iPhone models that have it. Press Camera Control to take a snapshot. Press it lightly to bring up Film, Zoom, Timer and Exposure, then slide along it to change them, without touching the screen.</p>
-  </details>
-  <details>
-    <summary>What does the film counter mean? Will I run out?</summary>
-    <p>It counts down the shots left in a pack of ten, like a real instant camera. When a pack is finished a new one loads by itself. There is no limit, and nothing to buy.</p>
-  </details>
+  <section class="write" id="write">
+    <div class="note">
+      <time>Replies within two working days</time>
+      <h2>Still stuck? Write to me.</h2>
+      <p>Tell me what happened and which iPhone you have, and I'll help you sort it out. Ideas for the next version are welcome too.</p>
+      <a class="send" href="mailto:trysnapshots@gmail.com?subject=Snapshots%20support">Email support</a>
+      <span class="addr">trysnapshots@gmail.com</span>
+      <span class="sig">Ryan</span>
+    </div>
   </section>
-  <section class="faq">
-  <h2>Your prints</h2>
-
-  <details>
-    <summary>Where are my prints, and how do I save them to Photos?</summary>
-    <p>Tap the little photo window beside the shutter to open your gallery. Choose Select, pick prints, then use Save to add them to your Photos library or Share to send them. Saved and shared prints keep their white border and caption.</p>
-  </details>
-  <details>
-    <summary>How do I look closely at a print?</summary>
-    <p>Tap a print in the gallery to open it. Pinch or double-tap to zoom in, and swipe sideways to move to the next print.</p>
-  </details>
-  <details>
-    <summary>My photo came out upside down. Can I turn it?</summary>
-    <p>Yes. Open the print and tap Rotate in the bar at the bottom. Each tap turns the photo a quarter turn inside its frame, and it stays that way when you save or share it. (Booth strips can't be rotated.)</p>
-  </details>
-  <details>
-    <summary>Can I change a caption later?</summary>
-    <p>Yes. Open the print and tap it to turn it over. The back shows the date it was taken, and you can write or change its caption and its font there. Tap again to turn it back.</p>
-  </details>
-  <details>
-    <summary>What is the memory on the back of a print?</summary>
-    <p>Turn a print over and tap "Write a memory" to write as much as you like about the moment. It's just for you: it's kept with the print on your iPhone and never goes out with a shared picture. When you save a print to Photos, the memory is tucked into the picture's details so it stays with your copy.</p>
-  </details>
-  <details>
-    <summary>How do I delete a print?</summary>
-    <p>In the gallery, press and hold a print and choose Delete, or choose Select, pick prints and tap Delete. Deleted prints can't be recovered.</p>
-  </details>
-  <details>
-    <summary>What happens when I turn my phone on its side?</summary>
-    <p>The camera steps aside and your prints are laid out in a row, like photographs on a table. Swipe through them and tap one to open it. Turn your phone upright again to take a snapshot.</p>
-  </details>
-  <details>
-    <summary>What is the clock that appears when my phone is on its side?</summary>
-    <p>That's the nightstand clock. When your iPhone is charging and turned on its side, Snapshots shows a clock with your prints shuffling past beside it. Tap a print to open it, or tap the gear to change the theme. The screen stays on while the clock is showing. Unplugged, turning your phone on its side shows your prints in a row instead.</p>
-  </details>
-  <details>
-    <summary>How do I put my prints on my Home Screen?</summary>
-    <p>Add a Snapshots widget. Touch and hold an empty part of your Home Screen, tap Edit, then Add Widget, and search for Snapshots. Choose Prints (small, medium or large) or Clock &amp; Prints (medium or large). The widget shows prints from your gallery, with a different one on top every hour.</p>
-  </details>
-  <details>
-    <summary>Are my prints backed up? What if I delete the app?</summary>
-    <p>Your prints are kept inside Snapshots on your iPhone and are never sent anywhere. Deleting the app deletes them. To keep a print for good, save it to your Photos library.</p>
-  </details>
-  </section>
-  <section class="faq">
-  <h2>iPhone Duo</h2>
-
-  <details>
-    <summary>How does it work on iPhone Duo?</summary>
-    <p>Snapshots rearranges itself for each pose. Closed, it works as on any iPhone, on the front display, with the timer and Booth above the gear. Open in Landscape, the viewfinder is on one screen and the camera controls on the other. Open in Portrait, the viewfinder is above the controls, and pressing the shutter turns the whole display into the printer.</p>
-  </details>
-  <details>
-    <summary>What is "Unfold to print"?</summary>
-    <p>In the Seated pose (half open), take your photo and the print waits part-way out of the printer. Unfold your Duo flat and the print feeds out across the whole display. If you close your Duo instead, the print finishes on the front display.</p>
-  </details>
-  <details>
-    <summary>Which way up should my Duo sit in the Seated pose?</summary>
-    <p>With the half that has the cameras standing upright and the other half lying flat. The viewfinder stays on the camera half and the controls on the flat half. If the picture looks the wrong way round, turn your Duo round.</p>
-  </details>
-  <details>
-    <summary>Can I put the controls on the other screen?</summary>
-    <p>Yes, in Landscape. The controls start on the left screen; use the LEFT / RIGHT switch at the top of the controls to move them to whichever side suits your hands.</p>
-  </details>
-  <details>
-    <summary>How do I get the clock on iPhone Duo?</summary>
-    <p>Stand your Duo up like a tent, with the hinge at the top, and the front display shows the clock with your prints beside it. It does not need to be charging.</p>
-  </details>
-  <details>
-    <summary>What are Star White and Night Sky?</summary>
-    <p>They are the light and dark themes, named after the finishes iPhone Duo comes in. On other iPhone models they are called Light Theme and Dark Theme.</p>
-  </details>
-  </section>
-  <section class="faq">
-  <h2>Settings and troubleshooting</h2>
-
-  <details>
-    <summary>How do I switch between the light and dark look?</summary>
-    <p>Tap the gear button and choose a theme, or Match Phone to follow the setting on your iPhone.</p>
-  </details>
-  <details>
-    <summary>Why is the viewfinder black?</summary>
-    <p>Snapshots needs permission to use the camera. Open the Settings app, scroll to Snapshots and turn on Camera. If another app is using the camera, close it and reopen Snapshots.</p>
-  </details>
-  <details>
-    <summary>Saving to Photos doesn't work.</summary>
-    <p>Open the Settings app, go to Snapshots &gt; Photos and choose "Add Photos Only" or "Full Access".</p>
-  </details>
-  <details>
-    <summary>Does Snapshots collect my data?</summary>
-    <p>No. There is no account and no advertising, and your photos stay on your phone. See the <a href="../privacy/">privacy policy</a>.</p>
-  </details>
-  <details>
-    <summary>Does Snapshots work on iPad?</summary>
-    <p>Snapshots is made for iPhone and iPhone Duo.</p>
-  </details>
-  </section>
-
-  <footer>
-    © 2026 Ryan Fredericks · <a href="../press/">Press</a> · <a href="../privacy/">Privacy Policy</a>
-  </footer>
 </main>
+
+<footer>
+  <div class="wrap">© 2026 Ryan Fredericks · <a href="../press/">Press</a> · <a href="../privacy/">Privacy Policy</a></div>
+</footer>
+
+<script>
+// Search: hides the answers that don't contain every word typed, and the chapters left empty.
+var input = document.getElementById('find'), items = document.querySelectorAll('.qa'), chapters = document.querySelectorAll('.chapter');
+input.addEventListener('input', function () {
+  var words = input.value.toLowerCase().split(/\s+/).filter(Boolean), shown = 0;
+  items.forEach(function (qa) {
+    var text = qa.textContent.toLowerCase(), hit = words.every(function (w) { return text.indexOf(w) !== -1; });
+    qa.hidden = !hit; if (hit) shown++;
+  });
+  chapters.forEach(function (c) { c.hidden = !c.querySelector('.qa:not([hidden])'); });
+  document.getElementById('none').hidden = shown > 0;
+  document.getElementById('count').textContent = words.length ? shown + ' of ' + items.length + ' answers' : items.length + ' answers';
+});
+
+// A number on the camera and its line in the list light up together.
+document.querySelectorAll('[data-part]').forEach(function (el) {
+  var twins = document.querySelectorAll('[data-part="' + el.dataset.part + '"]');
+  el.addEventListener('mouseenter', function () { twins.forEach(function (t) { t.classList.add('lit'); }); });
+  el.addEventListener('mouseleave', function () { twins.forEach(function (t) { t.classList.remove('lit'); }); });
+});
+
+// The chapter being read is marked in the contents.
+if ('IntersectionObserver' in window) {
+  var links = document.querySelectorAll('.contents a');
+  var reading = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) links.forEach(function (a) { a.classList.toggle('here', a.getAttribute('href') === '#' + e.target.id); });
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  chapters.forEach(function (c) { reading.observe(c); });
+}
+</script>
 <script>
   // Counts the visit, anonymously and without cookies. A link ending ?r=name is counted under that name.
   window.goatcounter = { path: function (p) {
