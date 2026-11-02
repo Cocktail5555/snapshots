@@ -81,9 +81,9 @@
     .clip blockquote { margin: 18px 0 16px; font: 500 26px/1.3 "New York", "Iowan Old Style", Georgia, serif; letter-spacing: -0.01em; }
     .clip .orig { font-size: 15px; color: var(--muted); margin: 0 0 18px; }
     .clip .links { display: flex; gap: 18px; font-size: 15px; font-weight: 600; }
-    .reel { display: block; position: relative; border-radius: 20px; overflow: hidden; color: #fff; text-decoration: none; box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.5); }
-    .reel img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; object-position: center 82%; }
-    .reel .play { position: absolute; left: 24px; bottom: 24px; display: flex; align-items: center; gap: 14px; padding: 12px 20px 12px 12px; border-radius: 999px; background: rgba(23, 28, 37, 0.88); backdrop-filter: blur(10px); font: 600 15px/1.2 var(--round); }
+    .reel { display: block; color: #fff; text-decoration: none; }
+    .reel img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; object-position: center 82%; border-radius: 20px; box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.5); }
+    .reel .play { width: fit-content; margin-top: 18px; display: flex; align-items: center; gap: 14px; padding: 12px 20px 12px 12px; border-radius: 999px; background: var(--night); font: 600 15px/1.2 var(--round); }
     .reel .play i { width: 40px; height: 40px; border-radius: 50%; background: var(--orange-deep); display: grid; place-items: center; }
     .reel .play i::after { content: ""; border-left: 13px solid #fff; border-top: 8px solid transparent; border-bottom: 8px solid transparent; margin-left: 4px; }
     .reel .play small { display: block; font: 500 12px/1.3 var(--text); color: var(--night-muted); }
@@ -257,9 +257,9 @@ document.addEventListener('click', function (e) {
   <section class="wall">
     <figure class="clip" style="margin: 0">
       <div class="src">ifanr (爱范儿) · October 28, 2026</div>
-      <blockquote>“The camera app Snapshots turns the iPhone Duo into an instant camera with a distinctly retro flavor.”</blockquote>
+      <blockquote>“I think the most special thing is that after pressing the shutter, you slowly straighten the half-folded phone and the photo prints like it was ‘pulled’ out of the instant camera body and slowly appears on this large screen.”</blockquote>
       <p class="orig">From “Toasting bread, playing vinyl, running NDS… who taught you to use the iPhone Duo this way?”, a roundup of apps built for iPhone Duo. In Chinese; translated.</p>
-      <div class="links"><a href="https://mp.weixin.qq.com/s?__biz=MjgzMTAwODI0MA==&amp;mid=2652472834&amp;idx=1&amp;sn=96b652eff23a03b74f58a1cbee2ba7aa">Read on ifanr</a><a href="https://www.36kr.com/p/4045375582983301">Read on 36Kr</a></div>
+      <div class="links"><a href="https://mp.weixin.qq.com/s?__biz=MjgzMTAwODI0MA==&amp;mid=2652472834&amp;idx=1&amp;sn=96b652eff23a03b74f58a1cbee2ba7aa" target="_blank" rel="noopener">Read on ifanr</a><a href="https://www.36kr.com/p/4045375582983301" target="_blank" rel="noopener">Read on 36Kr</a></div>
     </figure>
 
     <div>
