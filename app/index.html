@@ -60,7 +60,11 @@
     .board-pair .front { left: 0; bottom: 0; z-index: 2; transform: rotate(-3deg); }
     .board-pair .back { right: 0; top: 0; z-index: 1; transform: rotate(4deg); }
     #boards .pose.across { margin-top: 56px; }
-    .board-clip { display: block; width: 100%; height: auto; background: #fff; }
+    /* The Duo board clip: the screen recording, with Apple's bezel laid over it, on a navy card. */
+    .pose.navy { --card: var(--night); --ink: var(--night-ink); --muted: var(--night-muted); --line: var(--night-line); color: var(--night-ink); }
+    .duo-clip { position: relative; }
+    .duo-clip video { position: absolute; left: 3.88%; top: 5.34%; width: 92.25%; height: 89.36%; object-fit: cover; border-radius: 3%; background: #000; }
+    .duo-clip .bezel { position: relative; display: block; width: 100%; height: auto; pointer-events: none; }
     .folders-art .device.mock { width: min(100%, 250px); margin: 0 auto; }
     @media (max-width: 560px) { .board-pair { width: min(100%, 330px); } #boards .pose.across { margin-top: 40px; } }
     /* The chart position, under the hero's buttons. */
@@ -287,7 +291,7 @@ document.addEventListener('click', function (e) {
     <div class="booth-row reveal">
       <div class="booth-text">
         <span class="eyebrow">Coming soon in 1.2</span>
-        <h2 style="margin: 18px 0">Pin it up. Stick it on the fridge.</h2>
+        <h2 style="margin: 18px 0">Pin it to a board, or stick on the fridge.</h2>
         <p class="lead">Make a board for your prints: a corkboard, or a whole fridge to decorate. Move them around until it looks just right, then save it or send it to someone.</p>
         <ul class="list">
           <li><span><strong>A fridge or a corkboard.</strong> A retro fridge in seven colors, modern stainless or black steel, or a classic corkboard.</span></li>
@@ -303,13 +307,13 @@ document.addEventListener('click', function (e) {
         </div>
       </figure>
     </div>
-    <article class="pose across reveal">
+    <article class="pose across reveal navy">
       <div class="words">
         <div class="tag">Coming soon · iPhone Duo</div>
         <h3>Your prints beside the board</h3>
-        <p>Open your iPhone Duo on its side and your prints sit on one screen, the fridge on the other. Drag them straight on.</p>
+        <p>Open your iPhone Duo on its side and your prints sit on one screen, the fridge on the other. Drag your prints from the gallery directly onto your board.</p>
       </div>
-      <div class="art"><div class="device mock"><video class="board-clip" autoplay muted loop playsinline preload="metadata" width="1300" height="944" poster="../duo/board-poster.jpg?v=2" aria-label="Snapshots on an iPhone Duo open on its side: three prints dragged one after another from the left screen onto a red fridge on the right."><source src="../duo/board.mp4?v=2" type="video/mp4"></video></div></div>
+      <div class="art"><div class="device mock duo-clip"><video autoplay muted loop playsinline preload="metadata" width="1200" height="844" poster="../duo/board-poster.jpg?v=3" aria-label="Snapshots on an iPhone Duo open on its side: three prints dragged one after another from the left screen onto a red fridge on the right."><source src="../duo/board.mp4?v=3" type="video/mp4"></video><img class="bezel" src="../duo/m/bezel-landscape.png?v=1" width="1300" height="944" alt="" loading="lazy"></div></div>
     </article>
   </div>
 </section>
