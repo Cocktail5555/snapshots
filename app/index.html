@@ -54,6 +54,15 @@
     #captions .cap.modern { font-family: "Avenir Next", "Segoe UI", sans-serif; font-weight: 500; --s: 0.82; }
     @media (max-width: 980px) { .font-row { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 40px; } }
     @media (max-width: 560px) { .font-row { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 56px; } .memory-back { width: min(100%, 280px); } .memory-back p { font-size: 16.5px; } }
+    /* New in 1.2: two phones on a board, one behind the other. */
+    .board-pair { position: relative; width: min(100%, 420px); aspect-ratio: 1 / 1.1; margin: 0 auto; }
+    .board-pair .device.mock { position: absolute; width: 52%; }
+    .board-pair .front { left: 0; bottom: 0; z-index: 2; transform: rotate(-3deg); }
+    .board-pair .back { right: 0; top: 0; z-index: 1; transform: rotate(4deg); }
+    #boards .pose.across { margin-top: 56px; }
+    .board-clip { display: block; width: 100%; height: auto; background: #fff; }
+    .folders-art .device.mock { width: min(100%, 250px); margin: 0 auto; }
+    @media (max-width: 560px) { .board-pair { width: min(100%, 330px); } #boards .pose.across { margin-top: 40px; } }
     /* The chart position, under the hero's buttons. */
     .chart-rank { display: inline-flex; align-items: center; gap: 18px; margin-top: 30px; padding-top: 26px; border-top: 1px solid var(--line); }
     .chart-rank .rank { font: 800 clamp(40px, 4.4vw, 52px)/0.9 var(--round); letter-spacing: -0.04em; background: linear-gradient(180deg, #FF8A45, var(--orange-deep)); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 6px 18px rgba(255, 116, 40, 0.35)); }
@@ -167,6 +176,7 @@ document.addEventListener('click', function (e) {
     <a class="wordmark" href="./" aria-label="Snapshots">SNAPSH<span class="o"></span>TS</a>
     <div class="links">
       <a href="#how">How it works</a>
+      <a href="#boards">Boards</a>
       <a href="#films">Film</a>
       <a href="#duo">iPhone Duo</a>
       <a href="#maker">Maker</a>
@@ -263,9 +273,62 @@ document.addEventListener('click', function (e) {
         <ul class="list">
           <li><span><strong>One press, three photos.</strong> A count of three before each, so everyone is ready.</span></li>
           <li><span><strong>Made for selfies.</strong> Booth flips to the front camera for you.</span></li>
+          <li><span><strong>A flash countdown, coming in 1.2.</strong> On the back camera, the flash blinks through each count, so you know when to pose.</span></li>
           <li><span><strong>Hands-free on iPhone Duo.</strong> Stand it half open, step back, and unfold to print.</span></li>
         </ul>
         <a class="store-badge booth-badge" href="https://apps.apple.com/app/id6818673560" aria-label="Download Snapshots on the App Store"><img src="badges/download-on-the-app-store.svg" width="160" height="53" alt="Download on the App Store" loading="lazy"></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="white" id="boards">
+  <div class="wrap">
+    <div class="booth-row reveal">
+      <div class="booth-text">
+        <span class="eyebrow">Coming soon in 1.2</span>
+        <h2 style="margin: 18px 0">Pin it up. Stick it on the fridge.</h2>
+        <p class="lead">Make a board for your prints: a corkboard, or a whole fridge to decorate. Move them around until it looks just right, then save it or send it to someone.</p>
+        <ul class="list">
+          <li><span><strong>A fridge or a corkboard.</strong> A retro fridge in seven colors, modern stainless or black steel, or a classic corkboard.</span></li>
+          <li><span><strong>Drag, pinch and twist.</strong> Move your prints, resize them and turn them, one finger or two.</span></li>
+          <li><span><strong>Stickers, tape and notes.</strong> Add stickers, emojis, tape and handwritten notes, plus your own stickers from Messages: photo stickers, Memoji and Genmoji.</span></li>
+          <li><span><strong>Save or share.</strong> Keep the finished board in Photos or send it to a friend.</span></li>
+        </ul>
+      </div>
+      <figure class="booth-art">
+        <div class="board-pair">
+          <div class="device mock back"><picture><source srcset="m/board-cork.avif?v=1" type="image/avif"><img src="m/board-cork.png?v=1" width="560" height="1142" alt="A corkboard in Snapshots with prints pinned to it." loading="lazy"></picture></div>
+          <div class="device mock front"><picture><source srcset="m/board-fridge.avif?v=1" type="image/avif"><img src="m/board-fridge.png?v=1" width="560" height="1142" alt="A red retro fridge in Snapshots, decorated with prints, stickers and notes." loading="lazy"></picture></div>
+        </div>
+      </figure>
+    </div>
+    <article class="pose across reveal">
+      <div class="words">
+        <div class="tag">Coming soon · iPhone Duo</div>
+        <h3>Your prints beside the board</h3>
+        <p>Open your iPhone Duo on its side and your prints sit on one screen, the fridge on the other. Drag them straight on.</p>
+      </div>
+      <div class="art"><div class="device mock"><video class="board-clip" autoplay muted loop playsinline preload="metadata" width="1300" height="944" poster="../duo/board-poster.jpg?v=1" aria-label="Snapshots on an iPhone Duo open on its side: three prints dragged one at a time from the left screen onto a red fridge on the right."><source src="../duo/board.mp4?v=1" type="video/mp4"></video></div></div>
+    </article>
+  </div>
+</section>
+
+<section class="night" id="folders">
+  <div class="wrap">
+    <div class="booth-row reveal">
+      <figure class="booth-art folders-art">
+        <div class="device mock"><picture><source srcset="m/folders.avif?v=1" type="image/avif"><img src="m/folders.png?v=1" width="560" height="1142" alt="Folders in the Snapshots gallery, each with a stack of prints on its cover." loading="lazy"></picture></div>
+      </figure>
+      <div class="booth-text">
+        <span class="eyebrow">Coming soon in 1.2</span>
+        <h2 style="margin: 18px 0">A folder for every memory.</h2>
+        <p class="lead">Keep your prints in order: a folder for a trip, a party, or someone special.</p>
+        <ul class="list">
+          <li><span><strong>As many as you like.</strong> A print can be in more than one folder.</span></li>
+          <li><span><strong>Nothing goes missing.</strong> Every print stays in your gallery too.</span></li>
+          <li><span><strong>One swipe away.</strong> Gallery, Boards and Folders sit side by side at the top of the gallery.</span></li>
+        </ul>
       </div>
     </div>
   </div>
@@ -376,7 +439,7 @@ document.addEventListener('click', function (e) {
   <div class="wrap">
     <div class="booth-row reveal">
       <div class="booth-text">
-        <span class="eyebrow">New in 1.1</span>
+        <span class="eyebrow">Widgets</span>
         <h2 style="margin: 18px 0">Your prints on your Home Screen.</h2>
         <p class="lead">Add a Snapshots widget and your favorite prints are there every time you unlock your phone, with a different one on top every hour.</p>
         <ul class="list">
