@@ -38,6 +38,21 @@
     .memory-back time { font-size: 12px; color: rgba(0, 0, 0, 0.45); }
     .memory-back .cap { font-size: 26px; line-height: 1.2; }
     .memory-back p { margin: 10px 0 0; font: 400 18px/1.5 "New York", "Iowan Old Style", Georgia, serif; }
+    /* The print shows its back; hover (or tap) turns it over to the photo and its caption. */
+    .flip { width: min(100%, 320px); aspect-ratio: 4 / 4.9; perspective: 1400px; transform: rotate(-2.5deg); cursor: pointer; outline: none; }
+    .flip-inner { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform 0.8s cubic-bezier(0.3, 0.1, 0.2, 1); }
+    @media (hover: hover) { .flip:hover .flip-inner { transform: rotateY(180deg); } }
+    .flip.turned .flip-inner { transform: rotateY(180deg); }
+    .flip .face { position: absolute; inset: 0; -webkit-backface-visibility: hidden; backface-visibility: hidden; }
+    .flip .memory-back { width: 100%; height: 100%; transform: none; }
+    .flip .front { transform: rotateY(180deg); box-sizing: border-box; }
+    .flip .front .photo img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+    .flip .front .photo span { font-size: 24px; }
+    .flip-hint { margin-top: 18px; font: 600 11px/1 var(--round); letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); text-align: center; }
+    .flip-hint .by-tap { display: none; }
+    @media (hover: none) { .flip-hint .by-hover { display: none; } .flip-hint .by-tap { display: inline; } }
+    .flip:focus-visible { outline: 2px solid var(--orange-deep); outline-offset: 6px; }
+    @media (prefers-reduced-motion: reduce) { .flip-inner { transition: none; } }
     .font-row { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 22px; align-items: start; margin-top: 80px; }
     .font-row figure { margin: 0; }
     .font-row figure:nth-child(odd) .print { transform: rotate(-2deg); }
@@ -53,7 +68,7 @@
     #captions .cap.note { font-family: "Noteworthy", "Segoe Print", cursive; font-weight: 700; --s: 0.88; }
     #captions .cap.modern { font-family: "Avenir Next", "Segoe UI", sans-serif; font-weight: 500; --s: 0.82; }
     @media (max-width: 980px) { .font-row { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 40px; } }
-    @media (max-width: 560px) { .font-row { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 56px; } .memory-back { width: min(100%, 280px); } .memory-back p { font-size: 16.5px; } }
+    @media (max-width: 560px) { .font-row { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 56px; } .memory-back, .flip { width: min(100%, 280px); } .memory-back p { font-size: 16.5px; } }
     /* New in 1.2: two phones on a board, one behind the other. */
     .board-pair { position: relative; width: min(100%, 420px); aspect-ratio: 1 / 1.1; margin: 0 auto; }
     .board-pair .device.mock { position: absolute; width: 52%; }
@@ -359,11 +374,17 @@ document.addEventListener('click', function (e) {
   <div class="wrap">
     <div class="booth-row reveal">
       <figure class="booth-art">
-        <div class="memory-back" role="img" aria-label="The back of a print: the date it was taken, its caption, golden hour, and a memory written underneath.">
-          <time datetime="2026-08-29T19:42">August 29, 2026 at 7:42 PM</time>
-          <span class="cap hand">golden hour</span>
-          <p>Last swim of the summer. We stayed in until the sun went down, then walked back barefoot with sand everywhere.</p>
+        <div class="flip" tabindex="0" role="button" aria-pressed="false" aria-label="A print shown from the back, with its date, caption and memory. Hover or tap to turn it over to the photo.">
+          <div class="flip-inner">
+            <div class="memory-back face">
+              <time datetime="2026-08-29T19:42">August 29, 2026 at 7:42 PM</time>
+              <span class="cap hand">golden hour</span>
+              <p>Last swim of the summer. We stayed in until the sun went down, then walked back barefoot with sand everywhere.</p>
+            </div>
+            <div class="print front face"><div class="photo"><img src="photo.jpg" alt="Friends in the sea at sunset, captioned golden hour." loading="lazy"><span class="cap hand">golden hour</span></div></div>
+          </div>
         </div>
+        <figcaption class="flip-hint"><span class="by-hover">Hover to turn it over</span><span class="by-tap">Tap to turn it over</span></figcaption>
       </figure>
       <div class="booth-text">
         <span class="eyebrow">Captions and memories</span>
@@ -792,5 +813,13 @@ if ('IntersectionObserver' in window) {
   } };
 </script>
 <script data-goatcounter="https://snapshots.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+<script>
+  // Tap to turn the print over on touch screens (hover does it with a mouse).
+  document.querySelectorAll('.flip').forEach(function (card) {
+    function turn() { var on = card.classList.toggle('turned'); card.setAttribute('aria-pressed', on ? 'true' : 'false'); }
+    card.addEventListener('click', function () { if (!window.matchMedia('(hover: hover)').matches) turn(); });
+    card.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); turn(); } });
+  });
+</script>
 </body>
 </html>
