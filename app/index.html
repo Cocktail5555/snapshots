@@ -80,7 +80,8 @@
     .duo-clip { position: relative; }
     .duo-clip video { position: absolute; left: 3.88%; top: 5.34%; width: 92.25%; height: 89.36%; object-fit: cover; border-radius: 3%; background: #000; }
     .duo-clip .bezel { position: relative; display: block; width: 100%; height: auto; pointer-events: none; }
-    .folders-art .device.mock { width: min(100%, 250px); margin: 0 auto; }
+    .folders-art .iphone-clip { width: min(100%, 270px); margin: 0 auto; }
+    .iphone-clip video { left: 5.1%; top: 2.2%; width: 89.8%; height: 95.6%; border-radius: 12% / 5.6%; }
     @media (max-width: 560px) { .board-pair { width: min(100%, 330px); } #boards .pose.across { margin-top: 40px; } }
     /* The chart position, under the hero's buttons. */
     .chart-rank { display: inline-flex; align-items: center; gap: 18px; margin-top: 30px; padding-top: 26px; border-top: 1px solid var(--line); }
@@ -337,7 +338,7 @@ document.addEventListener('click', function (e) {
   <div class="wrap">
     <div class="booth-row reveal">
       <figure class="booth-art folders-art">
-        <div class="device mock"><picture><source srcset="m/folders.avif?v=1" type="image/avif"><img src="m/folders.png?v=1" width="560" height="1142" alt="Folders in the Snapshots gallery, each with a stack of prints on its cover." loading="lazy"></picture></div>
+        <div class="device mock duo-clip iphone-clip"><video autoplay muted loop playsinline preload="metadata" poster="folders-poster.jpg?v=1" aria-label="The Folders tab in Snapshots on an iPhone: the Road Trip folder is tapped, its front falls open and its prints come out to fill the screen."><source src="folders.mp4?v=1" type="video/mp4"></video><img class="bezel" src="m/bezel-iphone.png?v=1" width="735" height="1500" alt="" aria-hidden="true"></div>
       </figure>
       <div class="booth-text">
         <span class="eyebrow">New in 1.2</span>
