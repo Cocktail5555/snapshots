@@ -80,6 +80,8 @@
     .clip .src { font: 600 12px/1.4 var(--mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
     .clip blockquote { margin: 18px 0 16px; font: 500 26px/1.3 "New York", "Iowan Old Style", Georgia, serif; letter-spacing: -0.01em; }
     .clip .links { display: flex; gap: 18px; font-size: 15px; font-weight: 600; }
+    .clips { display: grid; gap: 44px; }
+    .clips .clip:nth-child(2) { transform: rotate(1deg); }
     .reel { display: block; color: #fff; text-decoration: none; }
     .reel img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; object-position: center 82%; border-radius: 20px; box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.5); }
     .reel .play { width: fit-content; margin: 18px auto 0; display: flex; align-items: center; gap: 14px; padding: 12px 20px 12px 12px; border-radius: 999px; background: var(--night); font: 600 15px/1.2 var(--round); }
@@ -258,11 +260,18 @@ document.addEventListener('click', function (e) {
 
 <div class="wrap">
   <section class="wall">
+    <div class="clips">
+    <figure class="clip" style="margin: 0">
+      <div class="src">TechPP · October 31, 2026</div>
+      <blockquote>“Snapshots is an app that helps your Duo morph into an instant camera.”</blockquote>
+      <div class="links"><a href="https://techpp.com/2026/10/31/iphone-duo-apps-fun" target="_blank" rel="noopener">Read on TechPP</a></div>
+    </figure>
     <figure class="clip" style="margin: 0">
       <div class="src">ifanr (爱范儿) · October 28, 2026</div>
       <blockquote>“I think the most special thing is that after pressing the shutter, you slowly straighten the half-folded phone and the photo prints like it was ‘pulled’ out of the instant camera body and slowly appears on this large screen.”</blockquote>
       <div class="links"><a href="https://mp.weixin.qq.com/s?__biz=MjgzMTAwODI0MA==&amp;mid=2652472834&amp;idx=1&amp;sn=96b652eff23a03b74f58a1cbee2ba7aa" target="_blank" rel="noopener">Read on ifanr</a><a href="https://www.36kr.com/p/4045375582983301" target="_blank" rel="noopener">Read on 36Kr</a></div>
     </figure>
+    </div>
 
     <div>
       <a class="reel" href="video/">
